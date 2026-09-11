@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { X, Download, Mail } from 'lucide-react'
 import { Github, Linkedin } from '@/components/ui/Icons'
@@ -78,9 +79,19 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       aria-modal="true"
     >
       <div className="flex items-center justify-between px-4 md:px-6 h-16 w-full">
-        <a href="#" className="flex items-center gap-1 group" onClick={onClose}>
-          <span className="font-heading font-bold text-xl text-text">MK</span>
-          <span className="bg-accent w-1.5 h-1.5 rounded-full inline-block"></span>
+        <a href="#hero" className="flex items-center gap-2.5 group" onClick={onClose}>
+          <div className="w-9 h-9 rounded-xl bg-[#181512] border border-[#362F27] flex items-center justify-center p-1.5 shadow-md">
+            <Image
+              src="/logo.png"
+              alt="Mahmudul Hasan Logo"
+              width={32}
+              height={21}
+              className="w-auto h-5 object-contain"
+            />
+          </div>
+          <span className="font-heading font-bold text-xl text-text">
+            Mahmudul<span className="text-[#F6991A]">.</span>
+          </span>
         </a>
         <button 
           ref={firstFocusableRef}

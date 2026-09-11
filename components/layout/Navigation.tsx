@@ -1,6 +1,7 @@
-﻿'use client'
+'use client'
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Menu, X, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
@@ -41,12 +42,17 @@ export const Navigation = () => {
               : 'bg-[#181512] shadow-xl border border-[#362F27]'
           }`}
         >
-          {/* Logo with Orange Circle + lightning/geometric slash */}
-          <a href="#hero" className="flex items-center gap-2 text-white font-bold tracking-tight text-lg pl-1 group">
-            <div className="w-9 h-9 rounded-full bg-[#F6991A] flex items-center justify-center text-[#181512] shadow-sm">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13 2L3 14h8l-1 8 11-13h-8l1-7z" />
-              </svg>
+          {/* Logo with Background Container for White Logo */}
+          <a href="#hero" className="flex items-center gap-2.5 text-white font-bold tracking-tight text-lg pl-1 group">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#241F1A] border border-[#F6991A]/30 group-hover:border-[#F6991A] flex items-center justify-center p-1.5 shadow-md transition-all duration-200 group-hover:shadow-[0_0_12px_rgba(246,153,26,0.25)]">
+              <Image
+                src="/logo.png"
+                alt="Mahmudul Hasan Logo"
+                width={36}
+                height={23}
+                className="w-auto h-5 sm:h-5.5 object-contain"
+                priority
+              />
             </div>
             <span className="font-heading tracking-tight text-lg text-white font-bold">
               Mahmudul<span className="text-[#F6991A]">.</span>

@@ -1,5 +1,6 @@
-﻿import { Navigation } from "@/components/layout/Navigation";
+import { Navigation } from "@/components/layout/Navigation";
 import { Hero } from "@/components/sections/Hero";
+import { TechMarquee } from "@/components/sections/TechMarquee";
 import { Services } from "@/components/sections/Services";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
@@ -18,8 +19,11 @@ export default function Home() {
     <>
       <Navigation />
       <main className="overflow-x-hidden">
-        {/* 1. Hero Section (Cream) with Profile Portrait & Ticker Marquee */}
+        {/* 1. Hero Section (Cream) with Profile Portrait */}
         <Hero />
+
+        {/* 1.5. Infinite Marquee Ticker: Full Stack, DevOps, CI/CD */}
+        <TechMarquee />
 
         {/* 2. Services: "What I Bring To The Table" (Cream) */}
         <Services />

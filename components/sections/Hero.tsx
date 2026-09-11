@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
@@ -6,16 +6,16 @@ import { Button, CapsuleGroup } from '@/components/ui/Button';
 
 export function Hero() {
   return (
-    <section 
-      id="hero" 
-      className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 overflow-hidden bg-[#FAF6EE]"
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-[#FAF6EE]"
     >
       {/* 1440px Desktop Max Width Container with responsive padding */}
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex-1 flex flex-col justify-between relative">
-        
+
         {/* TOP HEADER GROUP */}
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto z-20 pt-2">
-          
+
           {/* Main Headline with Stamp */}
           <div className="relative inline-block px-4">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[82px] font-heading font-extrabold tracking-tight text-[#181512] leading-[1.08]">
@@ -25,8 +25,8 @@ export function Hero() {
 
             {/* Circular Scalloped "HIRE ME" Stamp Badge (Desktop) */}
             <div className="hidden lg:block absolute -right-24 xl:-right-32 -top-2 select-none pointer-events-auto">
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="relative w-24 h-24 rounded-full bg-[#181512] border-2 border-dashed border-[#F6991A]/60 flex items-center justify-center shadow-xl hover:scale-105 transition-transform group"
                 aria-label="Hire Me Badge"
               >
@@ -62,7 +62,7 @@ export function Hero() {
 
         {/* CENTER CANVAS WITH 1440PX GEOMETRY */}
         <div className="relative w-full max-w-[1280px] mx-auto mt-4 sm:mt-6 flex-1 min-h-[420px] sm:min-h-[500px] md:min-h-[560px] lg:min-h-[620px] flex items-end justify-center">
-          
+
           {/* THE EXACT LAYERED SHAPE BEHIND THE IMAGE */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
             <div className="w-[320px] sm:w-[460px] md:w-[560px] lg:w-[620px] h-[320px] sm:h-[460px] md:h-[560px] lg:h-[620px] rounded-full bg-[#EFE9DC] relative flex items-center justify-center">
@@ -83,7 +83,7 @@ export function Hero() {
 
           {/* CENTER: PROPORTIONAL SUBJECT PORTRAIT WITH SEAMLESS MULTI-DIRECTIONAL MASK */}
           <div className="relative w-[320px] sm:w-[460px] md:w-[560px] lg:w-[640px] xl:w-[680px] h-[400px] sm:h-[480px] md:h-[560px] lg:h-[620px] xl:h-[660px] z-10 flex items-end justify-center pointer-events-none">
-            <div 
+            <div
               className="relative w-full h-full"
               style={{
                 WebkitMaskImage: 'linear-gradient(to right, black 75%, transparent 98%), linear-gradient(to bottom, black 80%, transparent 100%)',
@@ -147,7 +147,7 @@ export function Hero() {
               >
                 Portfolio
               </Button>
-              
+
               {/* Right Crisp Outlined Pill: Hire Me */}
               <Button
                 variant="outline"

@@ -1,6 +1,7 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { ArrowUp, Mail, Heart } from 'lucide-react';
@@ -35,15 +36,21 @@ export function Footer() {
 
         {/* Footer Navigation & Social Links */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-[#EBE3D5]">
-          {/* Logo */}
-          <div className="flex items-center gap-2 text-[#181512] font-bold text-xl">
-            <span className="w-8 h-8 rounded-full bg-[#F6991A] text-[#181512] font-black flex items-center justify-center text-sm shadow-sm">
-              M
-            </span>
+          {/* Logo with Dark Background Badge */}
+          <a href="#hero" className="flex items-center gap-2.5 text-[#181512] font-bold text-xl group">
+            <div className="w-10 h-10 rounded-xl bg-[#181512] border border-[#362F27] group-hover:border-[#F6991A] flex items-center justify-center p-1.5 shadow-md transition-all duration-200 group-hover:shadow-[0_0_12px_rgba(246,153,26,0.2)]">
+              <Image
+                src="/logo.png"
+                alt="Mahmudul Hasan Logo"
+                width={36}
+                height={23}
+                className="w-auto h-5.5 object-contain"
+              />
+            </div>
             <span className="font-heading tracking-wide">
               Mahmudul<span className="text-[#F6991A]">.</span>
             </span>
-          </div>
+          </a>
 
           {/* Nav Quick Links */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-[#7A746B]">
