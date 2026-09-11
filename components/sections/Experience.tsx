@@ -1,149 +1,193 @@
-﻿'use client';
+'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@/components/ui/Container';
-import { EXPERIENCE, EDUCATION } from '@/lib/constants';
-import { Briefcase, GraduationCap, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, GraduationCap } from 'lucide-react';
+
+interface TimelineItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  date: string;
+}
+
+const EDUCATION_ITEMS: TimelineItem[] = [
+  {
+    id: 'edu-1',
+    title: 'Uttara University',
+    subtitle: 'B.Sc. in Computer Science & Engineering',
+    date: '2022 - 2026',
+  },
+  {
+    id: 'edu-2',
+    title: 'Dhaka College',
+    subtitle: 'Higher Secondary Certificate (Science)',
+    date: '2019 - 2021',
+  },
+  {
+    id: 'edu-3',
+    title: 'Model Academy',
+    subtitle: 'Secondary School Certificate (Science)',
+    date: '2017 - 2019',
+  },
+];
+
+const WORK_ITEMS: TimelineItem[] = [
+  {
+    id: 'work-1',
+    title: 'Codexmine',
+    subtitle: 'Senior Full Stack Developer',
+    date: '2024 - Present',
+  },
+  {
+    id: 'work-2',
+    title: 'LeoPhoenix',
+    subtitle: 'Full Stack Engineer (Remote)',
+    date: '2023 - 2024',
+  },
+  {
+    id: 'work-3',
+    title: 'Self-Employed',
+    subtitle: 'Full Stack & DevOps Freelancer',
+    date: '2021 - 2023',
+  },
+];
+
+// Card Polygon: Top-left chamfer, top-right chamfer, and right-edge stepped notch
+const CARD_CLIP_PATH =
+  'polygon(0% 20px, 20px 0%, calc(100% - 20px) 0%, calc(100% - 8px) 14px, calc(100% - 8px) 45%, 100% 52%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0% calc(100% - 16px))';
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 bg-[#FBF8F2] relative border-t border-[#EBE3D5]">
+    <section id="experience" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden">
       <Container>
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F2EDE2] border border-[#EBE3D5] text-[#181512] text-xs font-semibold uppercase tracking-wider mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F6991A]" />
-              Career Journey
+        {/* CENTERED SECTION HEADER */}
+        <div className="flex flex-col items-center text-center mb-14 sm:mb-18 select-none">
+          {/* Double Circle Icon + Education & Work label */}
+          <div className="flex items-center gap-2 mb-3">
+            <div className="relative flex items-center">
+              <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <h2 className="text-3xl sm:text-5xl font-heading font-extrabold text-[#181512] tracking-tight">
-              Academic & <span className="text-[#F6991A]">Professional Experience</span>
-            </h2>
+            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+              Education & Work
+            </span>
           </div>
-          <p className="text-base text-[#7A746B] max-w-md leading-relaxed">
-            A track record of engineering scalable real-world products in agile remote and in-office teams.
-          </p>
+
+          {/* Heading with 3-leaf sparkle decoration on 'and' */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-heading font-extrabold tracking-tight leading-[1.12]">
+            <span className="text-[#181512]">My </span>
+            <span className="relative inline-block text-[#F6991A]">
+              Academic and
+              {/* 3 decorative leaf petals at top-right of 'and' */}
+              <svg
+                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M12 11C13 6 16.5 2.5 21 2C20.5 6.5 17 10 12 11Z" />
+                <path d="M13 12C17 11 21.5 12 24 15.5C21.5 18 17 17.5 13 14C12.5 13.5 12.5 12.5 13 12Z" />
+                <path d="M12 13C13 17 15 20.5 17.5 23.5C14.5 23 11.5 20.5 10.5 16.5C10.5 14 11.5 13 12 13Z" />
+              </svg>
+            </span>
+            <br />
+            <span className="text-[#F6991A]">Professional </span>
+            <span className="text-[#181512]">Journey</span>
+          </h2>
         </div>
 
-        {/* Dual Columns: Experience (Left) & Education (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          
-          {/* Experience Column */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-[#F6991A] text-[#181512] flex items-center justify-center font-bold">
-                <Briefcase className="w-5 h-5" />
-              </div>
-              <h3 className="text-2xl font-heading font-bold text-[#181512]">Work Experience</h3>
-            </div>
-
-            {EXPERIENCE.map((exp, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EBE3D5] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-xs font-bold text-[#F6991A] bg-[#F6991A]/10 px-3 py-1 rounded-full">
-                      {exp.startDate} - {exp.endDate}
-                    </span>
-                    <span className="text-xs text-[#7A746B] flex items-center gap-1">
-                      <MapPin size={12} /> {exp.location}
-                    </span>
-                  </div>
-
-                  <h4 className="text-xl font-heading font-bold text-[#181512] mb-1">
-                    {exp.role}
-                  </h4>
-                  <div className="text-sm font-semibold text-[#7A746B] mb-4">
-                    {exp.company}
-                  </div>
-
-                  <ul className="space-y-2.5 mb-6">
-                    {exp.achievements.map((ach, i) => (
-                      <li key={i} className="text-sm text-[#7A746B] leading-relaxed flex items-start gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#F6991A] mt-2 flex-shrink-0" />
-                        <span>{ach}</span>
-                      </li>
-                    ))}
-                  </ul>
+        {/* DUAL COLUMNS: EDUCATION (LEFT) & WORK EXPERIENCE (RIGHT) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
+          {/* LEFT CARD: EDUCATION */}
+          <div className="relative filter drop-shadow-[0_4px_20px_rgba(24,21,18,0.05)] hover:drop-shadow-[0_12px_32px_rgba(246,153,26,0.1)] transition-all duration-400 group">
+            <div
+              className="w-full bg-white p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
+              style={{ clipPath: CARD_CLIP_PATH }}
+            >
+              {/* CARD HEADER: ORANGE CIRCLE WITH GRADUATION CAP ICON + TITLE */}
+              <div className="flex items-center gap-3.5 sm:gap-4 select-none">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#F6991A] flex items-center justify-center text-[#181512] shadow-sm shrink-0">
+                  <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
                 </div>
-
-                {exp.techStack && (
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#EBE3D5]">
-                    {exp.techStack.map((tech) => (
-                      <span key={tech} className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#F2EDE2] text-[#181512]">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] tracking-tight">
+                  Education
+                </h3>
               </div>
-            ))}
-          </div>
 
-          {/* Education & Certifications Column */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-[#181512] text-[#F6991A] flex items-center justify-center font-bold">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <h3 className="text-2xl font-heading font-bold text-[#181512]">Education & Focus</h3>
-            </div>
+              {/* HORIZONTAL DOTTED CONNECTOR LINE */}
+              <div className="w-full border-t border-dashed border-[#E5DFD3] my-6 sm:my-8" />
 
-            {EDUCATION.map((edu, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-[#EBE3D5] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-xs font-bold text-[#181512] bg-[#F2EDE2] px-3 py-1 rounded-full">
-                      {edu.startDate} - {edu.endDate}
-                    </span>
-                    <span className="text-xs font-mono text-green-700 font-semibold bg-green-50 px-2 py-0.5 rounded">
-                      Graduated / Verified
+              {/* 3 EDUCATION ENTRIES */}
+              <div className="space-y-6 sm:space-y-8">
+                {EDUCATION_ITEMS.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between gap-4 group/item"
+                  >
+                    <div>
+                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm sm:text-[15px] text-[#7A746B] font-medium mt-0.5 tracking-normal">
+                        {item.subtitle}
+                      </p>
+                    </div>
+
+                    {/* BLACK DATE PILL BADGE */}
+                    <span className="px-3.5 sm:px-4 py-1.5 rounded-full bg-[#181512] text-white font-mono font-bold text-xs sm:text-[13px] tracking-tight shadow-sm select-none shrink-0 group-hover/item:bg-[#F6991A] group-hover/item:text-[#181512] transition-colors duration-200">
+                      {item.date}
                     </span>
                   </div>
-
-                  <h4 className="text-xl font-heading font-bold text-[#181512] mb-1">
-                    {edu.degree}
-                  </h4>
-                  <div className="text-base font-semibold text-[#F6991A] mb-4">
-                    {edu.institution}
-                  </div>
-
-                  <p className="text-sm text-[#7A746B] leading-relaxed mb-4">
-                    Rigorous academic training in algorithms, database engineering, software architecture, and distributed computer systems.
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-[#EBE3D5] flex items-center justify-between">
-                  <span className="text-xs font-mono text-[#7A746B]">Major: Computer Science</span>
-                  <span className="text-xs font-heading font-bold text-[#181512]">Uttara, Dhaka</span>
-                </div>
-              </div>
-            ))}
-
-            {/* Practical Certifications card */}
-            <div className="bg-gradient-to-br from-[#F2EDE2] to-[#EBE3D5]/60 rounded-3xl p-6 sm:p-8 border border-[#EBE3D5]">
-              <h4 className="text-lg font-heading font-bold text-[#181512] mb-2">
-                Continuous Technical Upskilling
-              </h4>
-              <p className="text-sm text-[#7A746B] leading-relaxed mb-4">
-                Active practitioner of modern AI agent architectures, autonomous LangGraph workflows, and scalable cloud-native architectures.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['Modern Next.js 15', 'LangChain AI', 'Docker Containerization', 'PostgreSQL Internals'].map((skill) => (
-                  <span key={skill} className="text-xs font-mono px-3 py-1 rounded-full bg-white text-[#181512] border border-[#D5CBB9]">
-                    ✓ {skill}
-                  </span>
                 ))}
               </div>
             </div>
-
           </div>
 
+          {/* RIGHT CARD: WORK EXPERIENCE */}
+          <div className="relative filter drop-shadow-[0_4px_20px_rgba(24,21,18,0.05)] hover:drop-shadow-[0_12px_32px_rgba(246,153,26,0.1)] transition-all duration-400 group">
+            <div
+              className="w-full bg-white p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
+              style={{ clipPath: CARD_CLIP_PATH }}
+            >
+              {/* CARD HEADER: ORANGE CIRCLE WITH BRIEFCASE ICON + TITLE */}
+              <div className="flex items-center gap-3.5 sm:gap-4 select-none">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#F6991A] flex items-center justify-center text-[#181512] shadow-sm shrink-0">
+                  <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
+                </div>
+                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] tracking-tight">
+                  Work Experience
+                </h3>
+              </div>
+
+              {/* HORIZONTAL DOTTED CONNECTOR LINE */}
+              <div className="w-full border-t border-dashed border-[#E5DFD3] my-6 sm:my-8" />
+
+              {/* 3 WORK ENTRIES */}
+              <div className="space-y-6 sm:space-y-8">
+                {WORK_ITEMS.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between gap-4 group/item"
+                  >
+                    <div>
+                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm sm:text-[15px] text-[#7A746B] font-medium mt-0.5 tracking-normal">
+                        {item.subtitle}
+                      </p>
+                    </div>
+
+                    {/* BLACK DATE PILL BADGE */}
+                    <span className="px-3.5 sm:px-4 py-1.5 rounded-full bg-[#181512] text-white font-mono font-bold text-xs sm:text-[13px] tracking-tight shadow-sm select-none shrink-0 group-hover/item:bg-[#F6991A] group-hover/item:text-[#181512] transition-colors duration-200">
+                      {item.date}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
