@@ -1,4 +1,4 @@
-import { Navigation } from "@/components/layout/Navigation";
+﻿import { Navigation } from "@/components/layout/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { TechMarquee } from "@/components/sections/TechMarquee";
 import { Services } from "@/components/sections/Services";
@@ -42,7 +42,7 @@ export default function Home() {
         <Experience />
 
         {/* 7. Why Choose Me (Espresso Dark) */}
-        <WhyChooseMe />
+        {/* <WhyChooseMe /> */}
 
         {/* 8. The Clear Development Process (Cream) */}
         <Process />
