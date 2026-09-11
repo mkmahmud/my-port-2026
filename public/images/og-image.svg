@@ -1,0 +1,35 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="ogbg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E0C" />
+      <stop offset="50%" stop-color="#0D1210" />
+      <stop offset="100%" stop-color="#121611" />
+    </linearGradient>
+    <pattern id="oggrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(57, 255, 136, 0.05)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ogbg)" />
+  <rect width="1200" height="630" fill="url(#oggrid)" />
+  
+  <circle cx="950" cy="200" r="300" fill="#39FF88" opacity="0.06" filter="blur(80px)" />
+  <circle cx="200" cy="500" r="250" fill="#D4A853" opacity="0.03" filter="blur(80px)" />
+
+  <rect x="80" y="80" width="1040" height="470" rx="16" fill="#121611" stroke="rgba(57, 255, 136, 0.15)" stroke-width="1" />
+
+  <text x="140" y="160" fill="#39FF88" font-family="monospace" font-size="18" letter-spacing="3">// PORTFOLIO &amp; SYSTEMS</text>
+  
+  <text x="140" y="240" fill="#E8ECEA" font-family="sans-serif" font-size="56" font-weight="bold" letter-spacing="-1.5">Mahmudul Hasan (MK)</text>
+  
+  <text x="140" y="295" fill="#39FF88" font-family="monospace" font-size="24">Full Stack Developer &amp; AI Engineer</text>
+  
+  <text x="140" y="360" fill="#8A928D" font-family="sans-serif" font-size="20">Building intelligent systems from database to deployment.</text>
+  <text x="140" y="395" fill="#8A928D" font-family="sans-serif" font-size="18">Next.js · React 19 · FastAPI · LangChain · PostgreSQL · Docker · AWS</text>
+
+  <line x1="140" y1="440" x2="1020" y2="440" stroke="rgba(57, 255, 136, 0.1)" stroke-width="1" />
+  
+  <text x="140" y="490" fill="#E8ECEA" font-family="monospace" font-size="16">github.com/mkmahmud</text>
+  <text x="440" y="490" fill="#E8ECEA" font-family="monospace" font-size="16">mkmahmud.dev@gmail.com</text>
+  <text x="760" y="490" fill="#39FF88" font-family="monospace" font-size="16">● Available for opportunities</text>
+</svg>
