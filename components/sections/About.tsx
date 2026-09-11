@@ -61,11 +61,11 @@ export function About() {
                 {/* Profile Portrait Image */}
                 <div className="relative w-full h-full flex items-end justify-center">
                   <Image
-                    src="/images/profile.png"
+                    src="/images/direct_head.png"
                     alt="Mahmudul Hasan"
                     fill
                     priority
-                    className="object-contain object-bottom drop-shadow-2xl"
+                    className="object-cover object-top drop-shadow-2xl"
                     sizes="(max-width: 768px) 360px, 420px"
                   />
                 </div>
