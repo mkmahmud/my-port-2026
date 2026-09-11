@@ -10,6 +10,7 @@ import { WhyChooseMe } from "@/components/sections/WhyChooseMe";
 import { Process } from "@/components/sections/Process";
 import { Pricing } from "@/components/sections/Pricing";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { Blogs } from "@/components/sections/Blogs";
 import { Contact } from "@/components/sections/Contact";
 import { FAQ } from "@/components/sections/FAQ";
 import { Footer } from "@/components/sections/Footer";
@@ -51,6 +52,9 @@ export default function Home() {
 
         {/* 10. Testimonials & Client Reviews (Cream) */}
         <Testimonials />
+
+        {/* 10.5. Latest Blogs: Insights from My Blogs (Espresso Dark) */}
+        <Blogs />
 
         {/* 11. Contact Form & Direct Connection (Cream) */}
         <Contact />

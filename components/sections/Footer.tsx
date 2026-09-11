@@ -152,7 +152,7 @@ export function Footer() {
                   { label: 'Home', href: '#hero' },
                   { label: 'Services', href: '#services' },
                   { label: 'Projects', href: '#projects' },
-                  { label: 'Blogs', href: '#skills' },
+                  { label: 'Blogs', href: '#blogs' },
                   { label: 'About Me', href: '#about' },
                   { label: 'FAQs', href: '#faq' },
                 ].map((item) => (

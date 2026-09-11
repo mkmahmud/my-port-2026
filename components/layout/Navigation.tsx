@@ -27,7 +27,7 @@ export const Navigation = () => {
     { label: 'Home', href: '#hero', id: 'hero' },
     { label: 'Services', href: '#services', id: 'services' },
     { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Blogs', href: '#skills', id: 'skills' },
+    { label: 'Blogs', href: '#blogs', id: 'blogs' },
     { label: 'About Me', href: '#about', id: 'about' },
     { label: 'Testimonials', href: '#testimonials', id: 'testimonials' },
   ]
