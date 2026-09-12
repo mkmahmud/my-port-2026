@@ -26,7 +26,7 @@ export function Hero() {
             {/* Circular Scalloped "HIRE ME" Stamp Badge (Desktop) */}
             <div className="hidden lg:block absolute -right-24 xl:-right-32 -top-2 select-none pointer-events-auto">
               <a
-                href="#contact"
+                href="/contact"
                 className="relative w-24 h-24 rounded-full bg-[#181512] border-2 border-dashed border-[#F6991A]/60 flex items-center justify-center shadow-xl hover:scale-105 transition-transform group"
                 aria-label="Hire Me Badge"
               >
@@ -56,7 +56,7 @@ export function Hero() {
 
           {/* Subtitle with high contrast bold font and clear visibility */}
           <p className="text-black sm:text-lg md:text-xl text-[#181512] font-semibold mt-3 px-4 tracking-wide">
-            Full Stack and Devops Engineer in the Earth
+            Full Stack DevOps Engineer
           </p>
         </div>
 
@@ -76,8 +76,8 @@ export function Hero() {
           {/* LEFT SIDE: TESTIMONIAL QUOTE (NICELY ALIGNED WITH COMFORTABLE SPACING) */}
           <div className="absolute left-2 sm:left-6 lg:left-10 xl:left-14 top-8 sm:top-14 md:top-20 z-20 max-w-[240px] sm:max-w-[280px] text-left">
             <div className="text-4xl sm:text-5xl text-[#F6991A] font-serif font-black leading-none mb-2">“</div>
-            <p className="text-sm sm:text-base md:text-lg font-bold !text-black leading-snug  ">
-              Highly Professional Product Designer with Great Creativity!
+            <p className="text-sm sm:text-base md:text-lg font-bold !text-black leading-snug">
+              Dependable Full Stack Engineer with rock-solid DevOps & cloud execution!
             </p>
           </div>
 
@@ -108,10 +108,10 @@ export function Hero() {
             {/* Row 1 */}
             <div className="flex items-center gap-2">
               <span className="px-3.5 py-1.5 rounded-full bg-[#181512] text-white text-xs font-semibold shadow-sm">
-                Prototype
+                CI/CD Pipeline
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-[#F6991A] text-[#181512] text-xs font-bold shadow-sm">
-                Dashboard
+                Docker
               </span>
             </div>
             {/* Row 2 with golden four-petal icon */}
@@ -120,16 +120,16 @@ export function Hero() {
                 ✦
               </div>
               <span className="px-3.5 py-1.5 rounded-full bg-[#181512] text-white text-xs font-semibold shadow-sm">
-                Mobile App Design
+                Next.js & FastAPI
               </span>
             </div>
             {/* Row 3 */}
             <div className="flex items-center gap-2">
               <span className="px-3.5 py-1.5 rounded-full bg-[#181512] text-white text-xs font-semibold shadow-sm">
-                Website
+                AWS Cloud
               </span>
               <span className="px-3.5 py-1.5 rounded-full bg-[#F6991A] text-[#181512] text-xs font-bold shadow-sm">
-                Design System
+                PostgreSQL
               </span>
             </div>
           </div>
@@ -141,7 +141,7 @@ export function Hero() {
               <Button
                 variant="primary"
                 size="md"
-                href="#projects"
+                href="/projects"
                 withArrow
                 className="font-extrabold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base"
               >
@@ -152,7 +152,7 @@ export function Hero() {
               <Button
                 variant="outline"
                 size="md"
-                href="#contact"
+                href="/contact"
                 className="!border-none !text-black font-extrabold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base shadow-sm"
               >
                 Hire Me

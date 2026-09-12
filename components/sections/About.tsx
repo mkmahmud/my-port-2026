@@ -25,10 +25,10 @@ function SparkleFlower({ className = 'w-10 h-10' }: { className?: string }) {
 
 export function About() {
   const stats = [
-    { value: 250, suffix: '+', label: 'Successful Projects' },
-    { value: 25, suffix: '+', label: 'Industry Covered' },
-    { value: 150, suffix: '+', label: 'Happy Customers' },
-    { value: 16, suffix: '+', label: 'Years of Experience' },
+    { value: 15, suffix: '+', label: 'Production Projects' },
+    { value: 25, suffix: '+', label: 'Tech & Tools' },
+    { value: 90, suffix: '+', label: 'Performance Score' },
+    { value: 2, suffix: '+', label: 'Years of Experience' },
   ];
 
   return (
@@ -74,52 +74,52 @@ export function About() {
               {/* 7 FLOATING COLLAGE PILL BADGES OVERLAPPING THE LOWER PORTRAIT */}
               <div className="absolute inset-x-0 bottom-4 sm:bottom-6 z-20 pointer-events-none">
                 <div className="relative w-full h-32 sm:h-36">
-                  {/* Pill 1: Mobile App Design (Black, tilted left) */}
+                  {/* Pill 1: Full Stack Apps (Black, tilted left) */}
                   <div className="absolute left-1 sm:left-3 top-0 -rotate-6">
                     <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#181512] text-white font-semibold text-xs sm:text-[13px] border border-white/10 shadow-xl whitespace-nowrap block">
-                      Mobile App Design
+                      Full Stack Apps
                     </span>
                   </div>
 
-                  {/* Pill 2: UX/UI Design (Black, tilted right) */}
+                  {/* Pill 2: DevOps & CI/CD (Black, tilted right) */}
                   <div className="absolute right-1 sm:right-3 top-2 rotate-3">
                     <span className="px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#181512] text-white font-semibold text-xs sm:text-[13px] border border-white/10 shadow-xl whitespace-nowrap block">
-                      UX/UI Design
+                      DevOps & CI/CD
                     </span>
                   </div>
 
-                  {/* Pill 3: Website Design (Orange, center) */}
+                  {/* Pill 3: Next.js & React (Orange, center) */}
                   <div className="absolute left-1/2 -translate-x-[46%] top-7 sm:top-8 rotate-1">
                     <span className="px-4 sm:px-4.5 py-1 sm:py-1.5 rounded-full bg-[#F6991A] text-[#181512] font-bold text-xs sm:text-[13px] shadow-xl whitespace-nowrap block border border-[#181512]/10">
-                      Website Design
+                      Next.js & React
                     </span>
                   </div>
 
-                  {/* Pill 4: Design System (Orange, lower left) */}
+                  {/* Pill 4: Docker & AWS (Orange, lower left) */}
                   <div className="absolute left-0 sm:left-1 top-14 sm:top-16 rotate-6">
                     <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#F6991A] text-[#181512] font-bold text-xs sm:text-[13px] shadow-xl whitespace-nowrap block border border-[#181512]/10">
-                      Design System
+                      Docker & AWS
                     </span>
                   </div>
 
-                  {/* Pill 5: Prototype (Black, center tilt) */}
+                  {/* Pill 5: FastAPI & Python (Black, center tilt) */}
                   <div className="absolute left-[33%] top-14 sm:top-15 rotate-12">
                     <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-[#181512] text-white font-semibold text-xs sm:text-[13px] border border-white/10 shadow-xl whitespace-nowrap block">
-                      Prototype
+                      FastAPI & Python
                     </span>
                   </div>
 
-                  {/* Pill 6: Dashboard (Black, lower right) */}
+                  {/* Pill 6: PostgreSQL & Redis (Black, lower right) */}
                   <div className="absolute right-1 sm:right-2 top-14 sm:top-16 -rotate-6">
                     <span className="px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#181512] text-white font-semibold text-xs sm:text-[13px] border border-white/10 shadow-xl whitespace-nowrap block">
-                      Dashboard
+                      PostgreSQL & Redis
                     </span>
                   </div>
 
-                  {/* Pill 7: Wireframe Design (Orange, bottom center) */}
+                  {/* Pill 7: AI & LangChain (Orange, bottom center) */}
                   <div className="absolute left-1/2 -translate-x-1/2 top-23 sm:top-25 rotate-0">
                     <span className="px-4 sm:px-5 py-1 sm:py-1.5 rounded-full bg-[#F6991A] text-[#181512] font-bold text-xs sm:text-[13px] shadow-xl whitespace-nowrap block border border-[#181512]/10">
-                      Wireframe Design
+                      AI & LangChain
                     </span>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ export function About() {
 
             {/* Bio paragraph */}
             <p className="text-[#D5CBB9] text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-normal">
-              Hey there, I’m Mahmudul Hasan — a Full Stack Developer & AI Engineer passionate about creating intuitive digital experiences and robust architectures that blend aesthetics with high-performance functionality.
+              Hey there, I’m Mahmudul Hasan — a Full Stack DevOps Engineer with over two years of professional experience building, containerizing, and shipping production applications end-to-end. Specialized in TypeScript, React/Next.js, Python/FastAPI, PostgreSQL, Docker, and AWS cloud infrastructure.
             </p>
 
             {/* ACTION ROW: DOWNLOAD CV BUTTON + HANDWRITTEN SIGNATURE */}

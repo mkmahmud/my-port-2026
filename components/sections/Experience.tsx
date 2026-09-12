@@ -15,20 +15,20 @@ const EDUCATION_ITEMS: TimelineItem[] = [
   {
     id: 'edu-1',
     title: 'Uttara University',
-    subtitle: 'B.Sc. in Computer Science & Engineering',
-    date: '2022 - 2026',
+    subtitle: "Bachelor's Degree in Islamic Studies",
+    date: 'May 2022 - Apr 2026',
   },
   {
     id: 'edu-2',
-    title: 'Dhaka College',
-    subtitle: 'Higher Secondary Certificate (Science)',
-    date: '2019 - 2021',
+    title: 'Programming Hero',
+    subtitle: 'Next Level Web Development (Full Stack MERN & Redux)',
+    date: '2024',
   },
   {
     id: 'edu-3',
-    title: 'Model Academy',
-    subtitle: 'Secondary School Certificate (Science)',
-    date: '2017 - 2019',
+    title: 'KodeKloud',
+    subtitle: 'AWS Basics & Cloud Fundamentals Certification',
+    date: '2026',
   },
 ];
 
@@ -36,20 +36,20 @@ const WORK_ITEMS: TimelineItem[] = [
   {
     id: 'work-1',
     title: 'Codexmine',
-    subtitle: 'Senior Full Stack Developer',
-    date: '2024 - Present',
+    subtitle: 'Full Stack Developer (FastAPI, AWS, LangChain & ERP)',
+    date: 'Mar 2026 - Present',
   },
   {
     id: 'work-2',
     title: 'LeoPhoenix',
-    subtitle: 'Full Stack Engineer (Remote)',
-    date: '2023 - 2024',
+    subtitle: 'Full Stack Developer (Remote US - Next.js, NestJS, Docker)',
+    date: 'Oct 2023 - Feb 2026',
   },
   {
     id: 'work-3',
-    title: 'Self-Employed',
-    subtitle: 'Full Stack & DevOps Freelancer',
-    date: '2021 - 2023',
+    title: 'Independent Consultant',
+    subtitle: 'DevOps & Full Stack Solutions (CI/CD, Cloud & Next.js)',
+    date: '2022 - 2023',
   },
 ];
 

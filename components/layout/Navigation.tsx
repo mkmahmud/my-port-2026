@@ -2,28 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Moon, ArrowRight, Mail } from 'lucide-react';
-import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const sectionIds = [
-    'hero',
-    'services',
-    'about',
-    'skills',
-    'projects',
-    'process',
-    'pricing',
-    'testimonials',
-    'blogs',
-    'contact',
-    'faq',
-  ];
-  const activeSection = useScrollSpy(sectionIds);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,28 +41,33 @@ export const Navigation = () => {
     };
   }, [mobileMenuOpen]);
 
-  // Primary links shown on desktop pill navbar
+  // Page-wise navigation items for desktop pill navbar
   const desktopNavItems = [
-    { label: 'Home', href: '#hero', id: 'hero' },
-    { label: 'Services', href: '#services', id: 'services' },
-    { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Blogs', href: '#blogs', id: 'blogs' },
-    { label: 'About Me', href: '#about', id: 'about' },
-    { label: 'Testimonials', href: '#testimonials', id: 'testimonials' },
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Blogs', href: '/blogs' },
+    { label: 'About Me', href: '/about' },
+    { label: 'Testimonials', href: '/testimonials' },
   ];
 
-  // Full comprehensive navigation items for mobile drawer
+  // Page-wise comprehensive navigation items for mobile drawer
   const mobileNavItems = [
-    { label: 'Home', href: '#hero', id: 'hero', number: '01' },
-    { label: 'Services', href: '#services', id: 'services', number: '02' },
-    { label: 'Projects', href: '#projects', id: 'projects', number: '03' },
-    { label: 'Process', href: '#process', id: 'process', number: '04' },
-    { label: 'Pricing', href: '#pricing', id: 'pricing', number: '05' },
-    { label: 'Latest Blogs', href: '#blogs', id: 'blogs', number: '06' },
-    { label: 'About Me', href: '#about', id: 'about', number: '07' },
-    { label: 'Testimonials', href: '#testimonials', id: 'testimonials', number: '08' },
-    { label: 'FAQs', href: '#faq', id: 'faq', number: '09' },
+    { label: 'Home', href: '/', number: '01' },
+    { label: 'Services', href: '/services', number: '02' },
+    { label: 'Projects', href: '/projects', number: '03' },
+    { label: 'Process', href: '/process', number: '04' },
+    { label: 'Pricing', href: '/pricing', number: '05' },
+    { label: 'Latest Blogs', href: '/blogs', number: '06' },
+    { label: 'About Me', href: '/about', number: '07' },
+    { label: 'Testimonials', href: '/testimonials', number: '08' },
+    { label: 'FAQs', href: '/faq', number: '09' },
   ];
+
+  const isLinkActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <>
@@ -89,8 +81,8 @@ export const Navigation = () => {
           }`}
         >
           {/* Logo with Brand Container */}
-          <a
-            href="#hero"
+          <Link
+            href="/"
             className="flex items-center gap-2 sm:gap-2.5 text-white font-bold tracking-tight text-lg pl-0.5 group"
           >
             <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-xl bg-[#241F1A] border border-[#F6991A]/30 group-hover:border-[#F6991A] flex items-center justify-center p-1.5 shadow-md transition-all duration-200 group-hover:shadow-[0_0_12px_rgba(246,153,26,0.25)] shrink-0">
@@ -106,16 +98,14 @@ export const Navigation = () => {
             <span className="font-heading tracking-tight text-base sm:text-lg text-white font-bold">
               Mahmudul<span className="text-[#F6991A]">.</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {desktopNavItems.map((item) => {
-              const isActive =
-                (item.id === 'hero' && (!activeSection || activeSection === 'hero')) ||
-                activeSection === item.id;
+              const isActive = isLinkActive(item.href);
               return (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   className={`text-sm font-medium transition-colors duration-200 ${
@@ -125,7 +115,7 @@ export const Navigation = () => {
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -141,12 +131,12 @@ export const Navigation = () => {
             </button>
 
             {/* "Let's Talk" Capsule CTA (Visible on tablet & desktop) */}
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2 rounded-full bg-white text-[#181512] text-xs sm:text-sm font-heading font-extrabold hover:bg-[#F6991A] hover:text-[#181512] transition-colors shadow-sm"
             >
               Let&apos;s Talk
-            </a>
+            </Link>
 
             {/* Mobile Hamburger Button with tactile feedback */}
             <button
@@ -176,7 +166,11 @@ export const Navigation = () => {
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-[#2A231C]">
                 {/* Brand */}
-                <div className="flex items-center gap-2.5">
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5"
+                >
                   <div className="w-9 h-9 rounded-xl bg-[#241F1A] border border-[#F6991A]/30 flex items-center justify-center p-1.5 shadow-md">
                     <Image
                       src="/logo.png"
@@ -189,7 +183,7 @@ export const Navigation = () => {
                   <span className="font-heading tracking-tight text-lg text-white font-bold">
                     Mahmudul<span className="text-[#F6991A]">.</span>
                   </span>
-                </div>
+                </Link>
 
                 {/* Close Button */}
                 <button
@@ -201,92 +195,90 @@ export const Navigation = () => {
                 </button>
               </div>
 
-              {/* Navigation Header Tag */}
-              <div className="flex items-center gap-2 mt-6 mb-3 select-none">
-                <div className="relative flex items-center">
-                  <span className="w-2.5 h-2.5 rounded-full bg-white" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F6991A] -ml-1" />
-                </div>
-                <span className="text-xs font-mono text-[#F6991A] uppercase tracking-widest font-semibold">
-                  Navigation Menu
-                </span>
+            {/* Navigation Header Tag */}
+            <div className="flex items-center gap-2 mt-6 mb-3 select-none">
+              <div className="relative flex items-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-white" />
+                <span className="w-2.5 h-2.5 rounded-full bg-[#F6991A] -ml-1" />
               </div>
-
-              {/* Links List */}
-              <div className="flex flex-col gap-1.5 pt-1">
-                {mobileNavItems.map((item) => {
-                  const isActive =
-                    (item.id === 'hero' && (!activeSection || activeSection === 'hero')) ||
-                    activeSection === item.id;
-
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`group flex items-center justify-between py-3 px-3.5 rounded-2xl transition-all duration-200 ${
-                        isActive
-                          ? 'bg-[#251F19] text-[#F6991A] border border-[#F6991A]/30 shadow-sm'
-                          : 'text-white/90 hover:bg-[#201A14] hover:text-[#F6991A]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3.5">
-                        <span className="font-mono text-xs text-[#F6991A]/70 font-bold">
-                          {item.number}.
-                        </span>
-                        <span className="font-heading font-extrabold text-[15px] sm:text-base tracking-tight">
-                          {item.label}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        {isActive && (
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#F6991A] animate-pulse" />
-                        )}
-                        <ArrowRight
-                          size={15}
-                          className={`transition-transform duration-200 group-hover:translate-x-1 ${
-                            isActive
-                              ? 'text-[#F6991A]'
-                              : 'text-stone-600 group-hover:text-[#F6991A]'
-                          }`}
-                        />
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
+              <span className="text-xs font-mono text-[#F6991A] uppercase tracking-widest font-semibold">
+                Navigation Menu
+              </span>
             </div>
 
-            {/* Bottom Card & Contact Footer */}
-            <div className="pt-6 mt-4 border-t border-[#2A231C] space-y-4">
-              {/* Signature Tech Card */}
-              <div
-                className="relative p-5 bg-[#201A14] border border-[#3A3026] rounded-2xl shadow-xl"
-                style={{
-                  clipPath:
-                    'polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%)',
-                }}
+            {/* Links List */}
+            <div className="flex flex-col gap-1.5 pt-1">
+              {mobileNavItems.map((item) => {
+                const isActive = isLinkActive(item.href);
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`group flex items-center justify-between py-3 px-3.5 rounded-2xl transition-all duration-200 ${
+                      isActive
+                        ? 'bg-[#251F19] text-[#F6991A] border border-[#F6991A]/30 shadow-sm'
+                        : 'text-white/90 hover:bg-[#201A14] hover:text-[#F6991A]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className="font-mono text-xs text-[#F6991A]/70 font-bold">
+                        {item.number}.
+                      </span>
+                      <span className="font-heading font-extrabold text-[15px] sm:text-base tracking-tight">
+                        {item.label}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F6991A] animate-pulse" />
+                      )}
+                      <ArrowRight
+                        size={15}
+                        className={`transition-transform duration-200 group-hover:translate-x-1 ${
+                          isActive
+                            ? 'text-[#F6991A]'
+                            : 'text-stone-600 group-hover:text-[#F6991A]'
+                        }`}
+                      />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom Card & Contact Footer */}
+          <div className="pt-6 mt-4 border-t border-[#2A231C] space-y-4">
+            {/* Signature Tech Card */}
+            <div
+              className="relative p-5 bg-[#201A14] border border-[#3A3026] rounded-2xl shadow-xl"
+              style={{
+                clipPath:
+                  'polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%)',
+              }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-mono text-green-400 uppercase tracking-wider font-semibold">
+                  Available for new projects
+                </span>
+              </div>
+              <p className="text-white text-sm font-heading font-bold mb-3 leading-snug">
+                Have an MVP or intelligent system to build?
+              </p>
+              <Link
+                href="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs sm:text-sm tracking-tight hover:bg-[#E0850B] transition-colors shadow-md"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-[11px] font-mono text-green-400 uppercase tracking-wider font-semibold">
-                    Available for new projects
-                  </span>
-                </div>
-                <p className="text-white text-sm font-heading font-bold mb-3 leading-snug">
-                  Have an MVP or intelligent system to build?
-                </p>
-                <a
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs sm:text-sm tracking-tight hover:bg-[#E0850B] transition-colors shadow-md"
-                >
-                  <span>Let&apos;s Build Together</span>
-                  <span className="w-6 h-6 rounded-full bg-[#181512] text-white flex items-center justify-center text-xs font-bold">
-                    ➔
-                  </span>
-                </a>
+                <span>Let&apos;s Build Together</span>
+                <span className="w-6 h-6 rounded-full bg-[#181512] text-white flex items-center justify-center text-xs font-bold">
+                  ➔
+                </span>
+              </Link>
               </div>
 
               {/* Quick Contact & Socials */}

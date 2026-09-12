@@ -350,8 +350,8 @@ export function Contact() {
                   Address
                 </h3>
                 <p className="text-[#C4BCB3] text-sm sm:text-[15px] leading-relaxed">
-                  2464 Royal Ln. Mesa,<br />
-                  New Jersey 45463
+                  {SITE_CONFIG.location}<br />
+                  Dhaka, Bangladesh
                 </p>
               </div>
 
@@ -364,19 +364,19 @@ export function Contact() {
                   <p>
                     Phone :{' '}
                     <a
-                      href="tel:+0123456789"
+                      href={`tel:${SITE_CONFIG.phone || '+8801741503127'}`}
                       className="hover:text-[#F6991A] transition-colors"
                     >
-                      +0123-456-789
+                      {SITE_CONFIG.phone || '+880 17415-03127'}
                     </a>
                   </p>
                   <p>
                     Email :{' '}
                     <a
-                      href={`mailto:${SITE_CONFIG.email || 'example@gmail.com'}`}
+                      href={`mailto:${SITE_CONFIG.email}`}
                       className="hover:text-[#F6991A] transition-colors"
                     >
-                      example@gmail.com
+                      {SITE_CONFIG.email}
                     </a>
                   </p>
                 </div>

@@ -2,11 +2,12 @@ import { SiteConfig, NavLink, SkillCategory, ExperienceEntry, EducationEntry, Pr
 
 export const SITE_CONFIG: SiteConfig = {
   name: 'Mahmudul Hasan',
-  role: 'Full Stack Developer & AI Engineer',
-  tagline: 'Building intelligent systems from database to deployment.',
-  description: 'Full Stack Developer & AI Engineer based in Dhaka, Bangladesh. Specializing in Next.js, React, Node.js, Python, and AI/ML integrations.',
+  role: 'Full Stack DevOps Engineer',
+  tagline: 'Building, containerizing, and automating production systems from database to cloud deployment.',
+  description: 'Full Stack DevOps Engineer based in Dhaka, Bangladesh. Specializing in TypeScript, React/Next.js, Python/FastAPI, PostgreSQL, Docker, and AWS cloud infrastructure.',
   location: 'Dhaka, Bangladesh',
   email: 'mkmahmud.dev@gmail.com',
+  phone: '+880 17415-03127',
   github: 'https://github.com/mkmahmud',
   linkedin: 'https://linkedin.com/in/mkmahmud',
   resumeUrl: '/resume.pdf',
@@ -15,33 +16,39 @@ export const SITE_CONFIG: SiteConfig = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'About', href: '#about', sectionId: 'about' },
-  { label: 'Skills', href: '#skills', sectionId: 'skills' },
-  { label: 'Experience', href: '#experience', sectionId: 'experience' },
-  { label: 'Projects', href: '#projects', sectionId: 'projects' },
-  { label: 'Education', href: '#education', sectionId: 'education' },
-  { label: 'Contact', href: '#contact', sectionId: 'contact' }
+  { label: 'About', href: '/about', sectionId: 'about' },
+  { label: 'Skills', href: '/skills', sectionId: 'skills' },
+  { label: 'Experience', href: '/experience', sectionId: 'experience' },
+  { label: 'Projects', href: '/projects', sectionId: 'projects' },
+  { label: 'Services', href: '/services', sectionId: 'services' },
+  { label: 'Contact', href: '/contact', sectionId: 'contact' }
 ];
 
 export const SKILLS: SkillCategory[] = [
   {
+    title: 'Languages',
+    command: '$ ls ./languages',
+    skills: [
+      { name: 'TypeScript' }, { name: 'JavaScript (ES6+)' }, { name: 'Python' },
+      { name: 'SQL' }, { name: 'HTML5' }, { name: 'CSS3' }
+    ]
+  },
+  {
     title: 'Frontend',
     command: '$ ls ./frontend',
     skills: [
-      { name: 'TypeScript' }, { name: 'JavaScript' }, { name: 'React' },
-      { name: 'Next.js' }, { name: 'Redux Toolkit' }, { name: 'Zustand' },
-      { name: 'Tailwind CSS' }, { name: 'Shadcn/UI' }, { name: 'Chakra UI' },
-      { name: 'Zod' }, { name: 'Bootstrap' }, { name: 'Ant Design' },
-      { name: 'SASS/SCSS' }
+      { name: 'React.js' }, { name: 'Next.js' }, { name: 'Redux' },
+      { name: 'Zustand' }, { name: 'TanStack Query' }, { name: 'Vite' },
+      { name: 'Tailwind CSS' }, { name: 'Shadcn UI' }, { name: 'GSAP' }
     ]
   },
   {
     title: 'Backend',
     command: '$ ls ./backend',
     skills: [
-      { name: 'Node.js' }, { name: 'NestJS' }, { name: 'Express' },
-      { name: 'Python' }, { name: 'FastAPI' }, { name: 'GraphQL' },
-      { name: 'tRPC' }, { name: 'Socket.io' }, { name: 'Microservices' }
+      { name: 'Node.js' }, { name: 'NestJS' }, { name: 'Express.js' },
+      { name: 'FastAPI' }, { name: 'REST APIs' }, { name: 'GraphQL' },
+      { name: 'Socket.IO' }, { name: 'Microservices' }
     ]
   },
   {
@@ -49,32 +56,26 @@ export const SKILLS: SkillCategory[] = [
     command: '$ ls ./databases',
     skills: [
       { name: 'PostgreSQL' }, { name: 'MongoDB' }, { name: 'MySQL' },
-      { name: 'Prisma' }, { name: 'Mongoose' }, { name: 'Redis' },
-      { name: 'Supabase' }, { name: 'Firebase' }, { name: 'VectorDB' },
-      { name: 'AWS RDS' }
+      { name: 'Redis' }, { name: 'Prisma ORM' }, { name: 'Mongoose' },
+      { name: 'Firebase' }
     ]
   },
   {
-    title: 'AI/ML',
-    command: '$ ls ./ai-ml',
-    skills: [
-      { name: 'LangChain' }, { name: 'LangGraph' }, { name: 'RAG Pipelines' },
-      { name: 'OpenAI API' }
-    ]
-  },
-  {
-    title: 'DevOps/Cloud',
+    title: 'DevOps & Cloud',
     command: '$ ls ./devops',
     skills: [
-      { name: 'Docker' }, { name: 'AWS' }, { name: 'Vercel' },
-      { name: 'CI/CD' }, { name: 'GitHub Actions' }, { name: 'n8n' }
+      { name: 'Linux' }, { name: 'Docker' }, { name: 'AWS (EC2, RDS, S3)' },
+      { name: 'Vercel' }, { name: 'CI/CD' }, { name: 'GitHub Actions' },
+      { name: 'Git' }, { name: 'Nginx' }, { name: 'JWT & RBAC' }
     ]
   },
   {
-    title: 'Testing/Tools',
-    command: '$ ls ./tools',
+    title: 'AI Engineering & Tools',
+    command: '$ ls ./ai-tools',
     skills: [
-      { name: 'Git' }, { name: 'Jest' }, { name: 'pytest' }
+      { name: 'LangChain' }, { name: 'LangGraph' }, { name: 'RAG Pipelines' },
+      { name: 'Vector Databases' }, { name: 'OpenAI API' }, { name: 'OpenCV' },
+      { name: 'n8n Automation' }, { name: 'Pytest' }, { name: 'Jest' }
     ]
   }
 ];
@@ -87,11 +88,15 @@ export const EXPERIENCE: ExperienceEntry[] = [
     startDate: 'Mar 2026',
     endDate: 'Present',
     achievements: [
-      'Built a comprehensive educational institute management system covering biometric attendance, academic scheduling, HR, student records, and expense tracking',
-      'Developed an automated result management module with a computer-vision OMR sheet checker for answer sheet scanning',
-      'Engineered a RAG chatbot using LangChain for intelligent document retrieval and contextual Q&A',
-      "Created 'AI Sales Pilot' — an automated system for lead research, outreach email generation, and sending via AI agents"
-    ]
+      'Built full EdTech ERP covering academics, HR, students, attendance, expenses and others end-to-end',
+      'Engineered biometric attendance pipeline that eliminated all manual roll-call entry entirely',
+      'Automated result engine computes and publishes grades directly from raw exam marks on demand',
+      'Engineered computer-vision OMR checker grading bulk-scanned answer sheets and posting scores automatically',
+      'Built a RAG chatbot with LangChain and vector search, grounding responses in institutional documents',
+      'AI Sales Pilot agent handles lead research, email drafting and outbound sending autonomously',
+      'Python and FastAPI AI services deployed on PostgreSQL and AWS RDS with full pytest coverage'
+    ],
+    techStack: ['Next.js', 'FastAPI', 'PostgreSQL', 'LangChain', 'OpenCV', 'AWS RDS', 'Docker', 'Python', 'SQLAlchemy']
   },
   {
     role: 'Full Stack Developer',
@@ -100,12 +105,16 @@ export const EXPERIENCE: ExperienceEntry[] = [
     startDate: 'Oct 2023',
     endDate: 'Feb 2026',
     achievements: [
-      'Built production applications with Next.js, TypeScript, React, NestJS, PostgreSQL, GraphQL, Socket.io, Redis, and Tailwind/Shadcn',
-      'Implemented JWT authentication with role-based access control (RBAC) across multiple services',
-      'Integrated Stripe payment processing and OpenAI API for intelligent features',
-      'Deployed and maintained applications on AWS and Vercel with CI/CD pipelines'
+      'Built and scaled production application using Next.js & TypeScript with performance score above 90',
+      'Architected full-stack features end-to-end across React, NestJS, PostgreSQL, and Prisma ORM',
+      'Designed relational and NoSQL databases, utilizing ORMs and Redis caching layers to slash API response times',
+      'Built responsive production UIs using Tailwind CSS and Shadcn UI',
+      'Shipped complete Stripe payment flows and OpenAI-powered AI features into production safely',
+      'Implemented JWT authentication and RBAC for secure role-based access control',
+      'Containerized services with Docker; automated CI/CD to AWS and Vercel for zero-downtime deploys',
+      'Maintained Jest unit test coverage across all core application flows throughout development'
     ],
-    techStack: ['Next.js', 'TypeScript', 'React', 'NestJS', 'PostgreSQL', 'GraphQL', 'Socket.io', 'Redis']
+    techStack: ['Next.js', 'TypeScript', 'React', 'NestJS', 'PostgreSQL', 'Prisma ORM', 'Redis', 'Docker', 'AWS', 'Tailwind CSS']
   }
 ];
 
@@ -113,22 +122,32 @@ export const EDUCATION: EducationEntry[] = [
   {
     institution: 'Uttara University',
     degree: "Bachelor's Degree",
+    field: 'Islamic Studies',
     startDate: 'May 2022',
     endDate: 'Apr 2026'
   }
 ];
 
+export const CERTIFICATIONS = [
+  {
+    title: 'Next Level Web Development',
+    issuer: 'Programming Hero',
+    year: '2024'
+  },
+  {
+    title: 'AWS Basics',
+    issuer: 'KodeKloud',
+    year: '2026'
+  }
+];
+
 export const STATS = {
-  yearsExperience: 3,
+  yearsExperience: 2,
   projectsShipped: 15,
   technologies: 25
 };
 
-export const BIO = `Hey there! I'm a full-stack developer with a passion for building intelligent, high-performance systems from the database layer up to deployment. With a strong background working with React, Next.js, Node.js, and Python, I enjoy solving complex problems and turning innovative ideas into robust digital products.
-
-Recently, I've been diving deep into the AI ecosystem, leveraging LangChain and RAG pipelines to bring autonomous agents and contextual Q&A to life. I also value solid CI/CD practices and clean infrastructure, ensuring everything runs smoothly in production using Docker, AWS, and modern DevOps strategies.
-
-I'm always open to new challenges and eager to collaborate with passionate teams to ship features that matter. Let's build something awesome together!`;
+export const BIO = `Full Stack Software Engineer & DevOps specialist with over two years of professional experience building, containerizing, and shipping production web applications end-to-end. Specialized in TypeScript, React/Next.js, Python/FastAPI, PostgreSQL, Docker, and AWS, with hands-on experience building scalable APIs, real-time features, AI-powered applications, RAG systems, and automated CI/CD workflows across EdTech, enterprise tooling, and SaaS.`;
 
 export const DEFAULT_PROJECTS: Project[] = [
   {

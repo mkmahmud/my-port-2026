@@ -93,6 +93,7 @@ export interface SiteConfig {
   description: string;
   location: string;
   email: string;
+  phone?: string;
   github: string;
   linkedin: string;
   resumeUrl: string;

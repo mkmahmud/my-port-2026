@@ -13,39 +13,39 @@ interface FAQItem {
 const FAQS: FAQItem[] = [
   {
     id: 1,
-    question: 'What industries do you specialize in?',
+    question: 'What technologies and infrastructure do you specialize in?',
     answer:
-      'I specialize in FinTech, EdTech, AI-driven automation, SaaS platforms, and enterprise tooling, building scalable digital products from concept to production.',
+      'I specialize in Next.js, TypeScript, React, Python, FastAPI, NestJS, PostgreSQL, Redis, Docker, and AWS cloud infrastructure with automated GitHub Actions CI/CD.',
   },
   {
     id: 2,
-    question: 'Do you design mobile and web applications?',
+    question: 'Do you manage both frontend and backend development?',
     answer:
-      'Yes, I design responsive mobile apps, websites, dashboards, SaaS platforms, and digital product experiences.',
+      'Yes, as a Full Stack DevOps Engineer, I engineer high-performance frontend interfaces with Tailwind and Shadcn, robust REST/GraphQL APIs, database architectures, and cloud deployments.',
   },
   {
     id: 3,
-    question: 'Do you create wireframes and prototypes?',
+    question: 'Can you set up automated CI/CD pipelines and Docker containers?',
     answer:
-      'Yes, I build interactive prototypes, design systems, and wireframes to validate UX flows before writing scalable, clean code.',
+      'Absolutely. I containerize applications using multi-stage Docker builds and configure GitHub Actions pipelines for automated testing, linting, security scans, and zero-downtime deployment to AWS or Vercel.',
   },
   {
     id: 4,
-    question: 'Do you work with startups and businesses?',
+    question: 'Do you work with startups, remote teams, and enterprises?',
     answer:
-      'Absolutely. I collaborate with early-stage founders to build fast MVPs, as well as established enterprises needing robust full-stack systems.',
+      'Yes. I have extensive experience collaborating with US remote engineering teams and local tech companies, delivering MVPs, enterprise ERP systems, and microservices.',
   },
   {
     id: 5,
-    question: 'How long does a product design project take?',
+    question: 'Can you integrate AI models and LangChain agents into web apps?',
     answer:
-      'Typical timelines range from 1-3 weeks for focused landing pages or MVPs, to 4-8 weeks for comprehensive full-stack software platforms.',
+      'Yes, I build custom AI features including LangChain/LangGraph autonomous agents, vector embeddings with PostgreSQL pgvector (RAG), and streaming OpenAI integrations.',
   },
   {
     id: 6,
-    question: 'What is your product design process?',
+    question: 'What is your software delivery and deployment process?',
     answer:
-      'A streamlined 4-phase methodology: Discovery & Architecture, UI/UX Prototyping, Full-Stack Development, and Production Testing & Deployment.',
+      'A structured 4-phase engineering lifecycle: Discovery & System Architecture, Full-Stack Development, Automated Testing & Containerization, and Continuous Cloud Deployment.',
   },
 ];
 

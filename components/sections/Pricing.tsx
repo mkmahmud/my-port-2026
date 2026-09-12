@@ -6,23 +6,23 @@ import { Check, ArrowUpRight } from 'lucide-react';
 
 export function Pricing() {
   const hourlyFeatures = [
-    'Flexible hourly hiring',
-    'Fast design turnaround',
+    'Flexible hourly contract',
+    'Full-stack bug fixing & features',
     'Pay as you go',
-    'Quick design updates',
-    'Transparent hourly pricing',
-    'Perfect for short projects',
+    'CI/CD pipeline updates',
+    'Docker containerization support',
+    'Transparent hourly logs',
   ];
 
   const monthlyFeatures = [
-    'Dedicated monthly designer',
-    'Priority design support',
-    'Fast design turnaround',
-    'Flexible design revisions',
-    'Long-term product support',
-    'Built for business growth',
-    'Smooth team collaboration',
-    'Consistent design quality',
+    'Dedicated full stack & DevOps engineer',
+    'Priority system & cloud support',
+    'Fast feature turnaround',
+    'Next.js, FastAPI & NestJS engineering',
+    'Database & query optimization',
+    'Automated CI/CD & AWS orchestration',
+    'Smooth GitHub sprint collaboration',
+    'Production-grade reliability & tests',
   ];
 
   return (
@@ -87,7 +87,7 @@ export function Pricing() {
                   <span className="text-[#F6991A]">Custom Quote?</span>
                 </h3>
                 <p className="text-[#BDB4AA] text-xs sm:text-[13.5px] leading-relaxed mb-6 font-normal">
-                  Get a personalized product design quote tailored to your goals, timeline, and project needs.
+                  Get a personalized full-stack development and DevOps quote tailored to your goals, architecture, and timeline.
                 </p>
               </div>
 

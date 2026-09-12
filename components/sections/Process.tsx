@@ -53,7 +53,7 @@ export function Process() {
           {/* Heading with Black 3-Leaf Floral Sparkle */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-heading font-extrabold tracking-tight leading-[1.14]">
             <span className="relative inline-block text-[#F6991A] mr-1.5">
-              The Way I Design
+              The Way I Build
               {/* 3 black decorative leaf petals at top right */}
               <svg
                 className="absolute -top-2.5 -right-5 sm:-top-3 sm:-right-6 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
@@ -67,7 +67,7 @@ export function Process() {
               </svg>
             </span>
             <br />
-            <span className="text-[#181512]">Experiences</span>
+            <span className="text-[#181512]">& Deploy Systems</span>
           </h2>
         </div>
 

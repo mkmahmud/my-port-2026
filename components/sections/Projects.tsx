@@ -20,47 +20,47 @@ interface ProjectItem {
 const PROJECTS: ProjectItem[] = [
   {
     id: '1',
-    title: 'Bakery Shop - Bakery Shop Mobile App Solution',
-    tags: ['UI/UX Design', 'App Design', 'Wireframe'],
+    title: 'Codex Edumine - Institute ERP & OMR Evaluation Engine',
+    tags: ['FastAPI', 'Computer Vision', 'Docker & AWS'],
     description:
-      'Modern bakery app for exploring fresh bakery products, easy ordering, seamless shopping, and fast doorstep delivery.',
-    image: '/images/projects/bakery-shop.png',
-    imageAlt: 'Bakery Shop Mobile App Solution Mockup',
+      'Enterprise institutional management ERP integrating biometric terminal ingestion, automated results generation, and OpenCV OMR answer sheet evaluation in under 3ms.',
+    image: '/images/projects/codex-edumine.svg',
+    imageAlt: 'Codex Edumine Institute ERP',
     liveUrl: '#contact',
-    slug: 'bakery-shop',
+    slug: 'codex-edumine',
   },
   {
     id: '2',
-    title: 'Clothing Store - Clothing E Commerce Website',
-    tags: ['UI/UX Design', 'Web Design', 'Wireframe'],
-    description:
-      'Modern clothing store website for browsing fashion collections, seamless shopping, secure checkout, and smooth online purchasing experience.',
-    image: '/images/projects/clothing-store.png',
-    imageAlt: 'Clothing Store E Commerce Website Mockup',
-    liveUrl: '#contact',
-    slug: 'clothing-store',
-  },
-  {
-    id: '3',
     title: 'Blossom Academy - Interactive EdTech Platform',
-    tags: ['Full Stack', 'Next.js', 'PostgreSQL'],
+    tags: ['Full Stack', 'Next.js', 'PostgreSQL & CI/CD'],
     description:
-      'Online educational management ecosystem featuring automated class notification dispatches, verified one-click attendance, and role-based student/educator dashboards.',
+      'Production educational management platform featuring automated class notification dispatches, verified one-click attendance, and role-based student/educator dashboards.',
     image: 'https://i.ibb.co/Kz6SST6B/Whats-App-Image-2025-07-20-at-02-31-35-63e4d26c.jpg',
     imageAlt: 'Blossom Academy EdTech Platform',
     liveUrl: 'https://blossom-academy.netlify.app/',
     slug: 'blossom-academy',
   },
   {
-    id: '4',
-    title: 'Codex Edumine - Institute ERP & OMR Evaluation',
-    tags: ['FastAPI', 'Computer Vision', 'Redis'],
+    id: '3',
+    title: 'LeoPhoenix SaaS - Multi-Tenant Enterprise Platform',
+    tags: ['Next.js & NestJS', 'Docker & CI/CD', 'Stripe & Redis'],
     description:
-      'High-performance institutional management ERP integrating real-time biometric terminal ingestion and OpenCV computer-vision answer sheet evaluation in under 3ms.',
-    image: '/images/projects/codex-edumine.svg',
-    imageAlt: 'Codex Edumine Institute ERP',
+      'High-throughput microservices SaaS platform featuring JWT RBAC authorization, automated Stripe payments, and zero-downtime deployment pipelines.',
+    image: '/images/projects/clothing-store.png',
+    imageAlt: 'LeoPhoenix Multi-Tenant SaaS Platform',
     liveUrl: '#contact',
-    slug: 'codex-edumine',
+    slug: 'leophoenix-saas',
+  },
+  {
+    id: '4',
+    title: 'AI Sales Pilot - Autonomous Lead Engagement Agent',
+    tags: ['LangChain', 'FastAPI', 'Vector RAG'],
+    description:
+      'Autonomous AI conversational sales agent with vector search knowledge retrieval, multi-turn qualification, and seamless CRM webhook integrations.',
+    image: '/images/projects/bakery-shop.png',
+    imageAlt: 'AI Sales Pilot Agent',
+    liveUrl: '#contact',
+    slug: 'ai-sales-pilot',
   },
 ];
 

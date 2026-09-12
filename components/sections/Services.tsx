@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -14,43 +15,38 @@ interface ServiceItem {
 const SERVICES: ServiceItem[] = [
   {
     id: '01.',
-    title: 'UI/UX Design',
-    tags: ['User Research', 'Design Systems', 'Wireframing', 'Interactive Prototypes'],
+    title: 'Full Stack Web Development',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     description:
-      'Creating intuitive, engaging, and user-focused interfaces that turn complex workflows into seamless, delightful digital experiences.',
+      'Building high-performance, responsive web applications with modern frontend engineering, robust state management, and optimized sub-second load times.',
   },
   {
     id: '02.',
-    title: 'Website Design',
-    tags: [
-      'Landing Page Design',
-      'Responsive Website Design',
-      'Wireframing and Prototyping',
-      'Custom Website UI Design',
-    ],
+    title: 'DevOps, Docker & CI/CD',
+    tags: ['Docker', 'GitHub Actions', 'AWS Deployments', 'Vercel'],
     description:
-      'Designing modern, user-friendly websites focused on seamless experiences, usability, and business growth.',
+      'Automating zero-downtime CI/CD deployment pipelines, containerizing multi-service architectures with Docker, and provisioning scalable cloud environments.',
   },
   {
     id: '03.',
-    title: 'Application Design',
-    tags: ['Web Applications', 'Mobile App UI/UX', 'SaaS Platforms', 'Component Libraries'],
+    title: 'Backend & API Architecture',
+    tags: ['Node.js', 'FastAPI', 'NestJS', 'REST & GraphQL'],
     description:
-      'Building scalable application architectures with modern interfaces, robust user journeys, and high-performance frontend engineering.',
+      'Engineering resilient microservices, high-throughput REST & GraphQL APIs, JWT authentication, and secure role-based access control (RBAC).',
   },
   {
     id: '04.',
-    title: 'Dashboard Design',
-    tags: ['Admin Dashboards', 'Data Visualization', 'Analytics Portals', 'Real-time Metrics'],
+    title: 'Database Design & Optimization',
+    tags: ['PostgreSQL', 'MongoDB', 'Redis Caching', 'Prisma ORM'],
     description:
-      'Engineering data-dense analytics dashboards and administrative consoles that transform complex metrics into clear, actionable intelligence.',
+      'Architecting relational and NoSQL schemas, optimizing complex SQL queries, and utilizing Redis caching layers to slash API response latencies.',
   },
   {
     id: '05.',
-    title: 'Wireframing & Prototyping',
-    tags: ['Low-Fidelity Wireframes', 'Clickable Prototypes', 'User Flow Mapping', 'Concept Validation'],
+    title: 'AI Engineering & Automation',
+    tags: ['LangChain', 'RAG Pipelines', 'OpenAI API', 'n8n Workflows'],
     description:
-      'Mapping out architectures, user journeys, and interactive prototypes to validate requirements rapidly before writing production code.',
+      'Integrating intelligent LLM agents, vector document search, autonomous sales outreach bots, and automated business workflows seamlessly into production.',
   },
 ];
 
@@ -100,8 +96,8 @@ export function Services() {
 
           {/* Top-Right CTA Capsule Button */}
           <div className="shrink-0">
-            <a
-              href="#contact"
+            <Link
+              href="/services"
               className="inline-flex items-center bg-[#181512] p-1.5 rounded-full shadow-md hover:scale-[1.03] transition-transform duration-200 group"
             >
               <span className="px-5 sm:px-6 py-2.5 rounded-full bg-[#F6991A] text-[#181512] font-bold text-xs sm:text-sm tracking-tight group-hover:bg-[#E0850B] transition-colors">
@@ -110,7 +106,7 @@ export function Services() {
               <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white text-[#181512] flex items-center justify-center font-bold text-xs sm:text-sm ml-2.5 shadow-sm group-hover:translate-x-0.5 transition-transform">
                 ➔
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

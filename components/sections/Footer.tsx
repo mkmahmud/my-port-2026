@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
-import { Send, ArrowRight } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export function Footer() {
@@ -30,8 +31,8 @@ export function Footer() {
             </h2>
 
             <div className="shrink-0">
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="inline-flex items-center bg-[#181512] p-1.5 rounded-full shadow-md hover:scale-[1.03] transition-transform duration-200 group"
               >
                 <span className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#F6991A] text-[#181512] font-heading font-extrabold text-sm sm:text-base tracking-tight group-hover:bg-[#E0850B] transition-colors">
@@ -40,7 +41,7 @@ export function Footer() {
                 <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#181512] flex items-center justify-center font-bold text-sm sm:text-base ml-2.5 shadow-sm group-hover:translate-x-0.5 transition-transform">
                   ➔
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -50,7 +51,7 @@ export function Footer() {
             <div className="lg:col-span-4 flex flex-col justify-between">
               <div>
                 {/* Brand Logo with Dark Badge for White Logo + Orange Accent Ring */}
-                <a href="#hero" className="inline-flex items-center gap-2.5 group select-none">
+                <Link href="/" className="inline-flex items-center gap-2.5 group select-none">
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#181512] border border-[#F6991A]/50 group-hover:border-[#F6991A] flex items-center justify-center p-2 shadow-sm transition-all duration-200 group-hover:shadow-[0_0_12px_rgba(246,153,26,0.3)]">
                     <Image
                       src="/logo.png"
@@ -63,11 +64,11 @@ export function Footer() {
                   <span className="font-heading font-extrabold text-2xl text-[#181512] tracking-tight">
                     Mahmudul<span className="text-[#F6991A]">.</span>
                   </span>
-                </a>
+                </Link>
 
                 {/* Bio text */}
                 <p className="text-[#7A746B] text-sm sm:text-[15px] leading-relaxed mt-4 sm:mt-5 mb-6 sm:mb-8 max-w-sm font-normal">
-                  I’m Mahmudul Hasan — a Full Stack Developer & AI Engineer passionate about creating intuitive digital experiences and scalable systems that blend aesthetics with functionality.
+                  I’m Mahmudul Hasan (MK) — a Full Stack DevOps Engineer crafting high-performance web applications, robust backend microservices, and automated CI/CD cloud infrastructure.
                 </p>
               </div>
 
@@ -149,20 +150,21 @@ export function Footer() {
               </h3>
               <ul className="space-y-2.5 sm:space-y-3">
                 {[
-                  { label: 'Home', href: '#hero' },
-                  { label: 'Services', href: '#services' },
-                  { label: 'Projects', href: '#projects' },
-                  { label: 'Blogs', href: '#blogs' },
-                  { label: 'About Me', href: '#about' },
-                  { label: 'FAQs', href: '#faq' },
+                  { label: 'Home', href: '/' },
+                  { label: 'Services', href: '/services' },
+                  { label: 'Projects', href: '/projects' },
+                  { label: 'Blogs', href: '/blogs' },
+                  { label: 'About Me', href: '/about' },
+                  { label: 'Testimonials', href: '/testimonials' },
+                  { label: 'FAQs', href: '/faq' },
                 ].map((item) => (
                   <li key={item.label}>
-                    <a
+                    <Link
                       href={item.href}
                       className="text-[#524E48] hover:text-[#181512] hover:translate-x-1 transition-all duration-200 text-sm sm:text-[15px] font-medium block"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -177,10 +179,10 @@ export function Footer() {
                 {/* Phone */}
                 <div>
                   <a
-                    href="tel:+8801700000000"
+                    href={`tel:${SITE_CONFIG.phone || '+8801741503127'}`}
                     className="hover:text-[#181512] transition-colors block"
                   >
-                    +880 1700-000000
+                    {SITE_CONFIG.phone || '+880 17415-03127'}
                   </a>
                 </div>
 
