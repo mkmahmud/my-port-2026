@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container';
 import { ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { SITE_CONFIG } from '@/lib/constants';
+import { emailjsConfig } from '@/lib/config';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -34,43 +35,38 @@ export function Contact() {
     setStatus('submitting');
     setStatusMessage('');
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const serviceId = emailjsConfig.serviceId;
+    const templateId = emailjsConfig.templateId;
+    const publicKey = emailjsConfig.publicKey;
 
     try {
-      if (serviceId && templateId && publicKey) {
-        // Send email through EmailJS
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone || 'N/A',
-            service: formData.service || 'Not specified',
-            budget: formData.budget || 'Not specified',
-            country: formData.country || 'Not specified',
-            message: formData.message,
-          },
-          publicKey
-        );
-      } else {
-        // Fallback simulation when env vars are not added yet
-        console.warn(
-          'EmailJS environment variables (NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) are not configured yet. Form submission simulated successfully.'
-        );
-        await new Promise((resolve) => setTimeout(resolve, 600));
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS environment variables are not configured');
       }
 
-      // Optional backend recording fallback
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      }).catch(() => {
-        // Silently catch if local DB is offline
-      });
+      const recipientEmail = emailjsConfig.recipientEmail;
+      const emailParams = {
+        Name: formData.name,
+        Email: formData.email,
+        Phone: formData.phone || 'N/A',
+        Service: formData.service || 'Not specified',
+        Budget: formData.budget || 'Not specified',
+        Country: formData.country || 'Not specified',
+        Message_Content: formData.message,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || 'N/A',
+        service: formData.service || 'Not specified',
+        budget: formData.budget || 'Not specified',
+        country: formData.country || 'Not specified',
+        message: formData.message,
+        reply_to: formData.email,
+        to_email: recipientEmail,
+        recipient_email: recipientEmail,
+        submitted_at: new Date().toLocaleString(),
+      };
+
+      await emailjs.send(serviceId, templateId, emailParams, publicKey);
 
       setStatus('success');
       setStatusMessage(
@@ -88,7 +84,11 @@ export function Contact() {
     } catch (error) {
       console.error('EmailJS Error:', error);
       setStatus('error');
-      setStatusMessage('Failed to send message. Please try again or reach out directly.');
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : 'Failed to send message. Please try again or reach out directly.'
+      );
     }
   };
 
@@ -351,7 +351,7 @@ export function Contact() {
                 </h3>
                 <p className="text-[#C4BCB3] text-sm sm:text-[15px] leading-relaxed">
                   {SITE_CONFIG.location}<br />
-                  Dhaka, Bangladesh
+
                 </p>
               </div>
 
@@ -409,7 +409,7 @@ export function Contact() {
               <div className="flex items-center gap-3 sm:gap-3.5 flex-wrap">
                 {/* 1. Facebook */}
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/mkmahmuddev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -422,7 +422,7 @@ export function Contact() {
 
                 {/* 2. X (Twitter) */}
                 <a
-                  href="https://x.com"
+                  href="https://x.com/mahmudulmk4"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"
@@ -433,22 +433,10 @@ export function Contact() {
                   </svg>
                 </a>
 
-                {/* 3. Pinterest */}
-                <a
-                  href="https://pinterest.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Pinterest"
-                  className="w-11 h-11 sm:w-11.5 sm:h-11.5 rounded-full bg-[#181512] text-[#F6991A] hover:bg-black hover:text-white flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-all duration-200"
-                >
-                  <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-                  </svg>
-                </a>
-
+              
                 {/* 4. Instagram */}
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/mahmudulmk4/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -460,19 +448,8 @@ export function Contact() {
                     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                   </svg>
                 </a>
-
-                {/* 5. YouTube */}
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                  className="w-11 h-11 sm:w-11.5 sm:h-11.5 rounded-full bg-[#181512] text-[#F6991A] hover:bg-black hover:text-white flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-all duration-200"
-                >
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                  </svg>
-                </a>
+ 
+              
               </div>
             </div>
           </div>

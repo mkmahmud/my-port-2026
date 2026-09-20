@@ -76,7 +76,7 @@ export function Footer() {
               <div className="flex items-center gap-2.5 sm:gap-3">
                 {/* 1. Facebook */}
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/mkmahmuddev/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -89,7 +89,7 @@ export function Footer() {
 
                 {/* 2. X (Twitter) */}
                 <a
-                  href="https://x.com"
+                  href="https://x.com/mahmudulmk4"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"
@@ -102,7 +102,7 @@ export function Footer() {
 
                 {/* 3. GitHub */}
                 <a
-                  href={SITE_CONFIG.github}
+                  href='https://github.com/mkmahmud'
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -115,7 +115,7 @@ export function Footer() {
 
                 {/* 4. Instagram */}
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/mahmudulmk4/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -130,7 +130,7 @@ export function Footer() {
 
                 {/* 5. LinkedIn */}
                 <a
-                  href={SITE_CONFIG.linkedin}
+                  href='https://www.linkedin.com/in/mkmahmud/'
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

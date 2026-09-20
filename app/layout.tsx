@@ -64,6 +64,9 @@ export const metadata: Metadata = {
   creator: "Mahmudul Hasan",
   publisher: "Mahmudul Hasan",
   category: "technology",
+  icons: {
+    icon: "/logo.png",
+  },
   alternates: {
     canonical: "/",
   },
@@ -151,6 +154,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}
     >
       <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
