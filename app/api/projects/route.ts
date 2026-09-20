@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db';
-import Project from '@/models/Project';
-import { DEFAULT_PROJECTS } from '@/lib/constants';
+import { slugify } from '@/lib/utils';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -9,31 +8,40 @@ export async function GET(request: NextRequest) {
 
   try {
     if (!process.env.MONGODB_URI) {
-      let filtered = DEFAULT_PROJECTS;
-      if (category) {
-        filtered = filtered.filter(p => p.category?.some(c => c.toLowerCase() === category.toLowerCase()));
-      }
-      return NextResponse.json(filtered, { status: 200, headers: { 'x-offline-mode': 'true' } });
+      return NextResponse.json(
+        { error: 'MONGODB_URI environment variable is not defined' },
+        { status: 503 }
+      );
     }
-    
-    await connectDB();
-    
-    let query = {};
+
+    const db = await connectDB();
+
+    let query: Record<string, unknown> = {};
     if (category) {
-      query = { category: { $regex: new RegExp(category, 'i') } };
+      const categoryRegex = new RegExp(category, 'i');
+      query = {
+        $or: [{ category: categoryRegex }, { projectCategory: categoryRegex }],
+      };
     }
-    
-    const projects = await Project.find(query)
+
+    const projects = await db
+      .collection('projects')
+      .find(query)
       .sort({ order: 1, createdAt: -1 })
-      .lean();
-      
-    return NextResponse.json(projects);
+      .toArray();
+
+    const normalizedProjects = projects.map((project) => ({
+      ...project,
+      _id: project._id.toString(),
+      slug: project.slug || slugify(project.title || project.projectTitle || String(project._id)),
+    }));
+
+    return NextResponse.json(normalizedProjects);
   } catch (error) {
-    console.error('Failed to fetch projects from DB, falling back to default projects:', error);
-    let filtered = DEFAULT_PROJECTS;
-    if (category) {
-      filtered = filtered.filter(p => p.category?.some(c => c.toLowerCase() === category.toLowerCase()));
-    }
-    return NextResponse.json(filtered, { status: 200 });
+    console.error('Failed to fetch projects from MongoDB:', error);
+    return NextResponse.json(
+      { error: 'Unable to fetch projects from MongoDB' },
+      { status: 503 }
+    );
   }
 }

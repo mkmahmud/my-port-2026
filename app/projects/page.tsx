@@ -66,7 +66,7 @@ export default function ProjectsPage() {
       />
       <Navigation />
       <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Projects />
+        <Projects showAll />
       </main>
       <Footer />
     </>

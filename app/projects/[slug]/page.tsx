@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { connectDB } from "@/lib/db";
-import Project from "@/models/Project";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Github } from "@/components/ui/Icons";
+import { slugify } from "@/lib/utils";
 
-import { DEFAULT_PROJECTS } from "@/lib/constants";
 
 interface ProjectDetailProps {
   params: Promise<{ slug: string }>;
@@ -16,15 +15,22 @@ interface ProjectDetailProps {
 async function getProject(slug: string) {
   try {
     if (process.env.MONGODB_URI) {
-      await connectDB();
-      const project = await Project.findOne({ slug }).lean();
+      const db = await connectDB();
+      let project = await db.collection('projects').findOne({ slug });
+      if (!project) {
+        const projects = await db.collection('projects').find().toArray();
+        project =
+          projects.find(
+            (candidate) =>
+              slugify(candidate.slug || candidate.title || candidate.projectTitle || String(candidate._id)) === slug
+          ) ?? null;
+      }
       if (project) return JSON.parse(JSON.stringify(project));
     }
   } catch {
-    // fallback below
+    return null;
   }
-  const fallback = DEFAULT_PROJECTS.find((p) => p.slug === slug);
-  return fallback ? JSON.parse(JSON.stringify(fallback)) : null;
+  return null;
 }
 
 export async function generateMetadata({

@@ -68,7 +68,7 @@ const projectSchema = new Schema<IProject>(
     liveSite: { type: String },
     projectID: { type: Schema.Types.Mixed },
   },
-  { timestamps: true, strict: false }
+  { timestamps: true, strict: false, collection: 'projects' }
 );
 
 projectSchema.pre('save', async function () {

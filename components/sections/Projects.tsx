@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { ArrowUpRight } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useProjects } from '@/hooks/useProjects';
+import type { Project } from '@/lib/types';
 
 interface ProjectItem {
   id: string;
+  projectID?: number | string;
   title: string;
   tags: string[];
   description: string;
@@ -17,52 +22,9 @@ interface ProjectItem {
   slug?: string;
 }
 
-const PROJECTS: ProjectItem[] = [
-  {
-    id: '1',
-    title: 'Codex Edumine - Institute ERP & OMR Evaluation Engine',
-    tags: ['FastAPI', 'Computer Vision', 'Docker & AWS'],
-    description:
-      'Enterprise institutional management ERP integrating biometric terminal ingestion, automated results generation, and OpenCV OMR answer sheet evaluation in under 3ms.',
-    image: '/images/projects/codex-edumine.svg',
-    imageAlt: 'Codex Edumine Institute ERP',
-    liveUrl: '#contact',
-    slug: 'codex-edumine',
-  },
-  {
-    id: '2',
-    title: 'Blossom Academy - Interactive EdTech Platform',
-    tags: ['Full Stack', 'Next.js', 'PostgreSQL & CI/CD'],
-    description:
-      'Production educational management platform featuring automated class notification dispatches, verified one-click attendance, and role-based student/educator dashboards.',
-    image: 'https://i.ibb.co/Kz6SST6B/Whats-App-Image-2025-07-20-at-02-31-35-63e4d26c.jpg',
-    imageAlt: 'Blossom Academy EdTech Platform',
-    liveUrl: 'https://blossom-academy.netlify.app/',
-    slug: 'blossom-academy',
-  },
-  {
-    id: '3',
-    title: 'LeoPhoenix SaaS - Multi-Tenant Enterprise Platform',
-    tags: ['Next.js & NestJS', 'Docker & CI/CD', 'Stripe & Redis'],
-    description:
-      'High-throughput microservices SaaS platform featuring JWT RBAC authorization, automated Stripe payments, and zero-downtime deployment pipelines.',
-    image: '/images/projects/clothing-store.png',
-    imageAlt: 'LeoPhoenix Multi-Tenant SaaS Platform',
-    liveUrl: '#contact',
-    slug: 'leophoenix-saas',
-  },
-  {
-    id: '4',
-    title: 'AI Sales Pilot - Autonomous Lead Engagement Agent',
-    tags: ['LangChain', 'FastAPI', 'Vector RAG'],
-    description:
-      'Autonomous AI conversational sales agent with vector search knowledge retrieval, multi-turn qualification, and seamless CRM webhook integrations.',
-    image: '/images/projects/bakery-shop.png',
-    imageAlt: 'AI Sales Pilot Agent',
-    liveUrl: '#contact',
-    slug: 'ai-sales-pilot',
-  },
-];
+interface ProjectsProps {
+  showAll?: boolean;
+}
 
 // Card 1 Polygon: Chamfered corners with notch on the RIGHT edge
 const POLYGON_NOTCH_RIGHT =
@@ -72,9 +34,63 @@ const POLYGON_NOTCH_RIGHT =
 const POLYGON_NOTCH_LEFT =
   'polygon(24px 0%, calc(100% - 24px) 0%, 100% 24px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 24px 100%, 0% calc(100% - 24px), 0% calc(55% + 8px), 12px 55%, 12px 45%, 0% calc(45% - 8px), 0% 24px)';
 
-export function Projects() {
-  const [showAll, setShowAll] = useState(false);
-  const displayedProjects = showAll ? PROJECTS : PROJECTS.slice(0, 2);
+function toProjectItem(project: Project): ProjectItem {
+  const title = project.title || project.projectTitle || 'Untitled Project';
+  const stack = project.techStack || project.Technologies || [];
+  const description =
+    project.description ||
+    (Array.isArray(project.overview) ? project.overview[0] : project.overview) ||
+    'Project showcase';
+
+  return {
+    id: project._id,
+    projectID: project.projectID,
+    title,
+    tags: stack.slice(0, 3),
+    description,
+    image:
+      project.thumbnailUrl ||
+      project.gellaryImages?.[0] ||
+      project.images?.[0] ||
+      '/images/projects/codex-edumine.svg',
+    imageAlt: `${title} preview`,
+    liveUrl: project.liveUrl || project.liveSite,
+    slug: project.slug,
+  };
+}
+
+export function Projects({ showAll = false }: ProjectsProps) {
+  const { projects } = useProjects();
+  const listRef = useRef<HTMLDivElement>(null);
+  const databaseProjects = projects.map(toProjectItem);
+  const projectItems = databaseProjects;
+  const displayedProjects = showAll ? projectItems : projectItems.slice(0, 2);
+
+  useEffect(() => {
+    if (!listRef.current || displayedProjects.length === 0) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        '.project-card',
+        { autoAlpha: 0, y: 36 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: 'top 82%',
+            once: true,
+          },
+        }
+      );
+    }, listRef);
+
+    return () => context.revert();
+  }, [displayedProjects.length]);
 
   return (
     <section
@@ -123,8 +139,8 @@ export function Projects() {
 
           {/* Top-Right CTA Capsule Button */}
           <div className="shrink-0">
-            <button
-              onClick={() => setShowAll((prev) => !prev)}
+            <Link
+              href={showAll ? '/#projects' : '/projects'}
               className="inline-flex items-center bg-[#181512] border border-[#362F27] pl-5 sm:pl-6 pr-1.5 py-1 rounded-full shadow-lg hover:border-[#F6991A]/60 hover:scale-[1.03] transition-all duration-200 group cursor-pointer"
             >
               <span className="text-white font-bold text-xs sm:text-sm tracking-tight mr-3 sm:mr-4">
@@ -135,12 +151,12 @@ export function Projects() {
                   ➔
                 </span>
               </div>
-            </button>
+            </Link>
           </div>
         </div>
 
         {/* PROJECTS SHOWCASE LIST */}
-        <div className="flex flex-col gap-8 sm:gap-12">
+        <div ref={listRef} className="flex flex-col gap-8 sm:gap-12">
           {displayedProjects.map((project, idx) => {
             const isEven = idx % 2 === 1; // 0 = notch right, 1 = notch left
             const clipPathStyle = isEven ? POLYGON_NOTCH_LEFT : POLYGON_NOTCH_RIGHT;
@@ -148,7 +164,7 @@ export function Projects() {
             return (
               <div
                 key={project.id}
-                className="relative filter drop-shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-500 hover:drop-shadow-[0_16px_40px_rgba(246,153,26,0.12)] group"
+                className="project-card relative filter drop-shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-500 hover:drop-shadow-[0_16px_40px_rgba(246,153,26,0.12)] group"
               >
                 {/* 1px GEOMETRIC CHAMFERED BORDER WRAPPER */}
                 <div
@@ -203,6 +219,10 @@ export function Projects() {
                         </div>
 
                         {/* Project Title */}
+                        <div className="mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[#F6991A]">
+                          <span>Project</span>
+                          <span className="text-white/60">#{project.projectID ?? idx + 1}</span>
+                        </div>
                         <h3 className="text-2xl sm:text-3xl md:text-[32px] font-heading font-extrabold text-white tracking-tight leading-snug mb-3 sm:mb-4 group-hover:text-[#F6991A] transition-colors duration-300">
                           {project.title}
                         </h3>
@@ -213,7 +233,15 @@ export function Projects() {
                         </p>
 
                         {/* Bottom Action Button (Circular arrow button) */}
-                        <div>
+                        <div className="flex items-center gap-4">
+                          {project.slug && (
+                            <Link
+                              href={`/projects/${project.slug}`}
+                              className="text-sm font-semibold text-white hover:text-[#F6991A] transition-colors"
+                            >
+                              View Details
+                            </Link>
+                          )}
                           <a
                             href={project.liveUrl || '#contact'}
                             target={project.liveUrl?.startsWith('http') ? '_blank' : '_self'}

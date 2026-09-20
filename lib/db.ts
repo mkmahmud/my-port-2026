@@ -1,36 +1,32 @@
-import mongoose from 'mongoose';
+import { Db, MongoClient } from 'mongodb';
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || 'myPortfolio';
 
-interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
+interface MongoCache {
+  client: MongoClient | null;
+  promise: Promise<MongoClient> | null;
 }
 
 declare global {
-  // eslint-disable-next-line no-var
-  var mongooseCache: MongooseCache | undefined;
+  var mongoCache: MongoCache | undefined;
 }
 
-let cached: MongooseCache = globalThis.mongooseCache ?? { conn: null, promise: null };
+const cached: MongoCache = globalThis.mongoCache ?? { client: null, promise: null };
 
-if (!globalThis.mongooseCache) {
-  globalThis.mongooseCache = cached;
+if (!globalThis.mongoCache) {
+  globalThis.mongoCache = cached;
 }
 
-export async function connectDB(): Promise<typeof mongoose> {
-  if (cached.conn) return cached.conn;
-  
+export async function connectDB(): Promise<Db> {
   if (!MONGODB_URI) {
     throw new Error('MONGODB_URI environment variable is not defined');
   }
-  
+
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      bufferCommands: false,
-    });
+    cached.promise = new MongoClient(MONGODB_URI).connect();
   }
-  
-  cached.conn = await cached.promise;
-  return cached.conn;
+
+  cached.client = await cached.promise;
+  return cached.client.db(MONGODB_DB_NAME);
 }
