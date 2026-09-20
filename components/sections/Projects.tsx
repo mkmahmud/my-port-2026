@@ -87,6 +87,24 @@ export function Projects({ showAll = false }: ProjectsProps) {
           },
         }
       );
+
+      const cards = gsap.utils.toArray<HTMLElement>('.project-card');
+      cards.forEach((card, index) => {
+        const nextCard = cards[index + 1];
+        if (!nextCard) return;
+
+        gsap.to(card, {
+          scale: 0.92,
+          y: -18,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: nextCard,
+            start: 'top 68%',
+            end: 'top 22%',
+            scrub: 0.7,
+          },
+        });
+      });
     }, listRef);
 
     return () => context.revert();
@@ -156,7 +174,7 @@ export function Projects({ showAll = false }: ProjectsProps) {
         </div>
 
         {/* PROJECTS SHOWCASE LIST */}
-        <div ref={listRef} className="flex flex-col gap-8 sm:gap-12">
+        <div ref={listRef} className="flex flex-col gap-8 sm:gap-12 pb-[35vh]">
           {displayedProjects.map((project, idx) => {
             const isEven = idx % 2 === 1; // 0 = notch right, 1 = notch left
             const clipPathStyle = isEven ? POLYGON_NOTCH_LEFT : POLYGON_NOTCH_RIGHT;
@@ -164,7 +182,8 @@ export function Projects({ showAll = false }: ProjectsProps) {
             return (
               <div
                 key={project.id}
-                className="project-card relative filter drop-shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-all duration-500 hover:drop-shadow-[0_16px_40px_rgba(246,153,26,0.12)] group"
+                className="project-card sticky top-24 relative filter drop-shadow-[0_12px_32px_rgba(0,0,0,0.4)] transition-[filter] duration-500 hover:drop-shadow-[0_16px_40px_rgba(246,153,26,0.12)] group"
+                style={{ zIndex: idx + 1 }}
               >
                 {/* 1px GEOMETRIC CHAMFERED BORDER WRAPPER */}
                 <div
@@ -206,6 +225,11 @@ export function Projects({ showAll = false }: ProjectsProps) {
                           isEven ? 'lg:order-1 lg:pr-4' : 'lg:order-2 lg:pl-4'
                         }`}
                       >
+                        <div className="mb-3 flex items-center gap-2 font-mono text-xs uppercase text-[#F6991A]">
+                          <span>Project</span>
+                          <span className="text-white/60">#{project.projectID ?? idx + 1}</span>
+                        </div>
+
                         {/* 3 Golden Orange Pill Tags */}
                         <div className="flex flex-wrap gap-2 sm:gap-2.5 mb-4 sm:mb-5">
                           {project.tags.map((tag) => (
@@ -219,10 +243,6 @@ export function Projects({ showAll = false }: ProjectsProps) {
                         </div>
 
                         {/* Project Title */}
-                        <div className="mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[#F6991A]">
-                          <span>Project</span>
-                          <span className="text-white/60">#{project.projectID ?? idx + 1}</span>
-                        </div>
                         <h3 className="text-2xl sm:text-3xl md:text-[32px] font-heading font-extrabold text-white tracking-tight leading-snug mb-3 sm:mb-4 group-hover:text-[#F6991A] transition-colors duration-300">
                           {project.title}
                         </h3>
