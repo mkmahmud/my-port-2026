@@ -35,11 +35,18 @@ export const metadata: Metadata = {
     template: "%s | Mahmudul Hasan",
   },
   description:
-    "Full Stack DevOps Engineer based in Dhaka, Bangladesh. Specializing in Next.js, React, TypeScript, Python, FastAPI, NestJS, Docker, and AWS Cloud CI/CD. Building resilient systems from architecture to zero-downtime deployment.",
+    "MK Mahmud (Mahmudul Hasan) is a Full Stack DevOps Engineer in Dhaka, Bangladesh, building production web apps, frontend experiences, backend APIs, AI systems, Docker deployments, and AWS CI/CD infrastructure.",
   keywords: [
+    "MK Mahmud",
+    "MK Mahmood",
     "Full Stack DevOps Engineer",
     "Mahmudul Hasan",
-    "MK Mahmud",
+    "Full Stack Developer Bangladesh",
+    "DevOps Engineer Bangladesh",
+    "Frontend Developer Bangladesh",
+    "React Developer Bangladesh",
+    "Next.js Developer Bangladesh",
+    "Backend API Developer",
     "React",
     "Next.js",
     "TypeScript",
@@ -55,14 +62,19 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Mahmudul Hasan", url: "https://mkmahmud.dev" }],
   creator: "Mahmudul Hasan",
+  publisher: "Mahmudul Hasan",
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://mkmahmud.dev",
     siteName: "Mahmudul Hasan — Portfolio",
-    title: "Mahmudul Hasan — Full Stack DevOps Engineer",
+    title: "MK Mahmud — Full Stack DevOps Engineer",
     description:
-      "Full Stack DevOps Engineer specializing in Next.js, FastAPI, PostgreSQL, Docker, and AWS Cloud CI/CD pipelines.",
+      "Portfolio of MK Mahmud (Mahmudul Hasan), a Full Stack DevOps Engineer specializing in Next.js, FastAPI, Docker, AWS, and CI/CD.",
     images: [
       {
         url: "/images/og-image.png",
@@ -74,9 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mahmudul Hasan — Full Stack DevOps Engineer",
+    title: "MK Mahmud — Full Stack DevOps Engineer",
     description:
-      "Full Stack DevOps Engineer specializing in Next.js, FastAPI, Docker, and AWS Cloud CI/CD.",
+      "Portfolio of MK Mahmud (Mahmudul Hasan), a Full Stack DevOps Engineer specializing in Next.js, FastAPI, Docker, and AWS CI/CD.",
     images: ["/images/og-image.png"],
   },
   robots: {
@@ -97,7 +109,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Mahmudul Hasan",
-    alternateName: "MK",
+    alternateName: ["MK", "MK Mahmud", "MK Mahmood", "Mahmudul Hasan"],
     url: "https://mkmahmud.dev",
     jobTitle: "Full Stack DevOps Engineer",
     worksFor: {
@@ -127,6 +139,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       "PostgreSQL",
       "Redis",
       "LangChain",
+      "Frontend Development",
+      "Full Stack Development",
+      "DevOps",
     ],
   };
 

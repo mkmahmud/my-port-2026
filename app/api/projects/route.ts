@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
     const projects = await db
       .collection('projects')
       .find(query)
-      .sort({ order: 1, createdAt: -1 })
+      .sort({ projectID: 1, order: 1, createdAt: -1 })
       .toArray();
 
     const normalizedProjects = projects.map((project) => ({

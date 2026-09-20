@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
+import { connectDB } from "@/lib/db";
+import { slugify } from "@/lib/utils";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://mkmahmud.dev";
 
   const now = new Date();
 
-  return [
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: now,
@@ -79,29 +81,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/projects/blossom-academy`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/projects/codex-edumine`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/projects/salespilot`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/projects/vcad`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
   ];
+
+  try {
+    const db = await connectDB();
+    const projects = await db
+      .collection('projects')
+      .find({}, { projection: { slug: 1, title: 1, projectTitle: 1, updatedAt: 1 } })
+      .toArray();
+
+    const projectRoutes = projects.map((project) => ({
+      url: `${baseUrl}/projects/${project.slug || slugify(project.title || project.projectTitle || String(project._id))}`,
+      lastModified: project.updatedAt || now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }));
+
+    return [...staticRoutes, ...projectRoutes];
+  } catch {
+    return staticRoutes;
+  }
 }
