@@ -186,8 +186,10 @@ export function Projects({ showAll = false }: ProjectsProps) {
                 style={{ zIndex: idx + 1 }}
               >
                 {/* 1px GEOMETRIC CHAMFERED BORDER WRAPPER */}
-                <div
-                  className="p-[1px] bg-[#362F27] group-hover:bg-[#F6991A]/60 transition-colors duration-400"
+                <Link
+                  href={`/projects/${project.slug}`}
+                  aria-label={`View full details for ${project.title}`}
+                  className="block w-full p-[1px] bg-[#362F27] group-hover:bg-[#F6991A]/60 transition-colors duration-400"
                   style={{ clipPath: clipPathStyle }}
                 >
                   {/* CARD INNER CONTAINER */}
@@ -253,6 +255,7 @@ export function Projects({ showAll = false }: ProjectsProps) {
                         </p>
 
                         {/* Bottom Action Button (Circular arrow button) */}
+<<<<<<< HEAD
                         <div className="flex items-center gap-4">
                           {project.slug && (
                             <Link
@@ -266,16 +269,20 @@ export function Projects({ showAll = false }: ProjectsProps) {
                             href={project.liveUrl || '#contact'}
                             target={project.liveUrl?.startsWith('http') ? '_blank' : '_self'}
                             rel="noopener noreferrer"
+=======
+                        <div>
+                          <span
+                            aria-hidden="true"
+>>>>>>> f0706b6 (fix: UI)
                             className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#181512] border border-[#362F27] flex items-center justify-center text-white/90 group-hover:bg-[#F6991A] group-hover:text-[#181512] group-hover:border-[#F6991A] transition-all duration-300 shadow-md group-hover:scale-105"
-                            aria-label={`View ${project.title}`}
                           >
                             <ArrowUpRight className="w-5 h-5 stroke-[2.5] transition-transform duration-300 group-hover:rotate-45" />
-                          </a>
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             );
           })}

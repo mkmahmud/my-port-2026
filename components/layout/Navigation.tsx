@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Moon, ArrowRight, Mail } from 'lucide-react';
 import { Menu, X, ArrowRight, Mail } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
 
@@ -160,7 +159,7 @@ export const Navigation = () => {
             }`}
           >
             {/* Top Bar inside Drawer */}
-            <div>
+            <div className="flex min-h-0 flex-1 flex-col">
               <div className="flex items-center justify-between pb-5 border-b border-[#2A231C]">
                 {/* Brand */}
                 <Link
@@ -204,7 +203,7 @@ export const Navigation = () => {
             </div>
 
             {/* Links List */}
-            <div className="flex flex-col gap-1.5 pt-1 overflow-y-auto">
+              <div className="flex min-h-0 flex-col gap-1.5 overflow-y-auto pt-1">
               {mobileNavItems.map((item) => {
                 const isActive = isLinkActive(item.href);
 

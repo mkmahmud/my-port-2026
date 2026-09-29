@@ -162,7 +162,13 @@ export function Blogs() {
               className="group cursor-pointer flex flex-col transition-all duration-300 select-none"
             >
               {/* IMAGE WRAPPER WITH NOTCHED CORNER */}
-              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl bg-[#241F1A] border border-[#362F27]/60">
+              <div
+                className="relative aspect-[16/11] w-full overflow-hidden bg-[#241F1A] border border-[#F6991A]/35 transition-colors duration-300 group-hover:border-[#F6991A]"
+                style={{
+                  clipPath:
+                    'polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px))',
+                }}
+              >
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -173,7 +179,7 @@ export function Blogs() {
 
                 {/* Bottom-left Category Badge */}
                 <div className="absolute bottom-3 left-3 z-10">
-                  <span className="inline-block px-3.5 py-1.5 rounded-lg bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs tracking-tight shadow-md">
+                  <span className="inline-block px-3.5 py-1.5 rounded-sm bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs tracking-tight shadow-md">
                     {post.category}
                   </span>
                 </div>
