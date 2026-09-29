@@ -26,9 +26,9 @@ function SparkleFlower({ className = 'w-10 h-10' }: { className?: string }) {
 export function About() {
   const stats = [
     { value: 15, suffix: '+', label: 'Production Projects' },
-    { value: 25, suffix: '+', label: 'Tech & Tools' },
+    { value: 30, suffix: '+', label: 'Tech & Tools' },
     { value: 90, suffix: '+', label: 'Performance Score' },
-    { value: 2, suffix: '+', label: 'Years of Experience' },
+    { value: 3, suffix: '+', label: 'Years of Experience' },
   ];
 
   return (

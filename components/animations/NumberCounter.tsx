@@ -18,7 +18,7 @@ export const NumberCounter: React.FC<NumberCounterProps> = ({
 }) => {
   const elementRef = useRef<HTMLSpanElement>(null);
   const [inView, setInView] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const hasAnimated = useRef(false);
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
@@ -39,34 +39,35 @@ export const NumberCounter: React.FC<NumberCounterProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!inView || hasAnimated) return;
+    if (!inView || hasAnimated.current) return;
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReduced) {
-      setDisplayValue(end);
-      setHasAnimated(true);
-      return;
+      const frameId = window.requestAnimationFrame(() => {
+        setDisplayValue(end);
+        hasAnimated.current = true;
+      });
+      return () => window.cancelAnimationFrame(frameId);
     }
 
     const obj = { value: 0 };
-    
-    const ctx = gsap.context(() => {
-      gsap.to(obj, {
-        value: end,
-        duration,
-        ease: 'power2.out',
-        onUpdate: () => {
-          setDisplayValue(Math.round(obj.value));
-        },
-        onComplete: () => {
-          setHasAnimated(true);
-        }
-      });
+
+    const tween = gsap.to(obj, {
+      value: end,
+      duration,
+      ease: 'power2.out',
+      onUpdate: () => {
+        setDisplayValue(Math.round(obj.value));
+      },
+      onComplete: () => {
+        setDisplayValue(end);
+        hasAnimated.current = true;
+      },
     });
 
-    return () => ctx.revert();
-  }, [inView, end, duration, hasAnimated]);
+    return () => tween.kill();
+  }, [inView, end, duration]);
 
   return (
     <span ref={elementRef} className={`font-mono tabular-nums ${className}`}>

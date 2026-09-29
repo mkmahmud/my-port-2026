@@ -208,7 +208,7 @@ export function Testimonials() {
                           : 'animate-in fade-in slide-in-from-left-6'
                       }`}
                     >
-                      <p className="text-[#3A352F] text-sm sm:text-base md:text-[17px] leading-relaxed font-normal">
+                      <p className="text-[#3A352F] md:text-[#181512] text-sm sm:text-base md:text-[17px] leading-relaxed font-normal">
                         {current.content}
                       </p>
                     </div>
@@ -222,7 +222,7 @@ export function Testimonials() {
                     <h4 className="font-heading font-extrabold text-base sm:text-lg text-[#181512] tracking-tight">
                       {current.name}
                     </h4>
-                    <p className="text-xs sm:text-sm text-[#7A746B] font-medium tracking-normal mt-0.5">
+                    <p className="text-xs sm:text-sm text-[#7A746B] md:text-[#5B5349] font-medium tracking-normal mt-0.5">
                       {current.role}
                     </p>
                   </div>

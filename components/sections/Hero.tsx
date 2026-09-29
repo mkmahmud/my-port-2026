@@ -56,7 +56,7 @@ export function Hero() {
 
           {/* Subtitle with high contrast bold font and clear visibility */}
           <p className="text-black sm:text-lg md:text-xl text-[#181512] font-semibold mt-3 px-4 tracking-wide">
-            Full Stack DevOps Engineer
+                 Full Stack and DevOps Engineer
           </p>
         </div>
 
