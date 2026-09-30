@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, BarChart3, ChevronLeft, ChevronRight, Code2, Layers3, Target } from "lucide-react";
+import { ArrowLeft, BarChart3, Code2, ExternalLink, Layers3, Target } from "lucide-react";
 import { Github } from "@/components/ui/Icons";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/sections/Footer";
@@ -12,6 +12,14 @@ import { Container } from "@/components/ui/Container";
 
 interface ProjectDetailProps {
   params: Promise<{ slug: string }>;
+}
+
+function slugify(value: string) {
+  return String(value)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 async function getProject(slug: string) {
@@ -415,6 +423,7 @@ export default async function ProjectDetailPage({
               </div>
             </Container>
           </section>
+        )}
 
         {gallery.length > 0 && (
           <section className="bg-[#181512] py-16 text-white sm:py-20 md:py-24">
