@@ -133,7 +133,7 @@ export function Skills() {
   const displayedTools = showAll ? TOOLS : TOOLS.slice(0, 6);
 
   return (
-    <section id="skills" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden">
+    <section id="skills" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden">
       <Container>
         {/* CENTERED SECTION HEADER */}
         <div className="flex flex-col items-center text-center mb-14 sm:mb-18 select-none">
@@ -143,7 +143,7 @@ export function Skills() {
               <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
               <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+            <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
               My Favorite Tools
             </span>
           </div>
@@ -154,7 +154,7 @@ export function Skills() {
               Exploring the Tools
               {/* 3 decorative leaf petals at top-right of 'Tools' */}
               <svg
-                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -165,7 +165,7 @@ export function Skills() {
               </svg>
             </span>
             <br />
-            <span className="text-[#181512]">Behind My Code</span>
+            <span className="text-[#181512] dark:text-white">Behind My Code</span>
           </h2>
         </div>
 
@@ -178,7 +178,7 @@ export function Skills() {
             >
               {/* CUSTOM CYBER-CHAMFER TOOL CARD SHAPE */}
               <div
-                className="w-full bg-white pt-5 pb-4 px-6 sm:px-7 transition-all duration-300 group-hover:-translate-y-1"
+                className="w-full bg-white dark:bg-[#1F1914] pt-5 pb-4 px-6 sm:px-7 transition-all duration-300 group-hover:-translate-y-1"
                 style={{
                   clipPath:
                     'polygon(0% 16px, 16px 0%, calc(100% - 16px) 0%, 100% 16px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 12px 100%, 0% calc(100% - 12px))',
@@ -189,15 +189,15 @@ export function Skills() {
                   {/* Left Icon + Name Group */}
                   <div className="flex items-center gap-3.5 sm:gap-4">
                     {/* Soft circular icon container */}
-                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#FAF6EE] flex items-center justify-center p-2.5 shadow-inner shrink-0 group-hover:scale-105 transition-transform duration-300">
+                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#FAF6EE] dark:bg-[#2A231C] flex items-center justify-center p-2.5 shadow-inner shrink-0 group-hover:scale-105 transition-transform duration-300">
                       {tool.icon}
                     </div>
                     {/* Tool Name */}
                     <div>
-                      <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#181512] tracking-tight group-hover:text-[#F6991A] transition-colors duration-200">
+                      <h3 className="font-heading font-extrabold text-lg sm:text-xl text-[#181512] dark:text-white tracking-tight group-hover:text-[#F6991A] transition-colors duration-200">
                         {tool.name}
                       </h3>
-                      <p className="text-xs text-[#7A746B] font-medium tracking-wide">
+                      <p className="text-xs text-[#7A746B] dark:text-[#A8A29E] font-medium tracking-wide">
                         {tool.category}
                       </p>
                     </div>
@@ -212,7 +212,7 @@ export function Skills() {
                 </div>
 
                 {/* BOTTOM EDGE PROFICIENCY PROGRESS BAR */}
-                <div className="w-full bg-[#FAF6EE] h-1 sm:h-1.5 rounded-full overflow-hidden mt-2">
+                <div className="w-full bg-[#FAF6EE] dark:bg-[#2A231C] h-1 sm:h-1.5 rounded-full overflow-hidden mt-2">
                   <div
                     className="bg-[#F6991A] h-full rounded-full transition-all duration-700 ease-out group-hover:bg-[#E0850B]"
                     style={{ width: `${tool.proficiency}%` }}
@@ -227,7 +227,7 @@ export function Skills() {
         <div className="mt-12 flex justify-center">
           <button
             onClick={() => setShowAll((prev) => !prev)}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-[#D5CBB9] text-[#181512] hover:border-[#F6991A] hover:text-[#F6991A] font-heading font-bold text-sm shadow-sm transition-all duration-200 cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white dark:bg-[#1F1914] border border-[#D5CBB9] dark:border-[#3A3026] text-[#181512] dark:text-white hover:border-[#F6991A] hover:text-[#F6991A] font-heading font-bold text-sm shadow-sm transition-all duration-200 cursor-pointer"
           >
             <span>{showAll ? 'Show Core Stack' : 'View Full Tech Stack'}</span>
             <span className="text-xs">➔</span>

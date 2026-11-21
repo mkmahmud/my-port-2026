@@ -7,7 +7,7 @@ interface ContainerProps {
 }
 
 export function Container({ children, className = '', as = 'div' }: ContainerProps) {
-  const classes = `max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 ${className}`;
+  const classes = `max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-16 ${className}`;
   if (as === 'section') return <section className={classes}>{children}</section>;
   if (as === 'article') return <article className={classes}>{children}</article>;
   if (as === 'main') return <main className={classes}>{children}</main>;

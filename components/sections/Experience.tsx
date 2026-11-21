@@ -59,7 +59,7 @@ const CARD_CLIP_PATH =
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden">
+    <section id="experience" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden">
       <Container>
         {/* CENTERED SECTION HEADER */}
         <div className="flex flex-col items-center text-center mb-14 sm:mb-18 select-none">
@@ -69,19 +69,19 @@ export function Experience() {
               <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
               <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+            <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
               Education & Work
             </span>
           </div>
 
           {/* Heading with 3-leaf sparkle decoration on 'and' */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-heading font-extrabold tracking-tight leading-[1.12]">
-            <span className="text-[#181512]">My </span>
+            <span className="text-[#181512] dark:text-white">My </span>
             <span className="relative inline-block text-[#F6991A]">
               Academic and
               {/* 3 decorative leaf petals at top-right of 'and' */}
               <svg
-                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -93,7 +93,7 @@ export function Experience() {
             </span>
             <br />
             <span className="text-[#F6991A]">Professional </span>
-            <span className="text-[#181512]">Journey</span>
+            <span className="text-[#181512] dark:text-white">Journey</span>
           </h2>
         </div>
 
@@ -102,7 +102,7 @@ export function Experience() {
           {/* LEFT CARD: EDUCATION */}
           <div className="relative filter drop-shadow-[0_4px_20px_rgba(24,21,18,0.05)] hover:drop-shadow-[0_12px_32px_rgba(246,153,26,0.1)] transition-all duration-400 group">
             <div
-              className="w-full bg-white p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
+              className="w-full bg-white dark:bg-[#1F1914] p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
               style={{ clipPath: CARD_CLIP_PATH }}
             >
               {/* CARD HEADER: ORANGE CIRCLE WITH GRADUATION CAP ICON + TITLE */}
@@ -110,13 +110,13 @@ export function Experience() {
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#F6991A] flex items-center justify-center text-[#181512] shadow-sm shrink-0">
                   <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] tracking-tight">
+                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] dark:text-white tracking-tight">
                   Education
                 </h3>
               </div>
 
               {/* HORIZONTAL DOTTED CONNECTOR LINE */}
-              <div className="w-full border-t border-dashed border-[#E5DFD3] my-6 sm:my-8" />
+              <div className="w-full border-t border-dashed border-[#E5DFD3] dark:border-[#3A3026] my-6 sm:my-8" />
 
               {/* 3 EDUCATION ENTRIES */}
               <div className="space-y-6 sm:space-y-8">
@@ -126,10 +126,10 @@ export function Experience() {
                     className="flex items-center justify-between gap-4 group/item"
                   >
                     <div>
-                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
+                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] dark:text-white tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
                         {item.title}
                       </h4>
-                      <p className="text-sm sm:text-[15px] text-[#7A746B] font-medium mt-0.5 tracking-normal">
+                      <p className="text-sm sm:text-[15px] text-[#7A746B] dark:text-[#A8A29E] font-medium mt-0.5 tracking-normal">
                         {item.subtitle}
                       </p>
                     </div>
@@ -147,7 +147,7 @@ export function Experience() {
           {/* RIGHT CARD: WORK EXPERIENCE */}
           <div className="relative filter drop-shadow-[0_4px_20px_rgba(24,21,18,0.05)] hover:drop-shadow-[0_12px_32px_rgba(246,153,26,0.1)] transition-all duration-400 group">
             <div
-              className="w-full bg-white p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
+              className="w-full bg-white dark:bg-[#1F1914] p-7 sm:p-9 md:p-10 transition-transform duration-300 group-hover:-translate-y-1"
               style={{ clipPath: CARD_CLIP_PATH }}
             >
               {/* CARD HEADER: ORANGE CIRCLE WITH BRIEFCASE ICON + TITLE */}
@@ -155,13 +155,13 @@ export function Experience() {
                 <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#F6991A] flex items-center justify-center text-[#181512] shadow-sm shrink-0">
                   <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] tracking-tight">
+                <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] text-[#181512] dark:text-white tracking-tight">
                   Work Experience
                 </h3>
               </div>
 
               {/* HORIZONTAL DOTTED CONNECTOR LINE */}
-              <div className="w-full border-t border-dashed border-[#E5DFD3] my-6 sm:my-8" />
+              <div className="w-full border-t border-dashed border-[#E5DFD3] dark:border-[#3A3026] my-6 sm:my-8" />
 
               {/* 3 WORK ENTRIES */}
               <div className="space-y-6 sm:space-y-8">
@@ -171,10 +171,10 @@ export function Experience() {
                     className="flex items-center justify-between gap-4 group/item"
                   >
                     <div>
-                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
+                      <h4 className="font-heading font-bold text-lg sm:text-xl text-[#181512] dark:text-white tracking-tight group-hover/item:text-[#F6991A] transition-colors duration-200">
                         {item.title}
                       </h4>
-                      <p className="text-sm sm:text-[15px] text-[#7A746B] font-medium mt-0.5 tracking-normal">
+                      <p className="text-sm sm:text-[15px] text-[#7A746B] dark:text-[#A8A29E] font-medium mt-0.5 tracking-normal">
                         {item.subtitle}
                       </p>
                     </div>

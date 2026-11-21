@@ -34,7 +34,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden"
+      className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden"
     >
       <Container>
         {/* SECTION HEADER AREA */}
@@ -45,7 +45,7 @@ export function Process() {
               <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
               <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+            <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
               My Work Process
             </span>
           </div>
@@ -56,7 +56,7 @@ export function Process() {
               The Way I Build
               {/* 3 black decorative leaf petals at top right */}
               <svg
-                className="absolute -top-2.5 -right-5 sm:-top-3 sm:-right-6 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                className="absolute -top-2.5 -right-5 sm:-top-3 sm:-right-6 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -67,7 +67,7 @@ export function Process() {
               </svg>
             </span>
             <br />
-            <span className="text-[#181512]">& Deploy Systems</span>
+            <span className="text-[#181512] dark:text-white">& Deploy Systems</span>
           </h2>
         </div>
 
@@ -80,7 +80,7 @@ export function Process() {
             >
               {/* Card Container with Folder-Tab Tech Silhouette */}
               <div
-                className="relative bg-white border border-[#EBE3D5] p-7 sm:p-8 md:p-9 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(246,153,26,0.1)] transition-all duration-300 rounded-3xl"
+                className="relative bg-white dark:bg-[#1F1914] border border-[#EBE3D5] dark:border-[#3A3026] p-7 sm:p-8 md:p-9 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(246,153,26,0.1)] transition-all duration-300 rounded-3xl"
                 style={{
                   clipPath:
                     'polygon(0 0, 52% 0, 58% 8px, calc(100% - 20px) 8px, 100% 28px, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%)',
@@ -88,26 +88,26 @@ export function Process() {
               >
                 {/* Top Row: Pill Badge + Dashed Horizontal Track */}
                 <div className="flex items-center gap-3 w-full mb-2">
-                  <div className="inline-flex items-center px-3.5 py-0.5 rounded-full border border-[#F6991A] bg-white text-[#F6991A] text-xs font-heading font-extrabold tracking-tight shrink-0 shadow-xs">
+                  <div className="inline-flex items-center px-3.5 py-0.5 rounded-full border border-[#F6991A] bg-white dark:bg-[#1F1914] text-[#F6991A] text-xs font-heading font-extrabold tracking-tight shrink-0 shadow-xs">
                     {step.number}.
                   </div>
-                  <div className="h-[1px] flex-1 border-t border-dashed border-[#E3DBD0]" />
+                  <div className="h-[1px] flex-1 border-t border-dashed border-[#E3DBD0] dark:border-[#3A3026]" />
                 </div>
 
                 {/* Step Title */}
-                <h3 className="text-xl sm:text-[22px] font-heading font-extrabold text-[#181512] tracking-tight mt-5 mb-2.5 group-hover:text-[#F6991A] transition-colors duration-200">
+                <h3 className="text-xl sm:text-[22px] font-heading font-extrabold text-[#181512] dark:text-white tracking-tight mt-5 mb-2.5 group-hover:text-[#F6991A] transition-colors duration-200">
                   {step.title}
                 </h3>
 
                 {/* Step Description */}
-                <p className="text-[#7A746B] text-sm sm:text-[15px] leading-relaxed">
+                <p className="text-[#7A746B] dark:text-[#A8A29E] text-sm sm:text-[15px] leading-relaxed">
                   {step.description}
                 </p>
 
                 {/* Subtle 4-Point Star Watermark in Bottom-Right Corner */}
                 <div className="absolute bottom-5 right-6 pointer-events-none opacity-35">
                   <svg
-                    className="w-5 h-5 text-[#D5CDBC]"
+                    className="w-5 h-5 text-[#D5CDBC] dark:text-[#3A3026]"
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >

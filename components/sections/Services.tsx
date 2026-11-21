@@ -55,7 +55,7 @@ export function Services() {
   const [hoveredId, setHoveredId] = useState<string | null>('02.');
 
   return (
-    <section id="services" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden">
+    <section id="services" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden">
       <Container>
         {/* SECTION HEADER GROUP */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
@@ -66,19 +66,19 @@ export function Services() {
                 <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
                 <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
               </div>
-              <span className="text-[#181512] font-semibold text-sm tracking-tight">
+              <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
                 My Services
               </span>
             </div>
 
             {/* Main Heading with 3-leaf sparkle decoration */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-heading font-extrabold text-[#181512] tracking-tight leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-heading font-extrabold text-[#181512] dark:text-white tracking-tight leading-[1.12]">
               How I Bring{' '}
               <span className="relative inline-block text-[#F6991A]">
                 Ideas to Life
                 {/* 3 decorative leaf petals at top-right */}
                 <svg
-                  className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                  className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   aria-hidden="true"
@@ -125,7 +125,7 @@ export function Services() {
                 {/* CUSTOM CYBER-CHAMFER GEOMETRIC SHAPE */}
                 <div
                   className={`w-full transition-all duration-400 ease-out px-4 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 ${
-                    isExpanded ? 'bg-[#181512] text-white' : 'bg-white text-[#181512]'
+                    isExpanded ? 'bg-[#181512] text-white' : 'bg-white dark:bg-[#1F1914] text-[#181512] dark:text-white'
                   }`}
                   style={{
                     clipPath:
@@ -140,7 +140,7 @@ export function Services() {
                         className={`px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold tracking-tight border border-dashed transition-colors select-none ${
                           isExpanded
                             ? 'border-[#F6991A]/60 text-[#F6991A] bg-[#181512]'
-                            : 'border-[#F6991A]/40 text-[#F6991A] bg-white'
+                            : 'border-[#F6991A]/40 text-[#F6991A] bg-white dark:bg-[#1F1914]'
                         }`}
                       >
                         {service.id}
@@ -148,7 +148,7 @@ export function Services() {
                       {/* Horizontal Dotted Line */}
                       <span
                         className={`hidden sm:block flex-1 h-[1px] border-t border-dashed ml-3 transition-colors ${
-                          isExpanded ? 'border-[#362F27]' : 'border-[#E5DFD3]'
+                          isExpanded ? 'border-[#362F27]' : 'border-[#E5DFD3] dark:border-[#3A3026]'
                         }`}
                       />
                     </div>
@@ -157,7 +157,7 @@ export function Services() {
                     <div className="flex-1 min-w-0 pr-2">
                       <h3
                         className={`text-lg sm:text-xl md:text-2xl lg:text-[26px] font-heading font-bold tracking-tight leading-snug transition-colors select-none ${
-                          isExpanded ? 'text-white' : 'text-[#181512]'
+                          isExpanded ? 'text-white' : 'text-[#181512] dark:text-white'
                         }`}
                       >
                         {service.title}

@@ -97,7 +97,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden">
+    <section id="contact" className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden">
       <Container>
         {/* HEADER AREA */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
@@ -107,7 +107,7 @@ export function Contact() {
               <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
               <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+            <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
               Contact Me
             </span>
           </div>
@@ -118,7 +118,7 @@ export function Contact() {
               Let&apos;s Talk for Your
               {/* 3 black botanical leaf petals at top right */}
               <svg
-                className="absolute -top-2.5 -right-5 sm:-top-3 sm:-right-6 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                className="absolute -top-2.5 -right-5 sm:-top-3 sm:-right-6 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -132,7 +132,7 @@ export function Contact() {
               </svg>
             </span>
             <br />
-            <span className="text-[#181512]">Next Projects</span>
+            <span className="text-[#181512] dark:text-white">Next Projects</span>
           </h2>
         </div>
 
@@ -146,7 +146,7 @@ export function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4 sm:gap-y-5">
                 {/* 1. Your Name */}
                 <div>
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     Your Name *
                   </label>
                   <input
@@ -156,13 +156,13 @@ export function Contact() {
                     placeholder="Ex. John Doe"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] placeholder:text-[#9E978E] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                    className="w-full bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] dark:text-white placeholder:text-[#9E978E] dark:placeholder:text-[#7A746B] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                   />
                 </div>
 
                 {/* 2. Email */}
                 <div>
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     Email *
                   </label>
                   <input
@@ -172,13 +172,13 @@ export function Contact() {
                     placeholder="example@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] placeholder:text-[#9E978E] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                    className="w-full bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] dark:text-white placeholder:text-[#9E978E] dark:placeholder:text-[#7A746B] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                   />
                 </div>
 
                 {/* 3. Phone */}
                 <div>
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     Phone *
                   </label>
                   <input
@@ -188,13 +188,13 @@ export function Contact() {
                     placeholder="Enter Phone Number"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] placeholder:text-[#9E978E] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                    className="w-full bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 text-sm text-[#181512] dark:text-white placeholder:text-[#9E978E] dark:placeholder:text-[#7A746B] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                   />
                 </div>
 
                 {/* 4. I'm Interested in */}
                 <div className="relative">
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     I&apos;m Interested in *
                   </label>
                   <div className="relative">
@@ -203,8 +203,8 @@ export function Contact() {
                       required
                       value={formData.service}
                       onChange={handleChange}
-                      className={`w-full appearance-none bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
-                        !formData.service ? 'text-[#9E978E]' : 'text-[#181512]'
+                      className={`w-full appearance-none bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
+                        !formData.service ? 'text-[#9E978E]' : 'text-[#181512] dark:text-white'
                       }`}
                     >
                       <option value="" disabled>
@@ -218,14 +218,14 @@ export function Contact() {
                       <option value="Other Project Inquiry">Other Project Inquiry</option>
                     </select>
                     <ChevronDown
-                      className="w-4 h-4 text-[#181512] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
+                      className="w-4 h-4 text-[#181512] dark:text-white absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
                     />
                   </div>
                 </div>
 
                 {/* 5. Budget Range (USD) */}
                 <div className="relative">
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     Budget Range (USD) *
                   </label>
                   <div className="relative">
@@ -234,8 +234,8 @@ export function Contact() {
                       required
                       value={formData.budget}
                       onChange={handleChange}
-                      className={`w-full appearance-none bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
-                        !formData.budget ? 'text-[#9E978E]' : 'text-[#181512]'
+                      className={`w-full appearance-none bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
+                        !formData.budget ? 'text-[#9E978E]' : 'text-[#181512] dark:text-white'
                       }`}
                     >
                       <option value="" disabled>
@@ -248,14 +248,14 @@ export function Contact() {
                       <option value="$10,000+">$10,000+</option>
                     </select>
                     <ChevronDown
-                      className="w-4 h-4 text-[#181512] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
+                      className="w-4 h-4 text-[#181512] dark:text-white absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
                     />
                   </div>
                 </div>
 
                 {/* 6. Country */}
                 <div className="relative">
-                  <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                  <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                     Country *
                   </label>
                   <div className="relative">
@@ -264,8 +264,8 @@ export function Contact() {
                       required
                       value={formData.country}
                       onChange={handleChange}
-                      className={`w-full appearance-none bg-white border border-[#E7DFD4] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
-                        !formData.country ? 'text-[#9E978E]' : 'text-[#181512]'
+                      className={`w-full appearance-none bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-xl sm:rounded-2xl px-4 py-3.5 pr-10 text-sm focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all shadow-[0_1px_2px_rgba(0,0,0,0.03)] cursor-pointer ${
+                        !formData.country ? 'text-[#9E978E]' : 'text-[#181512] dark:text-white'
                       }`}
                     >
                       <option value="" disabled>
@@ -285,7 +285,7 @@ export function Contact() {
                       <option value="Other">Other Country</option>
                     </select>
                     <ChevronDown
-                      className="w-4 h-4 text-[#181512] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
+                      className="w-4 h-4 text-[#181512] dark:text-white absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none stroke-[2.5]"
                     />
                   </div>
                 </div>
@@ -293,7 +293,7 @@ export function Contact() {
 
               {/* 7. Your Message (Full Width) */}
               <div>
-                <label className="block text-sm font-bold text-[#181512] mb-2 font-heading">
+                <label className="block text-sm font-bold text-[#181512] dark:text-white mb-2 font-heading">
                   Your Message *
                 </label>
                 <textarea
@@ -303,7 +303,7 @@ export function Contact() {
                   placeholder="Enter here.."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-white border border-[#E7DFD4] rounded-2xl p-4 text-sm text-[#181512] placeholder:text-[#9E978E] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all resize-none shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                  className="w-full bg-white dark:bg-[#1F1914] border border-[#E7DFD4] dark:border-[#3A3026] rounded-2xl p-4 text-sm text-[#181512] dark:text-white placeholder:text-[#9E978E] dark:placeholder:text-[#7A746B] focus:outline-none focus:border-[#F6991A] focus:ring-1 focus:ring-[#F6991A] transition-all resize-none shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                 />
               </div>
 
@@ -330,7 +330,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="inline-flex items-center justify-center rounded-full bg-[#181512] hover:bg-black text-white px-8 py-3.5 text-sm font-semibold tracking-wide shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#181512] hover:bg-black dark:bg-[#F6991A] dark:text-[#181512] dark:hover:bg-[#E0850B] text-white px-8 py-3.5 text-sm font-semibold tracking-wide shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === 'submitting' ? 'Sending Message...' : 'Send Message'}
                 </button>

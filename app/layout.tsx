@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { ThemeProvider, THEME_INIT_SCRIPT } from "@/components/layout/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -153,16 +154,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-cream text-text font-sans antialiased">
-        <SmoothScroll>{children}</SmoothScroll>
+      <body className="min-h-full flex flex-col bg-cream text-text font-sans antialiased dark:bg-[#121010] dark:text-[#F5EFEB] transition-colors duration-300">
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

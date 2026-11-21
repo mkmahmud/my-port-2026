@@ -20,13 +20,13 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#FAF6EE] text-[#181512] border-t-[3px] border-[#F6991A] overflow-hidden">
+    <footer className="relative bg-[#FAF6EE] dark:bg-[#121010] text-[#181512] dark:text-white border-t-[3px] border-[#F6991A] transition-colors duration-300 overflow-hidden">
       {/* MAIN FOOTER CONTAINER */}
       <div className="pt-14 sm:pt-18 md:pt-20 pb-12 sm:pb-16">
         <Container>
           {/* TOP CTA ROW: "Let's Connect there" + Contact Me Capsule Button */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-10 sm:pb-14 border-b border-[#E5DFD3]">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-heading font-extrabold text-[#181512] tracking-tight leading-tight">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-10 sm:pb-14 border-b border-[#E5DFD3] dark:border-[#3A3026]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-heading font-extrabold text-[#181512] dark:text-white tracking-tight leading-tight">
               Let&apos;s <span className="text-[#F6991A]">Connect</span> there
             </h2>
 
@@ -61,13 +61,13 @@ export function Footer() {
                       className="w-auto h-5 object-contain"
                     />
                   </div>
-                  <span className="font-heading font-extrabold text-2xl text-[#181512] tracking-tight">
+                  <span className="font-heading font-extrabold text-2xl text-[#181512] dark:text-white tracking-tight">
                     Mahmudul<span className="text-[#F6991A]">.</span>
                   </span>
                 </Link>
 
                 {/* Bio text */}
-                <p className="text-[#7A746B] text-sm sm:text-[15px] leading-relaxed mt-4 sm:mt-5 mb-6 sm:mb-8 max-w-sm font-normal">
+                <p className="text-[#7A746B] dark:text-[#A8A29E] text-sm sm:text-[15px] leading-relaxed mt-4 sm:mt-5 mb-6 sm:mb-8 max-w-sm font-normal">
                   I’m Mahmudul Hasan (MK) — a Full Stack DevOps Engineer crafting high-performance web applications, robust backend microservices, and automated CI/CD cloud infrastructure.
                 </p>
               </div>
@@ -161,7 +161,7 @@ export function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-[#524E48] hover:text-[#181512] hover:translate-x-1 transition-all duration-200 text-sm sm:text-[15px] font-medium block"
+                      className="text-[#524E48] dark:text-[#A8A29E] hover:text-[#181512] dark:hover:text-white hover:translate-x-1 transition-all duration-200 text-sm sm:text-[15px] font-medium block"
                     >
                       {item.label}
                     </Link>
@@ -175,12 +175,12 @@ export function Footer() {
               <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#F6991A] mb-4 sm:mb-5 tracking-wide select-none">
                 Contact
               </h3>
-              <div className="space-y-2.5 sm:space-y-3 text-sm sm:text-[15px] font-medium text-[#524E48]">
+              <div className="space-y-2.5 sm:space-y-3 text-sm sm:text-[15px] font-medium text-[#524E48] dark:text-[#A8A29E]">
                 {/* Phone */}
                 <div>
                   <a
                     href={`tel:${SITE_CONFIG.phone || '+8801741503127'}`}
-                    className="hover:text-[#181512] transition-colors block"
+                    className="hover:text-[#181512] dark:hover:text-white transition-colors block"
                   >
                     {SITE_CONFIG.phone || '+880 17415-03127'}
                   </a>
@@ -192,7 +192,7 @@ export function Footer() {
                     href="https://mkmahmud.dev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#181512] transition-colors block"
+                    className="hover:text-[#181512] dark:hover:text-white transition-colors block"
                   >
                     mkmahmud.dev
                   </a>
@@ -202,14 +202,14 @@ export function Footer() {
                 <div>
                   <a
                     href={`mailto:${SITE_CONFIG.email}`}
-                    className="hover:text-[#181512] transition-colors block break-all"
+                    className="hover:text-[#181512] dark:hover:text-white transition-colors block break-all"
                   >
                     {SITE_CONFIG.email}
                   </a>
                 </div>
 
                 {/* Address / Location */}
-                <div className="pt-1 text-[#524E48] leading-snug">
+                <div className="pt-1 text-[#524E48] dark:text-[#A8A29E] leading-snug">
                   {SITE_CONFIG.location}
                 </div>
               </div>
@@ -223,14 +223,14 @@ export function Footer() {
 
               <form onSubmit={handleNewsletterSubmit} className="relative">
                 {/* Clean White Pill Input Container */}
-                <div className="bg-white rounded-full p-1 sm:p-1.5 pl-4 sm:pl-5 border border-[#E5DFD3] shadow-sm flex items-center justify-between focus-within:border-[#F6991A] focus-within:shadow-[0_0_12px_rgba(246,153,26,0.15)] transition-all duration-200">
+                <div className="bg-white dark:bg-[#1F1914] rounded-full p-1 sm:p-1.5 pl-4 sm:pl-5 border border-[#E5DFD3] dark:border-[#3A3026] shadow-sm flex items-center justify-between focus-within:border-[#F6991A] focus-within:shadow-[0_0_12px_rgba(246,153,26,0.15)] transition-all duration-200">
                   <input
                     type="email"
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Email address"
                     required
-                    className="text-xs sm:text-sm text-[#181512] placeholder:text-[#A8A29E] bg-transparent outline-none flex-1 pr-2 font-normal"
+                    className="text-xs sm:text-sm text-[#181512] dark:text-white placeholder:text-[#A8A29E] dark:placeholder:text-[#7A746B] bg-transparent outline-none flex-1 pr-2 font-normal"
                   />
                   <button
                     type="submit"

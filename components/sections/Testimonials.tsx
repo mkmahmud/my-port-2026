@@ -70,7 +70,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] relative overflow-hidden"
+      className="py-20 sm:py-24 md:py-28 bg-[#FAF6EE] dark:bg-[#121010] transition-colors duration-300 relative overflow-hidden"
     >
       <Container>
         {/* CENTERED SECTION HEADER */}
@@ -81,7 +81,7 @@ export function Testimonials() {
               <span className="w-3.5 h-3.5 rounded-full bg-[#181512]" />
               <span className="w-3.5 h-3.5 rounded-full bg-[#F6991A] -ml-1.5" />
             </div>
-            <span className="text-[#181512] font-semibold text-sm tracking-tight">
+            <span className="text-[#181512] dark:text-white font-semibold text-sm tracking-tight">
               What Clients Say
             </span>
           </div>
@@ -92,7 +92,7 @@ export function Testimonials() {
               What Clients Say
               {/* 3 decorative leaf petals at top-right of 'Say' */}
               <svg
-                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] pointer-events-none"
+                className="absolute -top-3 -right-6 sm:-top-3.5 sm:-right-7 w-5 h-5 sm:w-6 sm:h-6 text-[#181512] dark:text-white pointer-events-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -103,7 +103,7 @@ export function Testimonials() {
               </svg>
             </span>
             <br />
-            <span className="text-[#181512]">About My Work</span>
+            <span className="text-[#181512] dark:text-white">About My Work</span>
           </h2>
         </div>
 
@@ -171,12 +171,12 @@ export function Testimonials() {
           <div className="lg:col-span-8 flex">
             <div className="relative w-full filter drop-shadow-[0_4px_20px_rgba(24,21,18,0.05)] hover:drop-shadow-[0_10px_28px_rgba(246,153,26,0.1)] transition-all duration-400 flex">
               <div
-                className="w-full bg-white p-7 sm:p-10 md:p-12 flex flex-col justify-between relative overflow-hidden"
+                className="w-full bg-white dark:bg-[#1F1914] p-7 sm:p-10 md:p-12 flex flex-col justify-between relative overflow-hidden"
                 style={{ clipPath: CARD_CLIP_PATH }}
               >
                 {/* GIANT SUBTLE WATERMARK QUOTATION MARKS IN BACKGROUND */}
                 <div
-                  className="absolute top-12 right-12 text-[#FAF6EE] select-none pointer-events-none text-[180px] font-serif font-black leading-none opacity-80"
+                  className="absolute top-12 right-12 text-[#FAF6EE] dark:text-[#2A231C] select-none pointer-events-none text-[180px] font-serif font-black leading-none opacity-80"
                   aria-hidden="true"
                 >
                   ”
@@ -193,7 +193,7 @@ export function Testimonials() {
                         />
                       ))}
                     </div>
-                    <span className="font-heading font-extrabold text-sm sm:text-base text-[#181512] ml-1">
+                    <span className="font-heading font-extrabold text-sm sm:text-base text-[#181512] dark:text-white ml-1">
                       {current.rating.toFixed(1)}
                     </span>
                   </div>
@@ -208,7 +208,7 @@ export function Testimonials() {
                           : 'animate-in fade-in slide-in-from-left-6'
                       }`}
                     >
-                      <p className="text-[#3A352F] text-sm sm:text-base md:text-[17px] leading-relaxed font-normal">
+                      <p className="text-[#3A352F] dark:text-[#D5CBB9] text-sm sm:text-base md:text-[17px] leading-relaxed font-normal">
                         {current.content}
                       </p>
                     </div>
@@ -216,13 +216,13 @@ export function Testimonials() {
                 </div>
 
                 {/* BOTTOM ROW: CLIENT INFO (LEFT) | SLIDER CONTROLS (RIGHT) */}
-                <div className="flex items-center justify-between gap-4 pt-8 mt-6 border-t border-[#E5DFD3]/60 relative z-10">
+                <div className="flex items-center justify-between gap-4 pt-8 mt-6 border-t border-[#E5DFD3]/60 dark:border-[#3A3026] relative z-10">
                   {/* Client Info */}
                   <div>
-                    <h4 className="font-heading font-extrabold text-base sm:text-lg text-[#181512] tracking-tight">
+                    <h4 className="font-heading font-extrabold text-base sm:text-lg text-[#181512] dark:text-white tracking-tight">
                       {current.name}
                     </h4>
-                    <p className="text-xs sm:text-sm text-[#7A746B] font-medium tracking-normal mt-0.5">
+                    <p className="text-xs sm:text-sm text-[#7A746B] dark:text-[#A8A29E] font-medium tracking-normal mt-0.5">
                       {current.role}
                     </p>
                   </div>

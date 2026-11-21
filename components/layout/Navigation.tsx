@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Moon, ArrowRight, Mail } from 'lucide-react';
+import { Menu, X, Moon, Sun, ArrowRight, Mail } from 'lucide-react';
 import { SITE_CONFIG } from '@/lib/constants';
+import { useTheme } from '@/components/layout/ThemeProvider';
 
 export const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +76,7 @@ export const Navigation = () => {
       {/* FIXED FLOATING NAVBAR */}
       <header className="fixed top-3.5 sm:top-5 md:top-6 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none">
         <nav
-          className={`pointer-events-auto flex items-center justify-between gap-3 md:gap-10 px-3.5 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full transition-all duration-300 w-full max-w-5xl ${
+          className={`pointer-events-auto flex items-center justify-between gap-3 md:gap-10 px-3.5 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full transition-all duration-300 w-full max-w-5xl xl:max-w-6xl 2xl:max-w-7xl ${
             scrolled
               ? 'bg-[#181512]/95 backdrop-blur-md shadow-2xl border border-[#362F27]'
               : 'bg-[#181512] shadow-xl border border-[#362F27]'
@@ -122,12 +124,13 @@ export const Navigation = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Theme / Decorative Moon Icon Button */}
+            {/* Theme Toggle Button */}
             <button
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#362F27] flex items-center justify-center text-[#F5EFEB]/80 hover:text-white hover:border-[#F6991A]/50 transition-colors focus:outline-none"
-              aria-label="Theme indicator"
+              onClick={toggleTheme}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#362F27] flex items-center justify-center text-[#F5EFEB]/80 hover:text-white hover:border-[#F6991A]/50 transition-colors focus:outline-none cursor-pointer"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              <Moon size={15} />
+              {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
             </button>
 
             {/* "Let's Talk" Capsule CTA (Visible on tablet & desktop) */}

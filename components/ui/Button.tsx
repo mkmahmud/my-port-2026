@@ -36,8 +36,8 @@ export function Button({
       'bg-[#F6991A] text-[#181512] hover:bg-[#F2910F] hover:shadow-md hover:-translate-y-0.5 border border-transparent',
     
     // Crisp white pill with high-contrast sharp black border (clearly visible everywhere)
-    outline: 
-      'bg-white text-[#181512] border-[1.5px] border-[#181512] hover:bg-[#FAF6EE] hover:shadow-md hover:-translate-y-0.5',
+    outline:
+      'bg-white dark:bg-[#1F1914] text-[#181512] dark:text-white border-[1.5px] border-[#181512] dark:border-white/70 hover:bg-[#FAF6EE] dark:hover:bg-[#2A231C] hover:shadow-md hover:-translate-y-0.5',
     
     // Dark espresso pill
     secondary: 
@@ -48,8 +48,8 @@ export function Button({
       'bg-[#241F1A] text-[#FBF8F2] hover:bg-[#2E2822] hover:shadow-md hover:-translate-y-0.5 border border-[#362F27]',
     
     // Ghost pill
-    ghost: 
-      'text-[#7A746B] hover:text-[#F6991A] bg-transparent hover:bg-black/5'
+    ghost:
+      'text-[#7A746B] dark:text-[#A8A29E] hover:text-[#F6991A] bg-transparent hover:bg-black/5 dark:hover:bg-white/5'
   };
 
   const sizes = {
@@ -111,7 +111,7 @@ export function CapsuleGroup({
   className?: string;
 }) {
   return (
-    <div className={`inline-flex items-center gap-1 p-1.5 sm:p-2 rounded-full bg-[#FAF6EE] border border-[#E2D8C7] shadow-xl hover:shadow-2xl transition-all duration-300 ${className}`}>
+    <div className={`inline-flex items-center gap-1 p-1.5 sm:p-2 rounded-full bg-[#FAF6EE] dark:bg-[#1F1914] border border-[#E2D8C7] dark:border-[#3A3026] shadow-xl hover:shadow-2xl transition-all duration-300 ${className}`}>
       {children}
     </div>
   );
