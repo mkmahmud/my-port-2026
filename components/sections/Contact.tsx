@@ -35,16 +35,13 @@ export function Contact() {
     setStatus('submitting');
     setStatusMessage('');
 
-    const serviceId = emailjsConfig.serviceId;
-    const templateId = emailjsConfig.templateId;
-    const publicKey = emailjsConfig.publicKey;
+    const { serviceId, templateId, publicKey, recipientEmail } = emailjsConfig;
 
     try {
       if (!serviceId || !templateId || !publicKey) {
         throw new Error('EmailJS environment variables are not configured');
       }
 
-      const recipientEmail = emailjsConfig.recipientEmail;
       const emailParams = {
         Name: formData.name,
         Email: formData.email,
@@ -67,6 +64,13 @@ export function Contact() {
       };
 
       await emailjs.send(serviceId, templateId, emailParams, publicKey);
+
+      // Best-effort backup copy in MongoDB; email delivery above is what matters.
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      }).catch(() => {});
 
       setStatus('success');
       setStatusMessage(

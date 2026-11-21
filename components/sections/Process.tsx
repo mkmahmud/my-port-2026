@@ -72,7 +72,7 @@ export function Process() {
         </div>
 
         {/* 2x2 PROCESS CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {steps.map((step) => (
             <div
               key={step.number}
