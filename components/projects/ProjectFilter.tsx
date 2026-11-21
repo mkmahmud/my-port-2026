@@ -29,13 +29,13 @@ export function ProjectFilter({
           onClick={() => onTypeChange('all')}
           className={`px-4 py-2 rounded-lg text-sm font-mono transition-all flex items-center gap-2 ${
             activeType === 'all'
-              ? 'bg-accent text-base font-medium shadow-sm'
+              ? 'bg-accent text-cream font-medium shadow-sm'
               : 'text-text-muted hover:text-text'
           }`}
         >
           All Works
           <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-            activeType === 'all' ? 'bg-base/30 text-base' : 'bg-elevated text-text-muted'
+            activeType === 'all' ? 'bg-cream/30 text-cream' : 'bg-elevated text-text-muted'
           }`}>
             {totalCount}
           </span>
@@ -45,13 +45,13 @@ export function ProjectFilter({
           onClick={() => onTypeChange('case-study')}
           className={`px-4 py-2 rounded-lg text-sm font-mono transition-all flex items-center gap-2 ${
             activeType === 'case-study'
-              ? 'bg-secondary text-base font-medium shadow-sm'
+              ? 'bg-secondary text-cream font-medium shadow-sm'
               : 'text-text-muted hover:text-secondary'
           }`}
         >
           Case Studies
           <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-            activeType === 'case-study' ? 'bg-base/30 text-base' : 'bg-elevated text-text-muted'
+            activeType === 'case-study' ? 'bg-cream/30 text-cream' : 'bg-elevated text-text-muted'
           }`}>
             {caseStudiesCount}
           </span>
@@ -61,13 +61,13 @@ export function ProjectFilter({
           onClick={() => onTypeChange('project')}
           className={`px-4 py-2 rounded-lg text-sm font-mono transition-all flex items-center gap-2 ${
             activeType === 'project'
-              ? 'bg-accent text-base font-medium shadow-sm'
+              ? 'bg-accent text-cream font-medium shadow-sm'
               : 'text-text-muted hover:text-text'
           }`}
         >
           Projects
           <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-            activeType === 'project' ? 'bg-base/30 text-base' : 'bg-elevated text-text-muted'
+            activeType === 'project' ? 'bg-cream/30 text-cream' : 'bg-elevated text-text-muted'
           }`}>
             {projectsCount}
           </span>

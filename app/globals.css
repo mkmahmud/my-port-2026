@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 @theme inline {
-  --color-base: #FBF8F2;
+  --color-cream: #FBF8F2;
   --color-surface: #FFFFFF;
   --color-surface-dark: #181512;
   --color-card-dark: #241F1A;
@@ -81,18 +81,8 @@
     }
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
   body {
-    background-color: var(--color-base);
+    background-color: var(--color-cream);
     color: var(--color-text);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;

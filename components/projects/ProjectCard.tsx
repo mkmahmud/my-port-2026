@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-base/90 via-base/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-cream/90 via-cream/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
         
         {/* Type Badge on Top-Right */}
         <div className="absolute top-3 right-3 z-20">
@@ -51,7 +51,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               Case Study
             </span>
           ) : (
-            <span className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider bg-base/80 border border-border text-text-muted rounded-full backdrop-blur-md">
+            <span className="px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider bg-cream/80 border border-border text-text-muted rounded-full backdrop-blur-md">
               Project
             </span>
           )}
@@ -60,7 +60,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {/* Keyword pill on Bottom-Left */}
         {project.projectKeyWord && (
           <div className="absolute bottom-3 left-3 z-20">
-            <span className="text-xs font-mono text-accent-muted bg-base/90 px-2 py-0.5 rounded border border-border/60">
+            <span className="text-xs font-mono text-accent-muted bg-cream/90 px-2 py-0.5 rounded border border-border/60">
               {project.projectKeyWord}
             </span>
           </div>

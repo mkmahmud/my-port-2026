@@ -101,14 +101,14 @@ export const Navigation = () => {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {desktopNavItems.map((item) => {
               const isActive = isLinkActive(item.href);
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors duration-200 ${
+                  className={`text-sm font-medium whitespace-nowrap transition-colors duration-200 ${
                     isActive
                       ? 'text-[#F6991A] font-semibold'
                       : 'text-[#F5EFEB]/80 hover:text-white'
@@ -133,14 +133,14 @@ export const Navigation = () => {
             {/* "Let's Talk" Capsule CTA (Visible on tablet & desktop) */}
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2 rounded-full bg-white text-[#181512] text-xs sm:text-sm font-heading font-extrabold hover:bg-[#F6991A] hover:text-[#181512] transition-colors shadow-sm"
+              className="hidden sm:inline-flex items-center justify-center whitespace-nowrap px-4 sm:px-5 py-2 rounded-full bg-white text-[#181512] text-xs sm:text-sm font-heading font-extrabold hover:bg-[#F6991A] hover:text-[#181512] transition-colors shadow-sm"
             >
               Let&apos;s Talk
             </Link>
 
             {/* Mobile Hamburger Button with tactile feedback */}
             <button
-              className="md:hidden w-9 h-9 rounded-full bg-[#241F1A] border border-[#3A3228] text-white flex items-center justify-center hover:border-[#F6991A] hover:text-[#F6991A] transition-all focus:outline-none active:scale-95 shadow-sm"
+              className="lg:hidden w-9 h-9 rounded-full bg-[#241F1A] border border-[#3A3228] text-white flex items-center justify-center hover:border-[#F6991A] hover:text-[#F6991A] transition-all focus:outline-none active:scale-95 shadow-sm"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-expanded={mobileMenuOpen}
@@ -154,7 +154,7 @@ export const Navigation = () => {
       {/* MOBILE FULL-SCREEN / SLIDE DRAWER OVERLAY */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-50 md:hidden bg-black/85 backdrop-blur-md transition-opacity duration-300 flex flex-col justify-between overflow-y-auto animate-in fade-in"
+          className="fixed inset-0 z-50 lg:hidden bg-black/85 backdrop-blur-md transition-opacity duration-300 flex flex-col justify-between overflow-y-auto animate-in fade-in"
           onClick={() => setMobileMenuOpen(false)}
         >
           {/* Main Drawer Container */}

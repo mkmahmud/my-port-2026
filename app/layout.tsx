@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -160,8 +161,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-base text-text font-sans antialiased">
-        {children}
+      <body className="min-h-full flex flex-col bg-cream text-text font-sans antialiased">
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

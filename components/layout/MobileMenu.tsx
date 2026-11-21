@@ -74,7 +74,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 bg-base/95 backdrop-blur-xl z-50 flex-col hidden opacity-0"
+      className="fixed inset-0 bg-cream/95 backdrop-blur-xl z-50 flex-col hidden opacity-0"
       role="dialog"
       aria-modal="true"
     >

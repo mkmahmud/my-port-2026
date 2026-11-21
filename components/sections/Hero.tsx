@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-[#FAF6EE]"
+      className="relative min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 lg:pt-28 pb-12 sm:pb-16 md:pb-20 lg:pb-10 overflow-hidden bg-[#FAF6EE]"
     >
       {/* 1440px Desktop Max Width Container with responsive padding */}
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex-1 flex flex-col justify-between relative">
@@ -61,11 +61,11 @@ export function Hero() {
         </div>
 
         {/* CENTER CANVAS WITH 1440PX GEOMETRY */}
-        <div className="relative w-full max-w-[1280px] mx-auto mt-4 sm:mt-6 flex-1 min-h-[420px] sm:min-h-[500px] md:min-h-[560px] lg:min-h-[620px] flex items-end justify-center">
+        <div className="relative w-full max-w-[1280px] mx-auto mt-4 sm:mt-6 flex-1 min-h-[420px] sm:min-h-[500px] md:min-h-[560px] lg:min-h-[min(620px,58dvh)] flex items-end justify-center">
 
           {/* THE EXACT LAYERED SHAPE BEHIND THE IMAGE */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-            <div className="w-[320px] sm:w-[460px] md:w-[560px] lg:w-[620px] h-[320px] sm:h-[460px] md:h-[560px] lg:h-[620px] rounded-full bg-[#EFE9DC] relative flex items-center justify-center">
+            <div className="w-[320px] sm:w-[460px] md:w-[560px] lg:w-[min(620px,54dvh)] h-[320px] sm:h-[460px] md:h-[560px] lg:h-[min(620px,54dvh)] rounded-full bg-[#EFE9DC] relative flex items-center justify-center">
               {/* Horizontal layered wave ribbons inside the circular shape */}
               <div className="absolute top-[28%] left-0 right-0 h-11 sm:h-14 bg-[#FAF6EE]/80 rounded-full blur-[1px] -rotate-1 scale-105" />
               <div className="absolute top-[48%] left-0 right-0 h-11 sm:h-14 bg-[#FAF6EE]/80 rounded-full blur-[1px] -rotate-1 scale-105" />
@@ -82,7 +82,7 @@ export function Hero() {
           </div>
 
           {/* CENTER: PROPORTIONAL SUBJECT PORTRAIT WITH SEAMLESS MULTI-DIRECTIONAL MASK */}
-          <div className="relative w-[320px] sm:w-[460px] md:w-[560px] lg:w-[640px] xl:w-[680px] h-[400px] sm:h-[480px] md:h-[560px] lg:h-[620px] xl:h-[660px] z-10 flex items-end justify-center pointer-events-none">
+          <div className="relative w-[320px] sm:w-[460px] md:w-[560px] lg:w-[min(640px,58dvh)] xl:w-[min(680px,60dvh)] 2xl:w-[min(720px,62dvh)] h-[400px] sm:h-[480px] md:h-[560px] lg:h-[min(620px,56dvh)] xl:h-[min(660px,58dvh)] 2xl:h-[min(700px,60dvh)] z-10 flex items-end justify-center pointer-events-none">
             <div
               className="relative w-full h-full"
               style={{

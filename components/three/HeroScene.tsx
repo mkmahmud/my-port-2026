@@ -6,7 +6,7 @@ import { ParticleField } from './ParticleField';
 
 export default function HeroScene() {
   return (
-    <div className="absolute inset-0 -z-10 bg-base">
+    <div className="absolute inset-0 -z-10 bg-cream">
       <Canvas
         dpr={[1, 1.5]}
         camera={{ position: [0, 0, 5], fov: 60 }}
