@@ -155,18 +155,22 @@ export const Navigation = () => {
       </header>
 
       {/* MOBILE FULL-SCREEN / SLIDE DRAWER OVERLAY */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-50 lg:hidden bg-black/85 backdrop-blur-md transition-opacity duration-300 flex flex-col justify-between overflow-y-auto animate-in fade-in"
-          onClick={() => setMobileMenuOpen(false)}
-        >
+      <div
+        aria-hidden={!mobileMenuOpen}
+        className={`fixed inset-0 z-50 lg:hidden bg-black/70 backdrop-blur-sm transition-[opacity,visibility] duration-300 ease-out ${
+          mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      >
           {/* Main Drawer Container */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full min-h-screen bg-[#181512] border-b border-[#362F27] text-white flex flex-col justify-between p-5 sm:p-6 animate-in slide-in-from-top-6 duration-300"
+            className={`w-full h-full bg-[#181512] text-white flex flex-col p-5 sm:p-6 transition-transform duration-300 ease-out ${
+              mobileMenuOpen ? 'translate-y-0' : '-translate-y-3'
+            }`}
           >
             {/* Top Bar inside Drawer */}
-            <div>
+            <div className="flex min-h-0 flex-1 flex-col">
               <div className="flex items-center justify-between pb-5 border-b border-[#2A231C]">
                 {/* Brand */}
                 <Link
@@ -210,7 +214,7 @@ export const Navigation = () => {
             </div>
 
             {/* Links List */}
-            <div className="flex flex-col gap-1.5 pt-1">
+              <div className="flex min-h-0 flex-col gap-1.5 overflow-y-auto pt-1">
               {mobileNavItems.map((item) => {
                 const isActive = isLinkActive(item.href);
 
@@ -219,9 +223,9 @@ export const Navigation = () => {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`group flex items-center justify-between py-3 px-3.5 rounded-2xl transition-all duration-200 ${
+                    className={`group flex items-center justify-between py-3 px-3 rounded-lg border border-transparent transition-colors duration-200 ${
                       isActive
-                        ? 'bg-[#251F19] text-[#F6991A] border border-[#F6991A]/30 shadow-sm'
+                      ? 'bg-[#241F1A] text-[#F6991A] border-[#F6991A]/30'
                         : 'text-white/90 hover:bg-[#201A14] hover:text-[#F6991A]'
                     }`}
                   >
@@ -253,52 +257,27 @@ export const Navigation = () => {
             </div>
           </div>
 
-          {/* Bottom Card & Contact Footer */}
-          <div className="pt-6 mt-4 border-t border-[#2A231C] space-y-4">
-            {/* Signature Tech Card */}
-            <div
-              className="relative p-5 bg-[#201A14] border border-[#3A3026] rounded-2xl shadow-xl"
-              style={{
-                clipPath:
-                  'polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%)',
-              }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[11px] font-mono text-green-400 uppercase tracking-wider font-semibold">
-                  Available for new projects
-                </span>
-              </div>
-              <p className="text-white text-sm font-heading font-bold mb-3 leading-snug">
-                Have an MVP or intelligent system to build?
-              </p>
+          {/* Contact Footer */}
+          <div className="pt-4 mt-auto border-t border-[#362F27]">
+            <div className="flex items-center justify-between gap-4">
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs sm:text-sm tracking-tight hover:bg-[#E0850B] transition-colors shadow-md"
+                className="inline-flex items-center gap-2 text-sm font-heading font-bold text-[#F6991A] hover:text-white transition-colors"
               >
-                <span>Let&apos;s Build Together</span>
-                <span className="w-6 h-6 rounded-full bg-[#181512] text-white flex items-center justify-center text-xs font-bold">
-                  ➔
-                </span>
+                Let&apos;s talk <ArrowRight size={15} />
               </Link>
-              </div>
-
-              {/* Quick Contact & Socials */}
-              <div className="flex items-center justify-between pt-2 text-xs text-[#9E978E]">
-                <a
-                  href={`mailto:${SITE_CONFIG.email}`}
-                  className="hover:text-[#F6991A] transition-colors flex items-center gap-1.5 font-medium"
-                >
-                  <Mail size={13} className="text-[#F6991A]" />
-                  {SITE_CONFIG.email}
-                </a>
-                <span>Dhaka (UTC+6)</span>
-              </div>
+              <a
+                href={`mailto:${SITE_CONFIG.email}`}
+                className="text-xs text-[#A8A29E] hover:text-white transition-colors flex items-center gap-1.5"
+              >
+                <Mail size={13} className="text-[#F6991A]" />
+                {SITE_CONFIG.email}
+              </a>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
-import { X, ArrowRight, Calendar, User, Tag, Clock } from 'lucide-react';
+import { X, Calendar, User, Clock } from 'lucide-react';
 
 export interface BlogPost {
   id: string;
@@ -68,6 +68,23 @@ export const BLOG_POSTS: BlogPost[] = [
       'AI agents are moving from simple chat prompts to autonomous workflow orchestrators that interact with live business APIs and private knowledge bases.',
       'By combining Python FastAPI microservices, LangChain/LangGraph pipelines, and PostgreSQL pgvector embeddings, we build deterministic, grounded AI features with low latency.',
       'Discover best practices for error recovery, prompt caching, token usage monitoring, and securing LLM endpoints in high-volume production applications.',
+    ],
+  },
+  {
+    id: '4',
+    title: 'Building a Full-Stack Feature from Database to Deployment',
+    category: 'Full Stack Development',
+    author: 'Mahmudul Hasan',
+    date: '02 June 2026',
+    readTime: '5 min read',
+    image: '/images/blogs/blog-2.png',
+    slug: 'full-stack-feature-database-to-deployment',
+    excerpt:
+      'A practical look at connecting a typed interface, validated API, persistent data model, and reliable production release into one cohesive feature.',
+    content: [
+      'A full-stack feature is more than a screen backed by an endpoint. It needs a clear contract between the interface, application logic, and data layer so each part can evolve without surprising the others.',
+      'Start with the user workflow and define the data shape. Validate input at the API boundary, keep database operations behind a focused service, and return predictable errors that the interface can present usefully.',
+      'Before release, cover the important paths with tests, run type checks and linting in CI, and deploy behind health checks. Observability after launch closes the loop by showing how the feature behaves with real traffic.',
     ],
   },
 ];
@@ -136,7 +153,7 @@ export function Blogs() {
           </div>
         </div>
 
-        {/* 3 BLOGS GRID */}
+        {/* BLOG GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-8">
           {BLOG_POSTS.map((post) => (
             <article
@@ -145,7 +162,13 @@ export function Blogs() {
               className="group cursor-pointer flex flex-col transition-all duration-300 select-none"
             >
               {/* IMAGE WRAPPER WITH NOTCHED CORNER */}
-              <div className="relative aspect-[16/11] w-full overflow-hidden rounded-2xl bg-[#241F1A] border border-[#362F27]/60">
+              <div
+                className="relative aspect-[16/11] w-full overflow-hidden bg-[#241F1A] border border-[#F6991A]/35 transition-colors duration-300 group-hover:border-[#F6991A]"
+                style={{
+                  clipPath:
+                    'polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px))',
+                }}
+              >
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -156,7 +179,7 @@ export function Blogs() {
 
                 {/* Bottom-left Category Badge */}
                 <div className="absolute bottom-3 left-3 z-10">
-                  <span className="inline-block px-3.5 py-1.5 rounded-lg bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs tracking-tight shadow-md">
+                  <span className="inline-block px-3.5 py-1.5 rounded-sm bg-[#F6991A] text-[#181512] font-heading font-extrabold text-xs tracking-tight shadow-md">
                     {post.category}
                   </span>
                 </div>
