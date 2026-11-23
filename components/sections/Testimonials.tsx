@@ -13,7 +13,7 @@ interface TestimonialItem {
   content: string;
 }
 
-const TESTIMONIALS: TestimonialItem[] = [
+export const TESTIMONIALS: TestimonialItem[] = [
   {
     id: '1',
     name: 'Ava Wilson',
