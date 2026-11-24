@@ -82,11 +82,20 @@ export const SKILLS: SkillCategory[] = [
 
 export const EXPERIENCE: ExperienceEntry[] = [
   {
+    role: 'Web Developer',
+    company: 'Pen Global',
+    location: 'Chattogram, Bangladesh',
+    startDate: 'Sep 2026',
+    endDate: 'Present',
+    achievements: [],
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS']
+  },
+  {
     role: 'Full Stack Developer',
     company: 'Codexmine',
     location: 'Dhaka, Bangladesh',
     startDate: 'Mar 2026',
-    endDate: 'Present',
+    endDate: 'Sep 2026',
     achievements: [
       'Built full EdTech ERP covering academics, HR, students, attendance, expenses and others end-to-end',
       'Engineered biometric attendance pipeline that eliminated all manual roll-call entry entirely',

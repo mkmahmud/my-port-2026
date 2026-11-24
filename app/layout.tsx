@@ -119,7 +119,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     jobTitle: "Full Stack DevOps Engineer",
     worksFor: {
       "@type": "Organization",
-      name: "Codexmine",
+      name: "Pen Global",
     },
     address: {
       "@type": "PostalAddress",

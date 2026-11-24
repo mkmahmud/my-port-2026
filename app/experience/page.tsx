@@ -7,11 +7,12 @@ import '@/components/home/pages.css';
 export const metadata: Metadata = {
   title: 'Work Experience & Career Journey — Mahmudul Hasan',
   description:
-    'Career timeline, software engineering roles, and achievements of Mahmudul Hasan at Codexmine, LeoPhoenix, and academic institutes.',
+    'Career timeline, software engineering roles, and achievements of Mahmudul Hasan at Pen Global, Codexmine, LeoPhoenix, and academic institutes.',
   keywords: [
     'Mahmudul Hasan Experience',
     'Full Stack Engineer Career',
     'Software Engineering Roles',
+    'Pen Global',
     'Codexmine',
     'LeoPhoenix',
   ],

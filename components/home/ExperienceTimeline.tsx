@@ -6,16 +6,6 @@ const VISIBLE = 4;
 
 const ROLES = [
   ...EXPERIENCE.map((job) => ({ ...job, current: job.endDate === 'Present' })),
-  {
-    role: 'Independent Consultant',
-    company: 'Freelance',
-    location: 'Remote',
-    startDate: '2022',
-    endDate: '2023',
-    achievements: ['DevOps and full stack solutions for clients: CI/CD, cloud setup, and Next.js builds.'],
-    techStack: ['Next.js', 'Docker', 'GitHub Actions', 'AWS'],
-    current: false,
-  },
 ];
 
 export function ExperienceTimeline() {
@@ -37,11 +27,11 @@ export function ExperienceTimeline() {
                 <p className="ex-date">{job.startDate} — {job.endDate}{job.current && <b>Now</b>}</p>
                 <h3>{job.role} <span>@ {job.company}</span></h3>
                 <p className="ex-where"><MapPin size={14} aria-hidden="true" /> {job.location}</p>
-                <ul className="ex-wins">
+                {job.achievements.length > 0 && <ul className="ex-wins">
                   {job.achievements.slice(0, VISIBLE).map((win) => (
                     <li key={win}><Check size={14} strokeWidth={3} aria-hidden="true" /> {win}</li>
                   ))}
-                </ul>
+                </ul>}
                 {more > 0 && (
                   <details className="ex-more">
                     <summary>Show {more} more</summary>

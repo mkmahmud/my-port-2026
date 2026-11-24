@@ -16,7 +16,6 @@ const SOCIALS = [
   { label: 'LinkedIn', href: SITE_CONFIG.linkedin, path: 'M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z' },
 ];
 
-const yearOf = (date: string) => date.match(/\d{4}/)?.[0] ?? date;
 
 function Badge() {
   const card = useRef<HTMLDivElement>(null);
@@ -102,7 +101,8 @@ function Badge() {
 export function AboutMe() {
   const section = useRef<HTMLElement>(null);
   const words = BIO.split(' ');
-  const [current, previous] = EXPERIENCE;
+  const [current] = EXPERIENCE;
+  const pastRoles = EXPERIENCE.slice(1);
 
   useEffect(() => {
     const node = section.current;
@@ -144,7 +144,7 @@ export function AboutMe() {
   const lines = [
     { cmd: 'whoami', out: [`${SITE_CONFIG.name.toLowerCase().replace(' ', '-')} · Full Stack & DevOps Engineer`] },
     { cmd: 'cat location.txt', out: [`${SITE_CONFIG.location} (UTC+6)`] },
-    { cmd: 'git log --career', out: [`${yearOf(current.startDate)} → now   ${current.role} @ ${current.company}`, `${yearOf(previous.startDate)} → ${yearOf(previous.endDate)}  ${previous.role} @ ${previous.company}, ${previous.location}`] },
+    { cmd: 'git log --career', out: EXPERIENCE.map((job) => `${job.startDate} → ${job.endDate === 'Present' ? 'now     ' : job.endDate}  ${job.role} @ ${job.company}`) },
     { cmd: 'status', out: [SITE_CONFIG.availabilityText.toLowerCase()], live: true },
   ];
 
@@ -161,7 +161,7 @@ export function AboutMe() {
             {words.map((word, index) => <span key={index} aria-hidden="true">{word} </span>)}
           </p>
 
-          <div className="ab-term" role="img" aria-label={`Terminal summary: ${SITE_CONFIG.name}, ${SITE_CONFIG.location}. ${current.role} at ${current.company} since ${current.startDate}. Previously ${previous.role} at ${previous.company}. ${SITE_CONFIG.availabilityText}.`}>
+          <div className="ab-term" role="img" aria-label={`Terminal summary: ${SITE_CONFIG.name}, ${SITE_CONFIG.location}. ${current.role} at ${current.company} since ${current.startDate}. Previously ${pastRoles.map((job) => `${job.role} at ${job.company}`).join(', ')}. ${SITE_CONFIG.availabilityText}.`}>
             <div className="ab-term-bar" aria-hidden="true"><i /><i /><i /><span>~/about — zsh</span></div>
             <div className="ab-term-body" aria-hidden="true">
               {lines.map((line, index) => (
