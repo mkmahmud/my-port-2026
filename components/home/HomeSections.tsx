@@ -6,9 +6,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Send } from 'lucide-react';
 import { BLOG_POSTS } from '@/components/sections/Blogs';
 import { TESTIMONIALS } from '@/components/sections/Testimonials';
-import { useProjects } from '@/hooks/useProjects';
-import { BIO, DEFAULT_PROJECTS, SITE_CONFIG, STATS } from '@/lib/constants';
-import type { Project } from '@/lib/types';
+import { BIO, SITE_CONFIG, STATS } from '@/lib/constants';
 import { BRAND_ICONS, type BrandIconName } from './brandIcons';
 import { BrandMark, HOME_LINKS } from './HomeNav';
 
@@ -39,56 +37,6 @@ function SectionIntro({ label, title, children, href, cta }: {
         </Link>
       )}
     </div>
-  );
-}
-
-function projectImage(project: Project) {
-  return project.thumbnailUrl || project.gellaryImages?.[0] || project.images?.[0] || '/images/projects/codex-edumine.svg';
-}
-
-function ProjectTile({ project, large }: { project: Project; large?: boolean }) {
-  const title = project.title || project.projectTitle || 'Untitled project';
-  const image = projectImage(project);
-  const summary = project.description || (Array.isArray(project.overview) ? project.overview[0] : project.overview);
-  return (
-    <Link href={`/projects/${project.slug}`} className={`work-tile ${large ? 'is-large' : ''}`}>
-      <Image
-        src={image}
-        alt=""
-        fill
-        loading="eager"
-        unoptimized={image.endsWith('.svg')}
-        sizes={large ? '(max-width: 900px) 100vw, 560px' : '(max-width: 900px) 100vw, 420px'}
-      />
-      <span className="work-copy">
-        <span><strong>{title}</strong>{summary && <small>{summary}</small>}</span>
-        <span className="round-arrow"><ArrowRight size={16} /></span>
-      </span>
-    </Link>
-  );
-}
-
-export function RecentWork() {
-  const { projects, isLoading } = useProjects();
-  const source = projects.length > 0 ? projects : isLoading ? [] : DEFAULT_PROJECTS;
-  const featured = [...source].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))).slice(0, 3);
-
-  return (
-    <section className="band work">
-      <SectionIntro
-        label="Featured projects"
-        title={<>Some of My<br />Recent Work</>}
-        href="/projects"
-        cta="View All Projects"
-      >
-        A selection of projects I&apos;ve worked on recently.
-      </SectionIntro>
-      <div className="work-grid" aria-busy={isLoading}>
-        {featured.length === 0
-          ? [0, 1, 2].map((item) => <div key={item} className={`work-tile is-loading ${item === 0 ? 'is-large' : ''}`} />)
-          : featured.map((project, index) => <ProjectTile key={project._id} project={project} large={index === 0} />)}
-      </div>
-    </section>
   );
 }
 
