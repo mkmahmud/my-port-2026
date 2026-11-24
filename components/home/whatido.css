@@ -6,7 +6,7 @@
 
 .wd-text { display: flex; flex-direction: column; gap: clamp(26px, 4svh, 40px); }
 .wd-head { display: flex; flex-direction: column; gap: 16px; }
-.wd h2 { display: flex; flex-direction: column; font-family: var(--font-display), sans-serif; font-size: clamp(2.2rem, 3.6vw, 3.6rem); font-style: italic; font-weight: 800; letter-spacing: -.025em; line-height: 1.04; }
+.wd h2 { display: flex; flex-direction: column; font-family: var(--font-title), cursive; font-style: normal; font-weight: 400; letter-spacing: 0; font-size: clamp(2.4rem, 3.7vw, 3.8rem); line-height: 1.12; }
 .wd h2 span { padding-right: .1em; white-space: nowrap; }
 .wd-hot { background: linear-gradient(90deg, #ff6a4d, #ff5465 55%, #ff3d9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
@@ -52,7 +52,8 @@
 }
 
 @media (max-width: 560px) {
-  .wd h2 { font-size: clamp(2rem, 9vw, 2.5rem); }
+  .wd h2 { font-size: clamp(2.1rem, 9.4vw, 2.7rem); white-space: normal; }
+  .wd h2 span { white-space: normal; }
   .wd-core { height: 320px; }
   .wd-title { font-size: 1.15rem; }
   .wd-detail p, .wd-detail ul { padding-left: 0; }

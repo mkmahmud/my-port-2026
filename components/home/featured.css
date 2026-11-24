@@ -6,7 +6,7 @@
 
 .fp-head { display: flex; width: min(1280px, calc(100% - 40px)); align-items: flex-end; justify-content: space-between; gap: 24px; margin: 0 auto; }
 .fp-head > div { display: flex; flex-direction: column; gap: 14px; }
-.fp h2 { font-family: var(--font-display), sans-serif; font-size: clamp(2rem, 3.4vw, 3.3rem); font-style: italic; font-weight: 800; letter-spacing: -.025em; line-height: 1.05; }
+.fp h2 { font-family: var(--font-title), cursive; font-style: normal; font-weight: 400; letter-spacing: 0; font-size: clamp(2.2rem, 3.5vw, 3.5rem); line-height: 1.12; }
 .fp h2 span { padding-right: .1em; background: linear-gradient(90deg, #ff6a4d, #ff5465 55%, #ff3d9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* Shared card anatomy */

@@ -1,4 +1,4 @@
-﻿import { Manrope, Poppins } from "next/font/google";
+﻿import { Kaushan_Script, Poppins } from "next/font/google";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeNav } from "@/components/home/HomeNav";
 import {
@@ -18,23 +18,25 @@ import "@/components/home/whatido.css";
 import "@/components/home/techmarquee.css";
 import "@/components/home/featured.css";
 
-const manrope = Manrope({
-  variable: "--font-ember",
-  subsets: ["latin"],
-  display: "swap",
-});
-
+// Poppins sets all running text; Kaushan Script sets section titles.
 const poppins = Poppins({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const kaushan = Kaushan_Script({
+  variable: "--font-title",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
 export default function Home() {
   return (
-    <div className={`ember ${manrope.variable} ${poppins.variable}`}>
+    <div className={`ember ${poppins.variable} ${kaushan.variable}`}>
       <HomeNav />
       <main>
         <HomeHero />
