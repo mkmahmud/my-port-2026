@@ -1,6 +1,9 @@
 import { SKILLS } from '@/lib/constants';
 import { iconFor } from './iconFor';
 
+// DevOps leads the toolkit; the rest keep their order.
+const GROUPS = [...SKILLS].sort((a, b) => Number(b.title.startsWith('DevOps')) - Number(a.title.startsWith('DevOps')));
+
 export function SkillsGrid() {
   const total = SKILLS.reduce((sum, group) => sum + group.skills.length, 0);
   return (
@@ -11,7 +14,7 @@ export function SkillsGrid() {
         <p>{total} tools across {SKILLS.length} areas, from the interface down to the infrastructure.</p>
       </div>
       <ul className="sk-grid">
-        {SKILLS.map((group) => (
+        {GROUPS.map((group) => (
           <li key={group.title} className="sk-card">
             <div className="sk-bar" aria-hidden="true"><i /><i /><i /><code>{group.command}</code></div>
             <div className="sk-body">
@@ -22,7 +25,7 @@ export function SkillsGrid() {
                   return (
                     <li key={skill.name}>
                       {icon
-                        ? <svg width="16" height="16" viewBox="0 0 24 24" fill={icon.color} aria-hidden="true"><path d={icon.path} /></svg>
+                        ? <svg width="24" height="24" viewBox="0 0 24 24" fill={icon.color} aria-hidden="true"><path d={icon.path} /></svg>
                         : <span className="sk-dot" aria-hidden="true" />}
                       {skill.name}
                     </li>
