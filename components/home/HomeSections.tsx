@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Cloud, CodeXml, Send, Zap } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Send } from 'lucide-react';
 import { BLOG_POSTS } from '@/components/sections/Blogs';
 import { TESTIMONIALS } from '@/components/sections/Testimonials';
 import { useProjects } from '@/hooks/useProjects';
@@ -42,118 +42,14 @@ function SectionIntro({ label, title, children, href, cta }: {
   );
 }
 
-export function HomeHero() {
-  const chips: { name: BrandIconName; className: string }[] = [
-    { name: 'aws', className: 'chip-a' },
-    { name: 'next', className: 'chip-b' },
-    { name: 'docker', className: 'chip-c' },
-    { name: 'postgres', className: 'chip-d' },
-  ];
-
-  return (
-    <section className="hero" aria-labelledby="hero-title">
-      <Image src="/images/home/hero-ridge.webp" alt="" fill preload sizes="100vw" className="hero-bg" />
-      <div className="hero-rings" aria-hidden="true" />
-      <div className="hero-stage">
-        <div className="hero-portrait">
-          <Image
-            src="/images/home/portrait-matte.webp"
-            alt="Mahmudul Hasan wearing a dark cap, glasses, and a white shirt"
-            fill
-            preload
-            sizes="(max-width: 700px) 92vw, 640px"
-          />
-        </div>
-        {chips.map(({ name, className }) => (
-          <span key={name} className={`float-chip ${className}`}>
-            <BrandIcon name={name} size={24} /> {BRAND_ICONS[name].label}
-          </span>
-        ))}
-        {SITE_CONFIG.available && (
-          <span className="status-chip"><i aria-hidden="true" /> {SITE_CONFIG.availabilityText}</span>
-        )}
-      </div>
-      <div className="hero-copy">
-        <h1 id="hero-title">I build things.<span>Then make them scale.</span></h1>
-        <p className="hero-role">Full Stack &amp; DevOps Engineer</p>
-        <div className="hero-actions">
-          <Link href="/projects" className="btn btn-primary">Explore Projects <ArrowRight size={16} /></Link>
-          <Link href="/contact" className="btn btn-ghost">Let&apos;s Connect</Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function TechStrip() {
   const names: BrandIconName[] = ['aws', 'vercel', 'docker', 'postgres', 'next'];
   return (
-    <section className="strip" aria-label="Technologies I work with">
+    <section id="explore" className="strip" aria-label="Technologies I work with">
       <p>Technologies I build <br />and ship with</p>
       <ul>
         {names.map((name) => (
           <li key={name}><BrandIcon name={name} size={22} /> {BRAND_ICONS[name].label}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function GlassCube() {
-  const cells: [number, number, number][] = [];
-  for (let x = -1; x <= 1; x++) {
-    for (let y = -1; y <= 1; y++) {
-      for (let z = -1; z <= 1; z++) {
-        if (Math.abs(x) + Math.abs(y) + Math.abs(z) !== 3 || y !== -1 || x === z) cells.push([x, y, z]);
-      }
-    }
-  }
-  return (
-    <div className="cube-panel" aria-hidden="true">
-      <Image src="/images/home/ribbon.webp" alt="" fill sizes="(max-width: 900px) 100vw, 480px" />
-      <div className="cube-scene">
-        <div className="cube-rig">
-          {cells.map(([x, y, z]) => {
-            const core = x === 0 && y === 0 && z === 0;
-            return (
-              <div
-                key={`${x}${y}${z}`}
-                className={`cell ${core ? 'is-core' : ''}`}
-                style={{ transform: `translate3d(${x * 58}px, ${y * 58}px, ${z * 58}px)` }}
-              >
-                {['front', 'back', 'left', 'right', 'top', 'bottom'].map((face) => <b key={face} className={face} />)}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function WhatIDo() {
-  const services = [
-    { icon: CodeXml, title: 'Full Stack Development', text: 'Modern, scalable and high-performance apps.' },
-    { icon: Cloud, title: 'DevOps & CI/CD', text: 'Automate, deploy and scale with confidence.' },
-    { icon: Zap, title: 'Backend & APIs', text: 'Robust APIs and microservices.' },
-  ];
-  return (
-    <section className="band what">
-      <SectionIntro
-        label="What I do"
-        title={<>Turning Ideas Into <em>Real</em> Products</>}
-        href="/services"
-        cta="Explore Services"
-      >
-        I specialize in building modern web applications, scalable infrastructure and seamless user experiences.
-      </SectionIntro>
-      <GlassCube />
-      <ul className="service-list">
-        {services.map(({ icon: Icon, title, text }) => (
-          <li key={title}>
-            <span className="service-icon"><Icon size={24} /></span>
-            <div><h3>{title}</h3><p>{text}</p></div>
-          </li>
         ))}
       </ul>
     </section>

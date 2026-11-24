@@ -12,6 +12,7 @@ export const HOME_LINKS = [
   { label: 'Process', href: '/process' },
   { label: 'Blog', href: '/blogs' },
   { label: 'About', href: '/about' },
+  { label: 'Testimonials', href: '/testimonials' },
 ];
 
 export function BrandMark() {
