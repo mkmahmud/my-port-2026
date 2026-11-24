@@ -4,9 +4,9 @@ import { HomeNav } from "@/components/home/HomeNav";
 import {
   ClosingCta,
   HomeFooter,
-  Insights,
 } from "@/components/home/HomeSections";
 import { AboutMe } from "@/components/home/AboutMe";
+import { BlogList } from "@/components/home/BlogList";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { ProcessPipeline } from "@/components/home/ProcessPipeline";
 import { TestimonialDeck } from "@/components/home/Testimonials";
@@ -20,6 +20,7 @@ import "@/components/home/featured.css";
 import "@/components/home/about.css";
 import "@/components/home/process.css";
 import "@/components/home/testimonials.css";
+import "@/components/home/blog.css";
 
 // Poppins sets all running text; Kaushan Script sets section titles.
 const poppins = Poppins({
@@ -49,7 +50,7 @@ export default function Home() {
         <AboutMe />
         <ProcessPipeline />
         <TestimonialDeck />
-        <Insights />
+        <BlogList />
         <ClosingCta />
       </main>
       <HomeFooter />

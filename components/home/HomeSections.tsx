@@ -1,89 +1,10 @@
 'use client';
 
-import { type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Send } from 'lucide-react';
-import { BLOG_POSTS } from '@/components/sections/Blogs';
 import { SITE_CONFIG } from '@/lib/constants';
 import { BrandMark, HOME_LINKS } from './HomeNav';
-
-function SectionIntro({ label, title, children, href, cta }: {
-  label: string;
-  title: ReactNode;
-  children: ReactNode;
-  href?: string;
-  cta?: string;
-}) {
-  return (
-    <div className="intro">
-      <p className="tag">{label}</p>
-      <h2>{title}</h2>
-      <p className="intro-copy">{children}</p>
-      {href && cta && (
-        <Link href={href} className="text-link">
-          {cta} <ArrowRight size={15} />
-        </Link>
-      )}
-    </div>
-  );
-}
-
-function BlogCover({ index }: { index: number }) {
-  const stroke = { fill: 'none', stroke: '#FC6C60', strokeWidth: 1.5 };
-  return (
-    <svg className="blog-cover" viewBox="0 0 320 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <rect width="320" height="130" fill="#1B0E13" />
-      {index === 0 && [0, 1, 2, 3, 4].map((n) => (
-        <g key={n}>
-          <rect x={58 + n * 42} y={54} width="36" height="26" rx="3" {...stroke} fill={n === 2 ? '#FC6C60' : 'none'} />
-          {n < 3 && <rect x={100 + n * 42} y={24} width="36" height="26" rx="3" {...stroke} opacity=".55" />}
-        </g>
-      ))}
-      {index === 0 && <path d="M28 96 C110 122 210 118 292 88" {...stroke} />}
-      {index === 1 && (
-        <g>
-          <path d="M104 44 H160 V84 H216" {...stroke} opacity=".7" />
-          <rect x="44" y="24" width="60" height="42" rx="4" {...stroke} />
-          <rect x="130" y="64" width="60" height="42" rx="4" fill="#FC6C60" />
-          <rect x="216" y="24" width="60" height="82" rx="4" {...stroke} />
-          <path d="M44 38 H104 M216 40 H276 M216 58 H276 M216 76 H276" {...stroke} opacity=".6" />
-        </g>
-      )}
-      {index === 2 && (
-        <g>
-          <path d="M70 65 L150 32 L250 44 M70 65 L160 96 L250 44 M150 32 L160 96" {...stroke} opacity=".65" />
-          {[[70, 65, 13], [150, 32, 9], [160, 96, 11], [250, 44, 15]].map(([cx, cy, r], n) => (
-            <circle key={n} cx={cx} cy={cy} r={r} fill={n === 3 ? '#FC6C60' : '#1B0E13'} stroke="#FC6C60" strokeWidth="1.5" />
-          ))}
-        </g>
-      )}
-    </svg>
-  );
-}
-
-export function Insights() {
-  return (
-    <section className="band insights">
-      <SectionIntro
-        label="From my blog"
-        title={<>Latest Insights<br />&amp; Articles</>}
-        href="/blogs"
-        cta="View All Posts"
-      >
-        Thoughts, tutorials and ideas from my journey.
-      </SectionIntro>
-      <div className="post-grid">
-        {BLOG_POSTS.slice(0, 3).map((post, index) => (
-          <Link href="/blogs" className="post" key={post.id}>
-            <BlogCover index={index} />
-            <span className="post-copy"><strong>{post.title}</strong><small>{post.date}</small></span>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 export function ClosingCta() {
   return (

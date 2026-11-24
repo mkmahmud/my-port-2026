@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Check, Pause, Play } from 'lucide-react';
 import { TESTIMONIALS } from '@/components/sections/Testimonials';
 
-const DURATION = 7; // seconds each review stays in front while auto-playing
+const DURATION = 8; // seconds per review while auto-playing
+const RING = 2 * Math.PI * 27;
 const initials = (name: string) => name.split(/\s+/).map((part) => part[0]).slice(0, 2).join('');
 
 export function TestimonialDeck() {
@@ -15,48 +16,37 @@ export function TestimonialDeck() {
   const [hovered, setHovered] = useState(false);
   const [inView, setInView] = useState(false);
   const [touched, setTouched] = useState(false);
-  const [dragX, setDragX] = useState(0);
-  const drag = useRef<{ start: number; id: number } | null>(null);
+  const swipe = useRef<number | null>(null);
   const section = useRef<HTMLElement>(null);
+  const review = TESTIMONIALS[index];
 
   useEffect(() => {
     const node = section.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.35 });
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.3 });
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  const go = (step: number, byUser = true) => {
+  const show = (next: number, byUser = true) => {
     if (byUser) setTouched(true);
-    setIndex((current) => (current + step + count) % count);
+    setIndex(((next % count) + count) % count);
   };
 
   const onKey = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'ArrowRight') { event.preventDefault(); go(1); }
-    if (event.key === 'ArrowLeft') { event.preventDefault(); go(-1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
   };
 
-  const down = (event: PointerEvent<HTMLElement>) => {
-    drag.current = { start: event.clientX, id: event.pointerId };
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    } catch {
-      // Capture is a nicety; the drag still works without it.
-    }
-  };
-  const move = (event: PointerEvent<HTMLElement>) => {
-    if (drag.current?.id === event.pointerId) setDragX(event.clientX - drag.current.start);
-  };
+  const down = (event: PointerEvent<HTMLElement>) => { swipe.current = event.clientX; };
   const up = (event: PointerEvent<HTMLElement>) => {
-    if (drag.current?.id !== event.pointerId) return;
-    const distance = event.clientX - drag.current.start;
-    drag.current = null;
-    setDragX(0);
-    if (Math.abs(distance) > 110) go(distance < 0 ? 1 : -1);
+    if (swipe.current === null) return;
+    const distance = event.clientX - swipe.current;
+    swipe.current = null;
+    if (Math.abs(distance) > 70) show(index + (distance < 0 ? 1 : -1));
   };
 
-  const running = playing && inView && !hovered && dragX === 0;
+  const running = playing && inView && !hovered;
 
   return (
     <section
@@ -71,76 +61,72 @@ export function TestimonialDeck() {
       onBlur={() => setHovered(false)}
     >
       <Image src="/images/home/ribbon.webp" alt="" fill sizes="100vw" className="tt-art" />
-      <div className="tt-inner">
-        <div className="tt-intro">
-          <p className="tag">Testimonials</p>
-          <h2 id="tt-title">What Clients <span>Say.</span></h2>
-          <p className="tt-sub">Words from founders and teams I have shipped with. Drag a card to see the next one.</p>
+      <span className="tt-disc" aria-hidden="true" />
+      <span className="tt-glyph" aria-hidden="true">&ldquo;</span>
 
-          <div className="tt-controls">
-            <span className="tt-count" aria-hidden="true"><b>{String(index + 1).padStart(2, '0')}</b> / {String(count).padStart(2, '0')}</span>
-            <div className="tt-bars" aria-hidden="true">
-              {TESTIMONIALS.map((item, dot) => (
-                <i key={item.id} className={dot < index ? 'is-done' : ''}>
-                  {dot === index && (
-                    <b
+      <header className="tt-head">
+        <p className="tag">Testimonials</p>
+        <h2 id="tt-title">What Clients <span>Say.</span></h2>
+      </header>
+
+      <div className="tt-stage" onPointerDown={down} onPointerUp={up} onPointerCancel={() => { swipe.current = null; }}>
+        <span className="tt-approved"><Check size={13} strokeWidth={3} aria-hidden="true" /> review: approved</span>
+        <blockquote key={review.id} className="tt-quote" aria-live={touched ? 'polite' : 'off'}>
+          {review.content.split(' ').map((word, i) => (
+            <span key={i} style={{ '--w': i } as React.CSSProperties}>{word} </span>
+          ))}
+        </blockquote>
+        <p className="tt-by" key={`${review.id}-by`}>
+          <strong>{review.name}</strong>
+          <span>{review.role}</span>
+        </p>
+      </div>
+
+      <div className="tt-people" role="tablist" aria-label="Choose a testimonial">
+        {TESTIMONIALS.map((item, i) => {
+          const offset = i - (count - 1) / 2;
+          const active = i === index;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              aria-label={`${item.name}, ${item.role}`}
+              className={`tt-person ${active ? 'is-active' : ''}`}
+              style={{ '--off': offset, '--abs': Math.abs(offset) } as React.CSSProperties}
+              onClick={() => show(i)}
+            >
+              <span className="tt-avatar">
+                <svg viewBox="0 0 60 60" aria-hidden="true">
+                  <circle className="tt-ring-bg" cx="30" cy="30" r="27" />
+                  {active && (
+                    <circle
                       key={`${index}-${playing}`}
-                      className="tt-fill"
-                      style={{ animationDuration: `${DURATION}s`, animationPlayState: running ? 'running' : 'paused' }}
-                      onAnimationEnd={() => go(1, false)}
+                      className="tt-ring"
+                      cx="30"
+                      cy="30"
+                      r="27"
+                      style={{ strokeDasharray: RING, animationDuration: `${DURATION}s`, animationPlayState: running ? 'running' : 'paused' }}
+                      onAnimationEnd={() => show(index + 1, false)}
                     />
                   )}
-                </i>
-              ))}
-            </div>
-            <div className="tt-buttons">
-              <button type="button" className="icon-btn" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Pause testimonials' : 'Play testimonials'}>
-                {playing ? <Pause size={15} /> : <Play size={15} />}
-              </button>
-              <button type="button" className="icon-btn" onClick={() => go(-1)} aria-label="Previous testimonial"><ArrowLeft size={16} /></button>
-              <button type="button" className="tt-next" onClick={() => go(1)} aria-label="Next testimonial"><ArrowRight size={18} /></button>
-            </div>
-          </div>
-        </div>
+                </svg>
+                <b>{initials(item.name)}</b>
+              </span>
+              <span className="tt-name">{item.name.split(' ')[0]}</span>
+            </button>
+          );
+        })}
+      </div>
 
-        <div className="tt-deck">
-          {TESTIMONIALS.map((item, i) => {
-            const offset = (i - index + count) % count;
-            const front = offset === 0;
-            return (
-              <figure
-                key={item.id}
-                className={`tt-card ${front ? 'is-front' : ''} ${front && dragX !== 0 ? 'is-dragging' : ''}`}
-                style={{
-                  '--o': offset,
-                  '--drag': front ? `${dragX}px` : '0px',
-                  '--tilt': front ? dragX * 0.04 : 0,
-                  zIndex: count - offset,
-                } as React.CSSProperties}
-                aria-hidden={!front}
-                aria-roledescription="slide"
-                aria-label={`${i + 1} of ${count}`}
-                onPointerDown={front ? down : undefined}
-                onPointerMove={front ? move : undefined}
-                onPointerUp={front ? up : undefined}
-                onPointerCancel={front ? up : undefined}
-              >
-                <div className="tt-card-head">
-                  <span className="tt-mark" aria-hidden="true">&ldquo;</span>
-                  <span className="tt-approved"><Check size={13} strokeWidth={3} aria-hidden="true" /> review: approved</span>
-                </div>
-                <blockquote aria-live={touched && front ? 'polite' : 'off'}>{item.content}</blockquote>
-                <figcaption>
-                  <span className="tt-avatar" aria-hidden="true">{initials(item.name)}</span>
-                  <span>
-                    <strong>{item.name}</strong>
-                    <small>{item.role}</small>
-                  </span>
-                </figcaption>
-              </figure>
-            );
-          })}
-        </div>
+      <div className="tt-controls">
+        <button type="button" className="icon-btn" onClick={() => show(index - 1)} aria-label="Previous testimonial"><ArrowLeft size={16} /></button>
+        <span className="tt-count" aria-hidden="true"><b>{String(index + 1).padStart(2, '0')}</b> / {String(count).padStart(2, '0')}</span>
+        <button type="button" className="icon-btn" onClick={() => show(index + 1)} aria-label="Next testimonial"><ArrowRight size={16} /></button>
+        <button type="button" className="icon-btn tt-play" onClick={() => setPlaying((value) => !value)} aria-label={playing ? 'Pause testimonials' : 'Play testimonials'}>
+          {playing ? <Pause size={14} /> : <Play size={14} />}
+        </button>
       </div>
     </section>
   );
