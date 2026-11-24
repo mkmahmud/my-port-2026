@@ -17,11 +17,10 @@
 .nav-links a { position: relative; z-index: 1; padding: 9px 16px; border-radius: 999px; color: #d8d0ce; font-size: .84rem; font-weight: 500; transition: color .3s; }
 .nav-links a:hover, .nav-links a:focus-visible, .nav-links a[aria-current] { color: #fff; }
 .nav-links a[aria-current]::after { position: absolute; bottom: 3px; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: #ff6a55; content: ''; transform: translateX(-50%); }
-.nav-pill { --x: 0px; --w: 0px; position: absolute; top: 5px; bottom: 5px; left: 0; width: var(--w); border: 1px solid rgba(255, 106, 85, .3); border-radius: 999px; background: linear-gradient(180deg, rgba(255, 106, 85, .16), rgba(255, 61, 154, .06)); transform: translateX(var(--x)); transition: transform .5s var(--ease), width .5s var(--ease); }
+.nav-pill { --x: 0px; --w: 0px; position: absolute; top: 5px; bottom: 5px; left: 0; width: var(--w); border: 1px solid rgba(255, 106, 85, .3); border-radius: 999px; background: linear-gradient(180deg, rgba(255, 106, 85, .16), rgba(255, 61, 154, .06)); transform: translateX(var(--x)); transition: transform .5s var(--ease), width .5s var(--ease), opacity .3s; }
 
 .nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-.nav-cta { display: inline-flex; min-height: 44px; align-items: center; gap: 9px; padding: 0 18px 0 16px; border-radius: 999px; background: linear-gradient(90deg, #ff6a4d, #ff4f6e); box-shadow: 0 10px 26px -10px rgba(255, 79, 110, .8); color: #2a0707; font-size: .84rem; font-weight: 700; transition: transform .35s var(--ease), box-shadow .35s; }
-.nav-cta i { width: 8px; height: 8px; border-radius: 50%; background: #1f9a5b; box-shadow: 0 0 0 3px rgba(31, 154, 91, .25); }
+.nav-cta { display: inline-flex; min-height: 44px; align-items: center; gap: 9px; padding: 0 18px 0 20px; border-radius: 999px; background: linear-gradient(90deg, #ff6a4d, #ff4f6e); box-shadow: 0 10px 26px -10px rgba(255, 79, 110, .8); color: #2a0707; font-size: .84rem; font-weight: 700; transition: transform .35s var(--ease), box-shadow .35s; }
 .nav-cta svg { transition: transform .35s var(--ease); }
 .nav-cta:hover { transform: translateY(-1px); }
 .nav-cta:hover svg { transform: translateX(3px); }

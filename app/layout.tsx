@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: "%s | Mahmudul Hasan",
   },
   description:
-    "MK Mahmud (Mahmudul Hasan) is a Full Stack DevOps Engineer in Dhaka, Bangladesh, building production web apps, frontend experiences, backend APIs, AI systems, Docker deployments, and AWS CI/CD infrastructure.",
+    "MK Mahmud (Mahmudul Hasan) is a Full Stack DevOps Engineer in Chattogram, Bangladesh, building production web apps, frontend experiences, backend APIs, AI systems, Docker deployments, and AWS CI/CD infrastructure.",
   keywords: [
     "MK Mahmud",
     "MK Mahmood",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     "AWS",
     "CI/CD",
     "PostgreSQL",
-    "Dhaka",
+    "Chattogram",
     "Bangladesh",
   ],
   authors: [{ name: "Mahmudul Hasan", url: "https://mkmahmud.dev" }],
@@ -123,7 +123,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Dhaka",
+      addressLocality: "Chattogram",
       addressCountry: "BD",
     },
     sameAs: [

@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
 export const contactFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name cannot exceed 100 characters"),
-  email: z.string().email("Please provide a valid email address"),
-  phone: z.string().optional(),
-  service: z.string().optional(),
-  budget: z.string().optional(),
-  country: z.string().optional(),
-  message: z.string().min(3, "Message must be at least 3 characters").max(2000, "Message cannot exceed 2000 characters")
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name cannot exceed 100 characters"),
+  email: z.string().trim().email("Please provide a valid email address"),
+  phone: z.string().trim().max(40, "Phone number is too long").optional(),
+  service: z.string().trim().max(80).optional(),
+  budget: z.string().trim().max(40).optional(),
+  country: z.string().trim().max(80).optional(),
+  message: z.string().trim().min(10, "Please write at least 10 characters").max(2000, "Message cannot exceed 2000 characters")
 });
 
 export const projectQuerySchema = z.object({

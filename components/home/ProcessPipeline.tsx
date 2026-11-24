@@ -84,7 +84,6 @@ export function ProcessPipeline() {
           <p className="pp-sub">From idea to impact, one stage at a time, the same way I ship code.</p>
         </div>
         <div className={`pp-status ${done ? 'is-done' : ''}`} aria-hidden="true">
-          <span className="pp-status-dot" />
           <span className="pp-status-text">
             {done ? 'Pipeline passed · shipped' : reached === 0 ? 'Pipeline queued' : `Running · ${running.job}`}
           </span>

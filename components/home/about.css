@@ -28,7 +28,6 @@
 .ab-id small { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: .76rem; }
 .ab-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 22px 22px; }
 .ab-status { display: inline-flex; align-items: center; gap: 7px; color: #e8e0de; font-size: .72rem; font-weight: 600; }
-.ab-status i { width: 8px; height: 8px; border-radius: 50%; background: #35d07f; box-shadow: 0 0 0 4px rgba(53, 208, 127, .16); animation: ab-blink 2s ease-in-out infinite; }
 .ab-code { width: 86px; height: 26px; background: repeating-linear-gradient(90deg, rgba(247, 241, 238, .7) 0 2px, transparent 2px 4px, rgba(247, 241, 238, .7) 4px 5px, transparent 5px 8px, rgba(247, 241, 238, .7) 8px 11px, transparent 11px 13px); opacity: .55; }
 .ab-sheen { position: absolute; inset: 0; background: radial-gradient(420px circle at var(--px) var(--py), rgba(255, 255, 255, .14), transparent 45%), linear-gradient(115deg, transparent 35%, rgba(255, 106, 85, .1) 48%, rgba(255, 61, 154, .1) 55%, transparent 68%); mix-blend-mode: screen; pointer-events: none; }
 .ab-back-title { font-family: var(--font-title), cursive; font-size: 1.9rem; line-height: 1.1; }
@@ -73,7 +72,6 @@
 @keyframes ab-swing { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
 @keyframes ab-type { to { opacity: 1; transform: none; } }
 @keyframes ab-caret { 50% { opacity: 0; } }
-@keyframes ab-blink { 50% { box-shadow: 0 0 0 7px rgba(53, 208, 127, .05); } }
 
 @media (max-width: 900px) {
   .ab-inner { grid-template-columns: 1fr; }
@@ -82,6 +80,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ab-swing, .ab-status i, .ab-cursor i { animation: none; }
+  .ab-swing, .ab-cursor i { animation: none; }
   .ab-line, .ab-cursor { opacity: 1; transform: none; animation: none !important; }
 }

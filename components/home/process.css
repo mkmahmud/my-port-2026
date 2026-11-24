@@ -8,8 +8,6 @@
 .pp-sub { max-width: 40ch; color: var(--muted); font-size: 1rem; line-height: 1.6; }
 
 .pp-status { display: inline-flex; align-items: center; gap: 12px; padding: 10px 12px 10px 16px; border: 1px solid rgba(255, 236, 232, .12); border-radius: 999px; background: rgba(16, 12, 14, .9); font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: .8rem; white-space: nowrap; }
-.pp-status-dot { width: 9px; height: 9px; border-radius: 50%; background: #ffb340; box-shadow: 0 0 0 4px rgba(255, 179, 64, .16); animation: pp-pulse 1.4s ease-in-out infinite; }
-.pp-status.is-done .pp-status-dot { background: #35d07f; box-shadow: 0 0 0 4px rgba(53, 208, 127, .18); animation: none; }
 .pp-status-text { color: #f1ebe9; }
 .pp-status-count { padding: 3px 9px; border-radius: 999px; background: rgba(255, 106, 85, .14); color: #ff8a76; font-weight: 700; }
 .pp-status.is-done .pp-status-count { background: rgba(53, 208, 127, .14); color: #4fdc94; }
@@ -49,7 +47,6 @@
 .pp-card.is-passed .pp-job b { color: #4fdc94; }
 .pp-list { display: none; }
 
-@keyframes pp-pulse { 50% { box-shadow: 0 0 0 8px rgba(255, 179, 64, .04); } }
 
 /* Vertical pipeline below 900px */
 @media (max-width: 899px) {
@@ -65,6 +62,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pp-status-dot { animation: none; }
   .pp-packet { display: none; }
 }

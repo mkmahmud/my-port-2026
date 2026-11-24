@@ -61,7 +61,7 @@ function Badge() {
               <small><MapPin size={13} aria-hidden="true" /> {SITE_CONFIG.location}</small>
             </div>
             <div className="ab-foot">
-              <span className="ab-status"><i aria-hidden="true" /> {SITE_CONFIG.availabilityText}</span>
+              <span className="ab-status">{SITE_CONFIG.availabilityText}</span>
               <span className="ab-code" aria-hidden="true" />
             </div>
             <span className="ab-sheen" aria-hidden="true" />
@@ -145,7 +145,7 @@ export function AboutMe() {
     { cmd: 'whoami', out: [`${SITE_CONFIG.name.toLowerCase().replace(' ', '-')} · Full Stack & DevOps Engineer`] },
     { cmd: 'cat location.txt', out: [`${SITE_CONFIG.location} (UTC+6)`] },
     { cmd: 'git log --career', out: [`${yearOf(current.startDate)} → now   ${current.role} @ ${current.company}`, `${yearOf(previous.startDate)} → ${yearOf(previous.endDate)}  ${previous.role} @ ${previous.company}, ${previous.location}`] },
-    { cmd: 'status', out: [`● ${SITE_CONFIG.availabilityText.toLowerCase()}`], live: true },
+    { cmd: 'status', out: [SITE_CONFIG.availabilityText.toLowerCase()], live: true },
   ];
 
   return (

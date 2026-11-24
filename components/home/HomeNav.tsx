@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowRight, ArrowUpRight, Menu, X } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 import { SITE_CONFIG } from '@/lib/constants';
@@ -18,6 +19,10 @@ export const HOME_LINKS = [
   { label: 'Testimonials', href: '/testimonials' },
 ];
 
+export function isActive(pathname: string, href: string) {
+  return href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function BrandMark() {
   return (
     <Link href="/" className="brand" aria-label="Mahmudul Hasan, home">
@@ -30,6 +35,7 @@ export function BrandMark() {
 }
 
 export function HomeNav() {
+  const pathname = usePathname() ?? '/';
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -46,7 +52,9 @@ export function HomeNav() {
   });
 
   const moveTo = useCallback((target: HTMLElement | null) => {
-    if (!target || !links.current || !pill.current) return;
+    if (!pill.current) return;
+    pill.current.style.opacity = target ? '1' : '0';
+    if (!target || !links.current) return;
     const box = links.current.getBoundingClientRect();
     const rect = target.getBoundingClientRect();
     pill.current.style.setProperty('--x', `${rect.left - box.left}px`);
@@ -61,6 +69,10 @@ export function HomeNav() {
     document.fonts?.ready?.then(rest);
     return () => window.removeEventListener('resize', rest);
   }, [rest]);
+
+  useEffect(() => {
+    rest();
+  }, [pathname, rest]);
 
   useEffect(() => {
     if (!open) return;
@@ -87,7 +99,7 @@ export function HomeNav() {
             <Link
               key={link.href}
               href={link.href}
-              aria-current={link.href === '/' ? 'page' : undefined}
+              aria-current={isActive(pathname, link.href) ? 'page' : undefined}
               onPointerEnter={(event) => moveTo(event.currentTarget)}
               onFocus={(event) => moveTo(event.currentTarget)}
               onBlur={rest}
@@ -98,7 +110,6 @@ export function HomeNav() {
         </div>
         <div className="nav-actions">
           <Link href="/contact" className="nav-cta">
-            <i aria-hidden="true" />
             Let&apos;s Talk
             <ArrowRight size={14} aria-hidden="true" />
           </Link>
@@ -121,7 +132,7 @@ export function HomeNav() {
         <ol className="menu-links">
           {HOME_LINKS.map((link, index) => (
             <li key={link.href} style={{ '--i': index } as React.CSSProperties}>
-              <Link href={link.href} onClick={() => setOpen(false)} aria-current={link.href === '/' ? 'page' : undefined}>
+              <Link href={link.href} onClick={() => setOpen(false)} aria-current={isActive(pathname, link.href) ? 'page' : undefined}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 {link.label}
                 <ArrowUpRight size={20} aria-hidden="true" />

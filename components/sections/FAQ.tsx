@@ -10,7 +10,7 @@ interface FAQItem {
   answer: string;
 }
 
-const FAQS: FAQItem[] = [
+export const FAQS: FAQItem[] = [
   {
     id: 1,
     question: 'What technologies and infrastructure do you specialize in?',

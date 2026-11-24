@@ -8,7 +8,7 @@ import { Footer } from '@/components/sections/Footer';
 export const metadata: Metadata = {
   title: 'About Me — Full Stack DevOps Engineer',
   description:
-    'Learn more about Mahmudul Hasan (MK) — Full Stack DevOps Engineer based in Dhaka, Bangladesh. Technical background, skill competencies, and engineering journey.',
+    'Learn more about Mahmudul Hasan (MK) — Full Stack DevOps Engineer based in Chattogram, Bangladesh. Technical background, skill competencies, and engineering journey.',
   keywords: [
     'About Mahmudul Hasan',
     'Full Stack DevOps Engineer Background',
@@ -55,7 +55,7 @@ export default function AboutPage() {
       alternateName: 'MK',
       jobTitle: 'Full Stack Developer & AI Engineer',
       description:
-        'Full Stack Developer & AI Engineer based in Dhaka, Bangladesh. Specializing in Next.js, React, Node.js, Python, and AI/ML integrations.',
+        'Full Stack Developer & AI Engineer based in Chattogram, Bangladesh. Specializing in Next.js, React, Node.js, Python, and AI/ML integrations.',
       url: 'https://mkmahmud.dev',
       sameAs: [
         'https://github.com/mkmahmud',

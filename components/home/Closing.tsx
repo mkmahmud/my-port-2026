@@ -7,7 +7,8 @@ import { ArrowRight, ArrowUp, Check, Copy, Mail, MapPin, Phone } from 'lucide-re
 import { useLenis } from 'lenis/react';
 import { gsap } from 'gsap';
 import { SITE_CONFIG } from '@/lib/constants';
-import { BrandMark, HOME_LINKS } from './HomeNav';
+import { usePathname } from 'next/navigation';
+import { BrandMark, HOME_LINKS, isActive } from './HomeNav';
 import { SOCIALS, SocialIcon } from './socials';
 
 const PHRASE = "Let's work together";
@@ -73,7 +74,7 @@ export function ClosingCta() {
       </div>
 
       <div className="cx-inner">
-        <p className="cx-status"><i aria-hidden="true" /> {SITE_CONFIG.availabilityText}</p>
+        <p className="cx-status">{SITE_CONFIG.availabilityText}</p>
         <h2 id="cx-title">Let&apos;s Build Something <span>Amazing</span> Together.</h2>
         <p className="cx-sub">Have a product to launch, a system to scale, or a pipeline to fix? Tell me about it.</p>
         <div className="cx-actions">
@@ -93,7 +94,7 @@ export function ClosingCta() {
   );
 }
 
-function DhakaClock() {
+function LocalClock() {
   const [time, setTime] = useState('');
   useEffect(() => {
     const format = () => new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dhaka' }).format(new Date());
@@ -102,10 +103,11 @@ function DhakaClock() {
     const timer = window.setInterval(update, 20000);
     return () => { window.clearTimeout(first); window.clearInterval(timer); };
   }, []);
-  return <span className="ft-clock"><i aria-hidden="true" /> Dhaka {time || '--:--'} <small>UTC+6</small></span>;
+  return <span className="ft-clock">Chattogram {time || '--:--'} <small>UTC+6</small></span>;
 }
 
 export function HomeFooter() {
+  const pathname = usePathname() ?? '/';
   const lenis = useLenis();
   const toTop = () => (lenis ? lenis.scrollTo(0, { duration: 1.6 }) : window.scrollTo({ top: 0, behavior: 'smooth' }));
 
@@ -115,14 +117,14 @@ export function HomeFooter() {
         <div className="ft-brand">
           <BrandMark />
           <p>Full Stack &amp; DevOps Engineer building web apps, APIs, and the pipelines that ship them.</p>
-          <span className="ft-available"><i aria-hidden="true" /> {SITE_CONFIG.availabilityText}</span>
+          <span className="ft-available">{SITE_CONFIG.availabilityText}</span>
         </div>
 
         <nav className="ft-col" aria-label="Footer">
           <h3>Navigate</h3>
           <ul>
             {HOME_LINKS.map((link) => (
-              <li key={link.href}><Link href={link.href} aria-current={link.href === '/' ? 'page' : undefined}>{link.label}</Link></li>
+              <li key={link.href}><Link href={link.href} aria-current={isActive(pathname, link.href) ? 'page' : undefined}>{link.label}</Link></li>
             ))}
           </ul>
         </nav>
@@ -156,7 +158,7 @@ export function HomeFooter() {
 
       <div className="ft-bar">
         <small>&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</small>
-        <DhakaClock />
+        <LocalClock />
         <button type="button" className="ft-top" onClick={toTop}>
           Back to top <ArrowUp size={15} aria-hidden="true" />
         </button>
