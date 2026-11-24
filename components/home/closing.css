@@ -35,7 +35,7 @@
 .ft-col svg { flex: none; color: rgba(255, 106, 85, .75); }
 .ft-socials small { color: rgba(247, 241, 238, .4); font-size: .76rem; }
 
-.ft-bar { display: flex; width: min(1240px, calc(100% - 40px)); flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin: clamp(40px, 5vw, 64px) auto 0; padding: 20px 0; border-top: 1px solid rgba(255, 236, 232, .08); color: var(--muted); font-size: .8rem; }
+.ft-bar { position: relative; z-index: 1; display: flex; width: min(1240px, calc(100% - 40px)); flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin: clamp(40px, 5vw, 64px) auto 0; padding: 20px 0; border-top: 1px solid rgba(255, 236, 232, .08); color: var(--muted); font-size: .8rem; }
 .ft-clock { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-jetbrains), ui-monospace, monospace; font-size: .78rem; font-variant-numeric: tabular-nums; }
 .ft-clock small { color: rgba(247, 241, 238, .4); }
 .ft-top { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid rgba(255, 236, 232, .14); border-radius: 999px; color: #f1ebe9; font-size: .8rem; font-weight: 600; cursor: pointer; transition: border-color .25s, color .25s; }
@@ -43,7 +43,7 @@
 .ft-top svg { transition: transform .4s var(--ease); }
 .ft-top:hover svg { transform: translateY(-3px); }
 
-.ft-word { margin: 0 0 -.22em; background: linear-gradient(180deg, rgba(255, 106, 85, .35), rgba(255, 61, 154, .05) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: var(--font-title), cursive; font-size: clamp(4.4rem, 17.5vw, 17rem); line-height: 1; text-align: center; white-space: nowrap; user-select: none; }
+.ft-word { margin: 0 0 -.22em; background: linear-gradient(180deg, rgba(255, 106, 85, .35), rgba(255, 61, 154, .05) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: var(--font-title), cursive; font-size: clamp(4.4rem, 17.5vw, 17rem); line-height: 1; text-align: center; white-space: nowrap; user-select: none; pointer-events: none; }
 
 
 @media (max-width: 980px) {
