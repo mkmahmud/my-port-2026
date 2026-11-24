@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Cloud, CodeXml, Zap } from 'lucide-react';
+import { ArrowRight, Cloud, CodeXml, Zap } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,17 +14,19 @@ const CoreScene = dynamic(() => import('./CoreScene'), {
 });
 
 const SERVICES = [
-  { icon: CodeXml, title: 'Full Stack Development', text: 'Fast, scalable web apps from database to UI.' },
-  { icon: Cloud, title: 'DevOps & CI/CD', text: 'Containers, pipelines and zero-downtime deploys.' },
-  { icon: Zap, title: 'Backend & APIs', text: 'Secure APIs and services that hold up under load.' },
+  { icon: CodeXml, title: 'Full Stack Development', text: 'Fast, scalable web apps, from the database to a polished UI.', tags: ['Next.js', 'React', 'TypeScript'] },
+  { icon: Cloud, title: 'DevOps & CI/CD', text: 'Containers, automated pipelines and zero-downtime deploys.', tags: ['Docker', 'GitHub Actions', 'AWS'] },
+  { icon: Zap, title: 'Backend & APIs', text: 'Secure APIs and services that hold up under real load.', tags: ['FastAPI', 'NestJS', 'PostgreSQL'] },
 ];
 
 export function WhatIDo() {
   const section = useRef<HTMLElement>(null);
+  const trigger = useRef<ScrollTrigger | null>(null);
+  const velocity = useRef(0);
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [inView, setInView] = useState(false);
   const [still, setStill] = useState(false);
+  const lenis = useLenis((instance) => { velocity.current = instance.velocity; });
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,88 +39,96 @@ export function WhatIDo() {
   useEffect(() => {
     const node = section.current;
     if (!node) return;
-    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: '120px' });
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: '160px' });
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  // Walk through the services like stages of a pipeline until the visitor takes over.
   useEffect(() => {
-    if (paused || still || !inView) return;
-    const timer = window.setInterval(() => setActive((current) => (current + 1) % SERVICES.length), 3200);
-    return () => window.clearInterval(timer);
-  }, [paused, still, inView]);
-
-  useEffect(() => {
-    if (!section.current || still) return;
+    const node = section.current;
+    if (!node) return;
     gsap.registerPlugin(ScrollTrigger);
-    const context = gsap.context(() => {
-      const timeline = gsap.timeline({ scrollTrigger: { trigger: section.current, start: 'top 72%', once: true } });
-      timeline
-        .from('.wd-intro > *', { y: 28, autoAlpha: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity,visibility' })
-        .from('.wd-core', { scale: 0.82, autoAlpha: 0, duration: 1.1, ease: 'expo.out', clearProps: 'transform,opacity,visibility' }, 0.1)
-        .from('.wd-card', { rotateY: -28, x: 60, z: -80, autoAlpha: 0, duration: 0.9, stagger: 0.12, ease: 'expo.out', clearProps: 'transform,opacity,visibility' }, 0.25);
-    }, section);
-    return () => context.revert();
-  }, [still]);
+    const mm = gsap.matchMedia();
 
-  const tilt = (event: PointerEvent<HTMLAnchorElement>) => {
-    if (event.pointerType !== 'mouse' || still) return;
-    const card = event.currentTarget;
-    const box = card.getBoundingClientRect();
-    const x = (event.clientX - box.left) / box.width - 0.5;
-    const y = (event.clientY - box.top) / box.height - 0.5;
-    card.style.setProperty('--ry', `${x * 14}deg`);
-    card.style.setProperty('--rx', `${y * -12}deg`);
-    card.style.setProperty('--gx', `${(x + 0.5) * 100}%`);
-    card.style.setProperty('--gy', `${(y + 0.5) * 100}%`);
-  };
+    // Desktop: pin the stage and let the scroll walk through the three services.
+    mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+      trigger.current = ScrollTrigger.create({
+        trigger: node,
+        start: 'top top',
+        end: '+=170%',
+        pin: '.wd-stage',
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          setActive(Math.min(SERVICES.length - 1, Math.floor(self.progress * SERVICES.length)));
+          node.style.setProperty('--wd-progress', self.progress.toFixed(4));
+        },
+      });
+      return () => { trigger.current = null; };
+    });
 
-  const reset = (card: HTMLAnchorElement) => {
-    card.style.setProperty('--rx', '0deg');
-    card.style.setProperty('--ry', '0deg');
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.timeline({ scrollTrigger: { trigger: node, start: 'top 70%', once: true } })
+        .from('.wd-head > *', { y: 30, autoAlpha: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity,visibility' })
+        .from('.wd-core', { scale: 0.85, autoAlpha: 0, duration: 1.2, ease: 'expo.out', clearProps: 'transform,opacity,visibility' }, 0.1)
+        .from('.wd-step', { x: -40, autoAlpha: 0, duration: 0.8, stagger: 0.1, ease: 'expo.out', clearProps: 'transform,opacity,visibility' }, 0.3);
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  const select = (index: number) => {
+    const st = trigger.current;
+    if (st && lenis) {
+      lenis.scrollTo(st.start + ((index + 0.5) / SERVICES.length) * (st.end - st.start), { duration: 1.2 });
+    } else {
+      setActive(index);
+    }
   };
 
   return (
     <section ref={section} className="wd" aria-labelledby="wd-title">
-      <div className="wd-glow" aria-hidden="true" />
-      <div className="wd-inner">
-        <div className="wd-intro">
-          <p className="tag">What I do</p>
-          <h2 id="wd-title">
-            <span>Turning Ideas Into</span>
-            <span className="wd-hot">Real Products.</span>
-          </h2>
-          <p className="wd-copy">Web apps, cloud infrastructure and APIs, built to ship and built to scale.</p>
-          <Link href="/services" className="text-link">Explore Services <ArrowRight size={15} /></Link>
-        </div>
+      <div className="wd-stage">
+        <div className="wd-glow" aria-hidden="true" />
+        <div className="wd-inner">
+          <div className="wd-text">
+            <div className="wd-head">
+              <p className="tag">What I do</p>
+              <h2 id="wd-title">
+                <span>Turning Ideas Into</span>
+                <span className="wd-hot">Real Products.</span>
+              </h2>
+            </div>
 
-        <div className="wd-core" aria-hidden="true">
-          <CoreScene active={active} running={inView} still={still} />
-        </div>
+            <ol className="wd-steps">
+              {SERVICES.map(({ icon: Icon, title, text, tags }, index) => (
+                <li key={title} className={`wd-step ${active === index ? 'is-active' : ''}`}>
+                  <button type="button" onClick={() => select(index)} aria-expanded={active === index}>
+                    <span className="wd-num">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="wd-title">{title}</span>
+                    <Icon className="wd-step-icon" size={20} aria-hidden="true" />
+                  </button>
+                  <div className="wd-detail">
+                    <div>
+                      <p>{text}</p>
+                      <ul aria-label={`${title} tools`}>
+                        {tags.map((tag) => <li key={tag}>{tag}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ol>
 
-        <ul className="wd-cards" onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
-          {SERVICES.map(({ icon: Icon, title, text }, index) => (
-            <li key={title}>
-              <Link
-                href="/services"
-                className={`wd-card ${active === index ? 'is-active' : ''}`}
-                onPointerMove={tilt}
-                onPointerEnter={() => setActive(index)}
-                onPointerLeave={(event) => reset(event.currentTarget)}
-                onFocus={() => { setActive(index); setPaused(true); }}
-                onBlur={() => setPaused(false)}
-              >
-                <span className="wd-icon"><Icon size={24} /></span>
-                <span className="wd-text">
-                  <strong>{title}</strong>
-                  <small>{text}</small>
-                </span>
-                <ArrowUpRight className="wd-arrow" size={18} aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
+            <Link href="/services" className="text-link wd-link">Explore Services <ArrowRight size={15} /></Link>
+          </div>
+
+          <div className="wd-core" aria-hidden="true">
+            <CoreScene active={active} running={inView} still={still} velocity={velocity} />
+            <span className="wd-counter">
+              <b>{String(active + 1).padStart(2, '0')}</b> / {String(SERVICES.length).padStart(2, '0')}
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

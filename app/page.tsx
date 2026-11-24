@@ -9,12 +9,13 @@ import {
   ProcessSteps,
   QuoteBand,
   RecentWork,
-  TechStrip,
 } from "@/components/home/HomeSections";
+import { TechMarquee } from "@/components/home/TechMarquee";
 import { WhatIDo } from "@/components/home/WhatIDo";
 import "@/components/home/home.css";
 import "@/components/home/hero.css";
 import "@/components/home/whatido.css";
+import "@/components/home/techmarquee.css";
 
 const manrope = Manrope({
   variable: "--font-ember",
@@ -36,7 +37,7 @@ export default function Home() {
       <HomeNav />
       <main>
         <HomeHero />
-        <TechStrip />
+        <TechMarquee />
         <WhatIDo />
         <RecentWork />
         <AboutStack />

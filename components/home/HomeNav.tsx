@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Menu, X } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 
 export const HOME_LINKS = [
   { label: 'Home', href: '/' },
@@ -29,6 +30,7 @@ export function BrandMark() {
 export function HomeNav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -43,12 +45,14 @@ export function HomeNav() {
       if (event.key === 'Escape') setOpen(false);
     };
     document.body.style.overflow = 'hidden';
+    lenis?.stop();
     window.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = '';
+      lenis?.start();
       window.removeEventListener('keydown', onKey);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   return (
     <header className="nav-wrap">

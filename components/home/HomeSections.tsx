@@ -42,20 +42,6 @@ function SectionIntro({ label, title, children, href, cta }: {
   );
 }
 
-export function TechStrip() {
-  const names: BrandIconName[] = ['aws', 'vercel', 'docker', 'postgres', 'next'];
-  return (
-    <section id="explore" className="strip" aria-label="Technologies I work with">
-      <p>Technologies I build <br />and ship with</p>
-      <ul>
-        {names.map((name) => (
-          <li key={name}><BrandIcon name={name} size={22} /> {BRAND_ICONS[name].label}</li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 function projectImage(project: Project) {
   return project.thumbnailUrl || project.gellaryImages?.[0] || project.images?.[0] || '/images/projects/codex-edumine.svg';
 }
