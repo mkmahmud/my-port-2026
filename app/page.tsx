@@ -5,11 +5,11 @@ import {
   ClosingCta,
   HomeFooter,
   Insights,
-  QuoteBand,
 } from "@/components/home/HomeSections";
 import { AboutMe } from "@/components/home/AboutMe";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { ProcessPipeline } from "@/components/home/ProcessPipeline";
+import { TestimonialDeck } from "@/components/home/Testimonials";
 import { TechMarquee } from "@/components/home/TechMarquee";
 import { WhatIDo } from "@/components/home/WhatIDo";
 import "@/components/home/home.css";
@@ -19,6 +19,7 @@ import "@/components/home/techmarquee.css";
 import "@/components/home/featured.css";
 import "@/components/home/about.css";
 import "@/components/home/process.css";
+import "@/components/home/testimonials.css";
 
 // Poppins sets all running text; Kaushan Script sets section titles.
 const poppins = Poppins({
@@ -47,7 +48,7 @@ export default function Home() {
         <FeaturedProjects />
         <AboutMe />
         <ProcessPipeline />
-        <QuoteBand />
+        <TestimonialDeck />
         <Insights />
         <ClosingCta />
       </main>

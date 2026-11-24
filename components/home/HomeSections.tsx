@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Send } from 'lucide-react';
+import { ArrowRight, Send } from 'lucide-react';
 import { BLOG_POSTS } from '@/components/sections/Blogs';
-import { TESTIMONIALS } from '@/components/sections/Testimonials';
 import { SITE_CONFIG } from '@/lib/constants';
 import { BrandMark, HOME_LINKS } from './HomeNav';
 
@@ -27,32 +26,6 @@ function SectionIntro({ label, title, children, href, cta }: {
         </Link>
       )}
     </div>
-  );
-}
-
-export function QuoteBand() {
-  const [index, setIndex] = useState(0);
-  const quote = TESTIMONIALS[index];
-  const move = (step: number) => setIndex((current) => (current + step + TESTIMONIALS.length) % TESTIMONIALS.length);
-
-  return (
-    <section className="quote-wrap" aria-label="Client testimonials">
-      <Image src="/images/home/ribbon.webp" alt="" fill sizes="100vw" className="band-art" />
-      <figure className="quote">
-        <span className="quote-mark" aria-hidden="true">&ldquo;</span>
-        <div aria-live="polite">
-          <blockquote>{quote.content}</blockquote>
-          <figcaption>{quote.name}, {quote.role}</figcaption>
-        </div>
-        <div className="quote-controls">
-          <span className="dots" aria-hidden="true">
-            {TESTIMONIALS.map((item, dot) => <i key={item.id} className={dot === index ? 'is-on' : ''} />)}
-          </span>
-          <button type="button" className="icon-btn" onClick={() => move(-1)} aria-label="Previous testimonial"><ArrowLeft size={16} /></button>
-          <button type="button" className="icon-btn" onClick={() => move(1)} aria-label="Next testimonial"><ArrowRight size={16} /></button>
-        </div>
-      </figure>
-    </section>
   );
 }
 

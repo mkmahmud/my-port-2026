@@ -17,6 +17,7 @@
 .ab-clip { position: absolute; top: 14px; left: 50%; width: 64px; height: 12px; border-radius: 99px; background: #070607; box-shadow: inset 0 2px 3px rgba(0, 0, 0, .9), 0 1px 0 rgba(255, 255, 255, .08); transform: translateX(-50%); }
 .ab-top { display: flex; align-items: center; justify-content: space-between; padding: 40px 22px 0; }
 .ab-mark { display: grid; width: 40px; height: 40px; place-items: center; border: 1.5px solid #ff6a55; border-radius: 50%; }
+.ab-mark img { width: 22px; height: auto; }
 .ab-pass { color: rgba(247, 241, 238, .5); font-size: .68rem; font-weight: 600; letter-spacing: .22em; }
 .ab-photo { position: relative; flex: 1; margin: 16px 22px 0; overflow: hidden; border-radius: 18px; background: radial-gradient(circle at 50% 62%, #ff5a4a 0%, #a3222c 30%, #3a0f14 62%, #160b0e 100%); }
 .ab-photo img { object-fit: cover; object-position: center 20%; }
