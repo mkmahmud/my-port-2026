@@ -30,31 +30,6 @@ function SectionIntro({ label, title, children, href, cta }: {
   );
 }
 
-export function ProcessSteps() {
-  const steps = [
-    ['Plan & Discuss', 'Understand your needs and plan the solution.'],
-    ['Build & Develop', 'Write clean and scalable code.'],
-    ['Test & Optimize', 'Ensure quality and performance.'],
-    ['Launch & Support', 'Deploy and provide ongoing support.'],
-  ];
-  return (
-    <section className="band process">
-      <SectionIntro label="My process" title={<>A Simple<br />Process</>}>
-        From idea to impact, step by step.
-      </SectionIntro>
-      <ol>
-        {steps.map(([title, text], index) => (
-          <li key={title}>
-            <span className="step-no">{String(index + 1).padStart(2, '0')}</span>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
 export function QuoteBand() {
   const [index, setIndex] = useState(0);
   const quote = TESTIMONIALS[index];

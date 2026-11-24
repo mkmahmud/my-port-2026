@@ -58,6 +58,7 @@ export function WhatIDo() {
         end: '+=170%',
         pin: '.wd-stage',
         anticipatePin: 1,
+        refreshPriority: 2,
         onUpdate: (self) => {
           setActive(Math.min(SERVICES.length - 1, Math.floor(self.progress * SERVICES.length)));
           node.style.setProperty('--wd-progress', self.progress.toFixed(4));

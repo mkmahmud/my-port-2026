@@ -105,6 +105,7 @@ export function FeaturedProjects() {
         end: `+=${cards.length * 65}%`,
         pin: '.fp-stage',
         anticipatePin: 1,
+        refreshPriority: 1,
         scrub: true,
         onUpdate: (self) => {
           const position = self.progress * (cards.length - 1);
@@ -113,6 +114,9 @@ export function FeaturedProjects() {
           node.style.setProperty('--fp-progress', self.progress.toFixed(4));
         },
       });
+      // This pin is created after project data loads, so every later trigger must re-measure.
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
       gsap.from('.fp-head > *', { y: 30, autoAlpha: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: node, start: 'top 70%', once: true } });
       return () => {
         trigger.current = null;
