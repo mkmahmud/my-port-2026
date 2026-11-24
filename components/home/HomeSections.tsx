@@ -6,18 +6,8 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Send } from 'lucide-react';
 import { BLOG_POSTS } from '@/components/sections/Blogs';
 import { TESTIMONIALS } from '@/components/sections/Testimonials';
-import { BIO, SITE_CONFIG, STATS } from '@/lib/constants';
-import { BRAND_ICONS, type BrandIconName } from './brandIcons';
+import { SITE_CONFIG } from '@/lib/constants';
 import { BrandMark, HOME_LINKS } from './HomeNav';
-
-function BrandIcon({ name, size = 22 }: { name: BrandIconName; size?: number }) {
-  const icon = BRAND_ICONS[name];
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={icon.color} aria-hidden="true">
-      <path d={icon.path} />
-    </svg>
-  );
-}
 
 function SectionIntro({ label, title, children, href, cta }: {
   label: string;
@@ -37,43 +27,6 @@ function SectionIntro({ label, title, children, href, cta }: {
         </Link>
       )}
     </div>
-  );
-}
-
-export function AboutStack() {
-  const stats = [
-    { value: `${STATS.yearsExperience}+`, label: 'Years Experience' },
-    { value: `${STATS.projectsShipped}+`, label: 'Projects Shipped' },
-    { value: `${STATS.technologies}+`, label: 'Technologies' },
-  ];
-  const stack: BrandIconName[] = ['react', 'next', 'node', 'docker', 'aws', 'postgres'];
-  return (
-    <section className="band about">
-      <div className="about-photo">
-        <Image src="/images/home/portrait-matte.webp" alt="Portrait of Mahmudul Hasan" fill loading="eager" sizes="(max-width: 900px) 90vw, 320px" />
-      </div>
-      <div className="about-copy">
-        <p className="tag tag-dot">About me</p>
-        <h2>Hi, I&apos;m {SITE_CONFIG.name}</h2>
-        <p>{BIO.split('. ')[0]}.</p>
-        <dl>
-          {stats.map((stat) => <div key={stat.label}><dd>{stat.value}</dd><dt>{stat.label}</dt></div>)}
-        </dl>
-      </div>
-      <div className="about-stack">
-        <p className="tag tag-dot">Tech stack</p>
-        <h2>My Tech Stack</h2>
-        <p>Modern tools I work with.</p>
-        <ul>
-          {stack.map((name) => (
-            <li key={name} title={BRAND_ICONS[name].label}>
-              <BrandIcon name={name} size={30} />
-              <span className="sr-only">{BRAND_ICONS[name].label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
   );
 }
 
