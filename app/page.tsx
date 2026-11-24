@@ -1,10 +1,7 @@
 ﻿import { Kaushan_Script, Poppins } from "next/font/google";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeNav } from "@/components/home/HomeNav";
-import {
-  ClosingCta,
-  HomeFooter,
-} from "@/components/home/HomeSections";
+import { ClosingCta, HomeFooter } from "@/components/home/Closing";
 import { AboutMe } from "@/components/home/AboutMe";
 import { BlogList } from "@/components/home/BlogList";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
@@ -13,6 +10,7 @@ import { TestimonialDeck } from "@/components/home/Testimonials";
 import { TechMarquee } from "@/components/home/TechMarquee";
 import { WhatIDo } from "@/components/home/WhatIDo";
 import "@/components/home/home.css";
+import "@/components/home/nav.css";
 import "@/components/home/hero.css";
 import "@/components/home/whatido.css";
 import "@/components/home/techmarquee.css";
@@ -21,6 +19,7 @@ import "@/components/home/about.css";
 import "@/components/home/process.css";
 import "@/components/home/testimonials.css";
 import "@/components/home/blog.css";
+import "@/components/home/closing.css";
 
 // Poppins sets all running text; Kaushan Script sets section titles.
 const poppins = Poppins({
