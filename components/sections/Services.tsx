@@ -12,7 +12,7 @@ interface ServiceItem {
   description: string;
 }
 
-const SERVICES: ServiceItem[] = [
+export const SERVICES: ServiceItem[] = [
   {
     id: '01.',
     title: 'Full Stack Web Development',

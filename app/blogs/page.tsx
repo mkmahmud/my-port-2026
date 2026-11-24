@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Blogs } from '@/components/sections/Blogs';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { BlogList } from '@/components/home/BlogList';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/blog.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Latest Blogs & Technical Insights',
@@ -62,11 +64,10 @@ export default function BlogsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Blogs />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Blog" tag="From my blog" title={<>Insights <span>&amp; Articles.</span></>} sub="Notes on DevOps, backend architecture, and shipping AI features to production. Pick an article to read it here." />
+        <div className="pg-band"><BlogList reader bare /></div>
+      </EmberShell>
     </>
   );
 }

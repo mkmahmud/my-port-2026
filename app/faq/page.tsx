@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { FAQ } from '@/components/sections/FAQ';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { FaqSection } from '@/components/home/FaqSection';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions (FAQ)',
@@ -103,11 +104,10 @@ export default function FAQPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <FAQ />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="FAQ" tag="FAQ" title={<>Questions, <span>Answered.</span></>} sub="Everything people usually ask before we start working together. Search, or just scroll." />
+        <FaqSection bare />
+      </EmberShell>
     </>
   );
 }

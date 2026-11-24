@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { About } from '@/components/sections/About';
-import { Skills } from '@/components/sections/Skills';
-import { Experience } from '@/components/sections/Experience';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { AboutMe } from '@/components/home/AboutMe';
+import { SkillsGrid } from '@/components/home/SkillsGrid';
+import { ExperienceTimeline } from '@/components/home/ExperienceTimeline';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/about.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'About Me — Full Stack DevOps Engineer',
@@ -81,13 +83,12 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <About />
-        <Skills />
-        <Experience />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="About" tag="About me" title={<>The Engineer Behind <span>the Pipelines.</span></>} sub="Full stack and DevOps engineer from Chattogram, building, containerising, and shipping production systems end to end." />
+        <AboutMe />
+        <SkillsGrid />
+        <ExperienceTimeline />
+      </EmberShell>
     </>
   );
 }

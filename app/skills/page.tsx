@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Skills } from '@/components/sections/Skills';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { TechMarquee } from '@/components/home/TechMarquee';
+import { SkillsGrid } from '@/components/home/SkillsGrid';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/techmarquee.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Skills & Technical Stack — Tools Behind My Work',
@@ -29,11 +32,11 @@ export const metadata: Metadata = {
 export default function SkillsPage() {
   return (
     <>
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Skills />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Skills" tag="Skills" title={<>The Tools <span>I Ship With.</span></>} sub="Languages, frameworks, databases, cloud, and AI tooling I use in production." />
+        <TechMarquee />
+        <SkillsGrid />
+      </EmberShell>
     </>
   );
 }

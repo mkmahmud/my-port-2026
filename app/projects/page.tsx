@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Projects } from '@/components/sections/Projects';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { ProjectsIndex } from '@/components/home/ProjectsIndex';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Selected Works & Engineering Portfolio',
@@ -64,11 +65,10 @@ export default function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Projects showAll />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Projects" tag="Portfolio" title={<>Things I&apos;ve <span>Built.</span></>} sub="Production apps, AI systems, and platforms. Filter by type and open any project for the full case study." />
+        <ProjectsIndex />
+      </EmberShell>
     </>
   );
 }

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Services } from '@/components/sections/Services';
-import { Process } from '@/components/sections/Process';
-import { Pricing } from '@/components/sections/Pricing';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { ServicesBento } from '@/components/home/ServicesBento';
+import { ProcessPipeline } from '@/components/home/ProcessPipeline';
+import { PricingPlans } from '@/components/home/PricingPlans';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/process.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Services & Engineering Solutions',
@@ -114,13 +116,12 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Services />
-        <Process />
-        <Pricing />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Services" tag="Services" title={<>What I Can <span>Build for You.</span></>} sub="Full stack products, DevOps and cloud, backend APIs, data, and AI features, delivered end to end." />
+        <ServicesBento />
+        <ProcessPipeline />
+        <PricingPlans />
+      </EmberShell>
     </>
   );
 }

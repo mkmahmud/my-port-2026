@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { EmberShell } from '@/components/home/EmberShell';
 import { ContactForm } from '@/components/home/ContactForm';
-import { FaqList } from '@/components/home/FaqList';
+import { FaqSection } from '@/components/home/FaqSection';
 import { SOCIALS, SocialIcon } from '@/components/home/socials';
 import { SITE_CONFIG } from '@/lib/constants';
 import '@/components/home/contact.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Contact & Hire Me — Start Your Project',
@@ -103,13 +104,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="fq" aria-labelledby="fq-title">
-        <div className="fq-head">
-          <p className="tag">FAQ</p>
-          <h2 id="fq-title">Good <span>Questions.</span></h2>
-        </div>
-        <FaqList />
-      </section>
+      <FaqSection />
     </EmberShell>
   );
 }

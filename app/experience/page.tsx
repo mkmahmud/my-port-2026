@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Experience } from '@/components/sections/Experience';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { ExperienceTimeline } from '@/components/home/ExperienceTimeline';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Work Experience & Career Journey — Mahmudul Hasan',
@@ -29,11 +30,10 @@ export const metadata: Metadata = {
 export default function ExperiencePage() {
   return (
     <>
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Experience />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Experience" tag="Career" title={<>My Engineering <span>Journey.</span></>} sub="The teams I have shipped with, what I built there, and how I keep learning." />
+        <ExperienceTimeline />
+      </EmberShell>
     </>
   );
 }

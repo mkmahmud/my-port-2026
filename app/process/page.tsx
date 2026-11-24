@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Process } from '@/components/sections/Process';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { ProcessPipeline } from '@/components/home/ProcessPipeline';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/process.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Development Process & Methodology — Mahmudul Hasan',
@@ -29,11 +31,10 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <>
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Process />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Process" tag="How I work" title={<>From Idea <span>to Production.</span></>} sub="Every project runs like a CI/CD pipeline: planned, built, tested, and shipped in clear stages." />
+        <ProcessPipeline />
+      </EmberShell>
     </>
   );
 }

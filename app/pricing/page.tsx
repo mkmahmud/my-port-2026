@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Pricing } from '@/components/sections/Pricing';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { PricingPlans } from '@/components/home/PricingPlans';
+import { FaqSection } from '@/components/home/FaqSection';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Pricing & Engagement Models — Mahmudul Hasan',
@@ -29,11 +31,11 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Pricing />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Pricing" tag="Pricing" title={<>Ways to <span>Work Together.</span></>} sub="Hourly help, a dedicated monthly engineer, or a quote for a fixed project." />
+        <PricingPlans />
+        <FaqSection />
+      </EmberShell>
     </>
   );
 }

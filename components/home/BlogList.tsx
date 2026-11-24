@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CalendarDays, Clock, UserRound, X } from 'lucide-react';
+import { useLenis } from 'lenis/react';
 import { gsap } from 'gsap';
-import { BLOG_POSTS } from '@/components/sections/Blogs';
+import { BLOG_POSTS, type BlogPost } from '@/components/sections/Blogs';
 
-const POSTS = BLOG_POSTS.slice(0, 4);
+const POSTS = BLOG_POSTS;
 
 function Cover({ index }: { index: number }) {
   const line = { fill: 'none', stroke: '#ff6a55', strokeWidth: 1.6 };
@@ -59,7 +60,21 @@ function Cover({ index }: { index: number }) {
   );
 }
 
-export function BlogList() {
+/** Home shows a linked list; with `reader`, rows open the full article in a dialog. */
+export function BlogList({ reader = false, bare = false }: { reader?: boolean; bare?: boolean }) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [reading, setReading] = useState<{ post: BlogPost; index: number } | null>(null);
+  const lenis = useLenis();
+
+  const openPost = (post: BlogPost, index: number) => {
+    setReading({ post, index });
+    dialog.current?.showModal();
+    lenis?.stop();
+  };
+  const closePost = () => {
+    dialog.current?.close();
+  };
+
   const list = useRef<HTMLDivElement>(null);
   const float = useRef<HTMLDivElement>(null);
   const movers = useRef<{ x: (v: number) => void; y: (v: number) => void; r: (v: number) => void } | null>(null);
@@ -87,13 +102,15 @@ export function BlogList() {
 
   return (
     <section className="bl" aria-labelledby="bl-title">
-      <header className="bl-head">
-        <div>
-          <p className="tag">From my blog</p>
-          <h2 id="bl-title">Latest Insights <span>&amp; Articles.</span></h2>
-        </div>
-        <Link href="/blogs" className="text-link">View All Posts <ArrowRight size={15} /></Link>
-      </header>
+      {bare ? <h2 id="bl-title" className="sr-only">All articles</h2> : (
+        <header className="bl-head">
+          <div>
+            <p className="tag">From my blog</p>
+            <h2 id="bl-title">Latest Insights <span>&amp; Articles.</span></h2>
+          </div>
+          <Link href="/blogs" className="text-link">View All Posts <ArrowRight size={15} /></Link>
+        </header>
+      )}
 
       <div
         ref={list}
@@ -102,33 +119,69 @@ export function BlogList() {
         onPointerEnter={(event) => { if (list.current) last.current = event.clientX - list.current.getBoundingClientRect().left; }}
         onPointerLeave={() => setHover(null)}
       >
-        {POSTS.map((post, index) => (
-          <Link
-            key={post.id}
-            href="/blogs"
-            className={`bl-row ${hover !== null && hover !== index ? 'is-dim' : ''}`}
-            onPointerEnter={() => setHover(index)}
-          >
-            <span className="bl-thumb"><Cover index={index} /></span>
-            <span className="bl-num">{String(index + 1).padStart(2, '0')}</span>
-            <span className="bl-main">
-              <span className="bl-cat">{post.category}</span>
-              <strong>{post.title}</strong>
-            </span>
-            <span className="bl-meta"><span>{post.date}</span><span>{post.readTime}</span></span>
-            <span className="bl-go" aria-hidden="true"><ArrowUpRight size={18} /></span>
-          </Link>
-        ))}
+        {POSTS.map((post, index) => {
+          const inner = (
+            <>
+              <span className="bl-thumb"><Cover index={index % 4} /></span>
+              <span className="bl-num">{String(index + 1).padStart(2, '0')}</span>
+              <span className="bl-main">
+                <span className="bl-cat">{post.category}</span>
+                <strong>{post.title}</strong>
+              </span>
+              <span className="bl-meta"><span>{post.date}</span><span>{post.readTime}</span></span>
+              <span className="bl-go" aria-hidden="true"><ArrowUpRight size={18} /></span>
+            </>
+          );
+          const className = `bl-row ${hover !== null && hover !== index ? 'is-dim' : ''}`;
+          return reader ? (
+            <button key={post.id} type="button" className={className} onPointerEnter={() => setHover(index)} onClick={() => openPost(post, index)} aria-haspopup="dialog">
+              {inner}
+            </button>
+          ) : (
+            <Link key={post.id} href="/blogs" className={className} onPointerEnter={() => setHover(index)}>
+              {inner}
+            </Link>
+          );
+        })}
 
         <div ref={float} className={`bl-float ${hover !== null ? 'is-on' : ''}`} aria-hidden="true">
           {POSTS.map((post, index) => (
             <div key={post.id} className={`bl-float-card ${hover === index ? 'is-shown' : ''}`}>
-              <Cover index={index} />
+              <Cover index={index % 4} />
               <p>{post.excerpt}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {reader && (
+        <dialog
+          ref={dialog}
+          className="bl-reader"
+          aria-labelledby="bl-reader-title"
+          onClose={() => { setReading(null); lenis?.start(); }}
+          onClick={(event) => { if (event.target === dialog.current) closePost(); }}
+        >
+          {reading && (
+            <article>
+              <button type="button" className="bl-close" onClick={closePost} aria-label="Close article"><X size={18} /></button>
+              <div className="bl-reader-cover"><Cover index={reading.index % 4} /></div>
+              <div className="bl-reader-body">
+                <p className="bl-cat">{reading.post.category}</p>
+                <h2 id="bl-reader-title">{reading.post.title}</h2>
+                <p className="bl-reader-meta">
+                  <span><UserRound size={14} aria-hidden="true" /> {reading.post.author}</span>
+                  <span><CalendarDays size={14} aria-hidden="true" /> {reading.post.date}</span>
+                  <span><Clock size={14} aria-hidden="true" /> {reading.post.readTime}</span>
+                </p>
+                <p className="bl-lede">{reading.post.excerpt}</p>
+                {reading.post.content.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                <Link href="/contact" className="text-link" onClick={closePost}>Talk to me about this <ArrowRight size={15} /></Link>
+              </div>
+            </article>
+          )}
+        </dialog>
+      )}
     </section>
   );
 }

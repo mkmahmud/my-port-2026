@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import { Navigation } from '@/components/layout/Navigation';
-import { Testimonials } from '@/components/sections/Testimonials';
-import { Footer } from '@/components/sections/Footer';
+import { EmberShell } from '@/components/home/EmberShell';
+import { TestimonialDeck } from '@/components/home/Testimonials';
+import { PageHero } from '@/components/home/PageHero';
+import '@/components/home/testimonials.css';
+import '@/components/home/pages.css';
 
 export const metadata: Metadata = {
   title: 'Client Reviews & Testimonials',
@@ -90,11 +92,10 @@ export default function TestimonialsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navigation />
-      <main className="overflow-x-hidden pt-12 sm:pt-16">
-        <Testimonials />
-      </main>
-      <Footer />
+      <EmberShell>
+        <PageHero crumb="Testimonials" tag="Testimonials" title={<>Kind Words From <span>Kind People.</span></>} sub="What founders and teams say after shipping with me." />
+        <TestimonialDeck />
+      </EmberShell>
     </>
   );
 }
